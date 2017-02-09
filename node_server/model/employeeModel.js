@@ -5,8 +5,9 @@ var Schema = mongoose.Schema;
 /*Database Collection Schema*/
  var employeeSchema = mongoose.Schema({
 
-    name : { type:String },
-    occupation: { type:String },
+    name :  {type:String },
+    rank: { type:String , default: "Employee" },
+    role: { type :Number ,default : 0 },
     gender : { type:String },
     age : { type:Number }
   });
