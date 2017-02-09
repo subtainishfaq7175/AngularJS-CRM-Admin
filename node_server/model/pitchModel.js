@@ -18,6 +18,10 @@ var Schema = mongoose.Schema;
     assignedTeamLeader :  {type:String }, // this will be Employee
     assignedSalesPerson :  {type:String }, // this will be Employee
     pitchStatusType :  {type:String }, // this will be ListOfValue
+    pitchClientType :  {type:String }, // this will be ListOfValue
+    pitchClientResponseType :  {type:String }, // this will be ListOfValue
+    pitchClientCurrentServiceType :  {type:String }, // this will be ListOfValue
+    isPitchClientNew :  {type:Boolean},
     pitchStatusRemarks :  {type:String },
     pitchSalesPersonRemarks :  {type:String },
     pitchExpectedBusiness :  {type:Number },
