@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0214c1a0-b6c3-486a-ac2c-33b75e327404" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/add/add.tpl" afterPath="$PROJECT_DIR$/add/add.tpl.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/home/home.tpl" afterPath="$PROJECT_DIR$/home/home.tpl.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../node_server/model/pitchModel.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/add/add.js" afterPath="$PROJECT_DIR$/add/add.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/delete/delete.tpl" afterPath="$PROJECT_DIR$/delete/delete.tpl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/edit/edit.js" afterPath="$PROJECT_DIR$/edit/edit.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/home/home.js" afterPath="$PROJECT_DIR$/home/home.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../node_server/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../node_server/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../node_server/model/employeeModel.js" afterPath="$PROJECT_DIR$/../node_server/model/employeeModel.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -71,7 +65,7 @@
       <file leaf-file-name="home.tpl.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/home/home.tpl.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
+            <state relative-caret-position="225">
               <caret line="15" column="20" lean-forward="false" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
               <folding />
             </state>
@@ -319,7 +313,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1486552985507</updated>
-      <workItem from="1486552987250" duration="1397000" />
+      <workItem from="1486552987250" duration="1583000" />
     </task>
     <task id="LOCAL-00001" summary="UI Changes">
       <created>1486553493142</created>
@@ -339,7 +333,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1397000" />
+    <option name="totallyTimeSpent" value="1583000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -439,7 +433,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/home/home.tpl.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
+        <state relative-caret-position="225">
           <caret line="15" column="20" lean-forward="false" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
           <folding />
         </state>
