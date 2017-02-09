@@ -1,11 +1,4 @@
-angular.module("edit", []).config(function($stateProvider) {
-    $stateProvider.state('edit', {
-        url: '/edit/:_id',
-        templateUrl: "add/add.tpl.html",
-        controller: "EditController"
-
-    });
-}).controller("EditController", function($scope, AddService, $state,$stateParams,$rootScope) {
+angular.module("app").controller("EditController", function($scope, AddService, $state,$stateParams,$rootScope) {
     $scope.employee = AddService.getById($rootScope.record, $stateParams._id);
 
     $scope.editMode=true;
@@ -15,9 +8,9 @@ angular.module("edit", []).config(function($stateProvider) {
         console.log(employee);
         AddService.updateEmployee(employee).then(function(resolve){
            //$scope.record.push(employee);
-             $state.go('home');
+             $state.go('employeeHome');
         }, function(reject){
-            $state.go('home');
+            $state.go('employeeHome');
         });
        
         

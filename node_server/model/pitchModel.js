@@ -15,6 +15,7 @@ var Schema = mongoose.Schema;
     contactNumber :  {type:String },
     location :  {type:String },
     requestedServiceType :  {type:String },// this will ListOfValues
+    pitchStatusType :  {type:String },// this will ListOfValues
     assignedTeamLeader :  {type:String }, // this will be Employee
     assignedSalesPerson :  {type:String }, // this will be Employee
     pitchStatusType :  {type:String }, // this will be ListOfValue
@@ -30,6 +31,7 @@ var Schema = mongoose.Schema;
     pitchSourceType :  {type:String }, // this will be ListOfValue
     followUpCount :  {type:String },
     createdDate: { type:Date , default: Date.now() },
+    scheduelDate: { type:Date , default: Date.now() },
     role: { type :Number ,default : 0 },
     gender : { type:String },
     age : { type:Number }

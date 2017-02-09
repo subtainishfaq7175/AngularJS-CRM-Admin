@@ -10,15 +10,16 @@
     <script type="text/javascript" src="libs/0angular.js"></script>
     <script type="text/javascript" src="libs/1angular-ui-router.js"></script>
     <script type="text/javascript" src="app.js"></script>
-    <script type="text/javascript" src="home/home.js"></script>
-    <script type="text/javascript" src="add/add.js"></script>
-    <script type="text/javascript" src="add/add-service.js"></script>
-    <script type="text/javascript" src="edit/edit.js"></script>
-    <script type="text/javascript" src="delete/delete.js"></script>
+    <script type="text/javascript" src="app.route.js"></script>
+    <script type="text/javascript" src="employee/employeeHome/employeeHome.js"></script>
+    <script type="text/javascript" src="employee/add/add.js"></script>
+    <script type="text/javascript" src="employee/add/add-service.js"></script>
+    <script type="text/javascript" src="employee/edit/edit.js"></script>
+    <script type="text/javascript" src="employee/delete/delete.js"></script>
     <title></title>
 </head>
 
-<body ng-controller="IndexController">
+<body ng-app="app">
                 <div class = "container-fluid">
                 <div class="row" ><h2 style = "margin-left:35%;">CRUD Demo </h2></div>
                     <div class="container custom_background" ui-view>

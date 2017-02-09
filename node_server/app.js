@@ -7,6 +7,7 @@ var jsonfile = require('jsonfile')
 var bodyParser = require('body-parser');
 var fs = require('fs-extra')
 var employeeModule = require('./routes/employeeController.js');
+var pitchModule = require('./routes/pitchController.js');
 var methodOverride = require('method-override');
 /*Configuration*/
 config = require('./config.json'); 
@@ -72,6 +73,15 @@ app.post('/editemployee', employeeModule.employeeEditMethod);
 app.post('/addemployee', employeeModule.employeeAddMethod);
 
 app.delete('/deleteemployee/:_id',employeeModule.employeeDeleteMethod);
+
+
+app.get('/pitchlist', pitchModule.pitchListMethod);
+
+app.post('/editpitch', pitchModule.pitchEditMethod);
+
+app.post('/addpitch', pitchModule.pitchAddMethod);
+
+app.delete('/deletepitch/:_id',pitchModule.pitchDeleteMethod);
 
 app.listen(config.port);
 console.log('server started at:  '+config.port);

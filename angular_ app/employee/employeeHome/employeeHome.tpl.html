@@ -1,6 +1,6 @@
 <div>
     <div style="margin-bottom: 12px;">
-        <input type="button" class="btn btn-success" ui-sref="add" value="Add" style="width: 11%;font-size: 15px;">
+        <input type="button" class="btn btn-success" ui-sref="employeeAdd" value="Add" style="width: 11%;font-size: 15px;">
     </div>
 
 
@@ -26,7 +26,7 @@
                 <td>{{employee.rank}}</td>
                 <td>{{employee.age}}</td>
                 <td>
-                    <input class="btn btn-primary" type="button"  ui-sref="edit({'_id':employee._id})" value="edit" />
+                    <input class="btn btn-primary" type="button"  ui-sref="employeeEdit({'_id':employee._id})" value="edit" />
                 </td>
                 <td>
                     <input class="btn btn-danger" type="button" ui-sref="deleteEmployee({'_id':employee._id})" value="Delete" />

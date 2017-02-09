@@ -1450,7 +1450,7 @@ if ( typeof module !== "undefined" && typeof exports !== "undefined" && module.e
      *   return result;
      * });
      *
-     * $stateProvider.state('home', {
+     * $stateProvider.state('employeeHome', {
      *   views: {
      *     'contact.list': { controller: 'ListController' },
      *     'contact.item': { controller: 'ItemController' }
@@ -1459,9 +1459,9 @@ if ( typeof module !== "undefined" && typeof exports !== "undefined" && module.e
      *
      * // ...
      *
-     * $state.go('home');
-     * // Auto-populates list and item views with /partials/home/contact/list.html,
-     * // and /partials/home/contact/item.html, respectively.
+     * $state.go('employeeHome');
+     * // Auto-populates list and item views with /partials/employeeHome/contact/list.html,
+     * // and /partials/employeeHome/contact/item.html, respectively.
      * </pre>
      *
      * @param {string} name The name of the builder function to decorate.
@@ -1601,24 +1601,24 @@ if ( typeof module !== "undefined" && typeof exports !== "undefined" && module.e
        * // Some state name examples
        *
        * // stateName can be a single top-level name (must be unique).
-       * $stateProvider.state("home", {});
+       * $stateProvider.state("employeeHome", {});
        *
        * // Or it can be a nested state name. This state is a child of the
-       * // above "home" state.
-       * $stateProvider.state("home.newest", {});
+       * // above "employeeHome" state.
+       * $stateProvider.state("employeeHome.newest", {});
        *
        * // Nest states as deeply as needed.
-       * $stateProvider.state("home.newest.abc.xyz.inception", {});
+       * $stateProvider.state("employeeHome.newest.abc.xyz.inception", {});
        *
        * // state() returns $stateProvider, so you can chain state declarations.
        * $stateProvider
-       *   .state("home", {})
+       *   .state("employeeHome", {})
        *   .state("about", {})
        *   .state("contacts", {});
        * </pre>
        *
-       * @param {string} name A unique state name, e.g. "home", "about", "contacts".
-       * To create a parent/child state use a dot, e.g. "about.sales", "home.newest".
+       * @param {string} name A unique state name, e.g. "employeeHome", "about", "contacts".
+       * To create a parent/child state use a dot, e.g. "about.sales", "employeeHome.newest".
        * @param {object} definition State configuration object.
        */
     this.state = state;
@@ -2471,7 +2471,7 @@ if ( typeof module !== "undefined" && typeof exports !== "undefined" && module.e
    * single view and it is unnamed then you can populate it like so:
    * <pre>
    * <div ui-view></div>
-   * $stateProvider.state("home", {
+   * $stateProvider.state("employeeHome", {
    *   template: "<h1>HELLO!</h1>"
    * })
    * </pre>
@@ -2479,7 +2479,7 @@ if ( typeof module !== "undefined" && typeof exports !== "undefined" && module.e
    * The above is a convenient shortcut equivalent to specifying your view explicitly with the {@link ui.router.state.$stateProvider#views `views`}
    * config property, by name, in this case an empty name:
    * <pre>
-   * $stateProvider.state("home", {
+   * $stateProvider.state("employeeHome", {
    *   views: {
    *     "": {
    *       template: "<h1>HELLO!</h1>"
@@ -2495,7 +2495,7 @@ if ( typeof module !== "undefined" && typeof exports !== "undefined" && module.e
    * <div ui-view="main"></div>
    * </pre>
    * <pre>
-   * $stateProvider.state("home", {
+   * $stateProvider.state("employeeHome", {
    *   views: {
    *     "main": {
    *       template: "<h1>HELLO!</h1>"
@@ -2512,7 +2512,7 @@ if ( typeof module !== "undefined" && typeof exports !== "undefined" && module.e
    * </pre>
    *
    * <pre>
-   * $stateProvider.state("home", {
+   * $stateProvider.state("employeeHome", {
    *   views: {
    *     "": {
    *       template: "<h1>HELLO!</h1>"
@@ -2759,7 +2759,7 @@ if ( typeof module !== "undefined" && typeof exports !== "undefined" && module.e
      * Here's an example of how you'd use ui-sref and how it would compile. If you have the
      * following template:
      * <pre>
-     * <a ui-sref="home">Home</a> | <a ui-sref="about">About</a>
+     * <a ui-sref="employeeHome">Home</a> | <a ui-sref="about">About</a>
      *
      * <ul>
      *     <li ng-repeat="contact in contacts">
@@ -2770,7 +2770,7 @@ if ( typeof module !== "undefined" && typeof exports !== "undefined" && module.e
      *
      * Then the compiled html would be (assuming Html5Mode is off):
      * <pre>
-     * <a href="#/home" ui-sref="home">Home</a> | <a href="#/about" ui-sref="about">About</a>
+     * <a href="#/employeeHome" ui-sref="employeeHome">Home</a> | <a href="#/about" ui-sref="about">About</a>
      *
      * <ul>
      *     <li ng-repeat="contact in contacts">
@@ -2784,7 +2784,7 @@ if ( typeof module !== "undefined" && typeof exports !== "undefined" && module.e
      *     </li>
      * </ul>
      *
-     * <a ui-sref="home" ui-sref-opts="{reload: true}">Home</a>
+     * <a ui-sref="employeeHome" ui-sref-opts="{reload: true}">Home</a>
      * </pre>
      *
      * @param {string} ui-sref 'stateName' can be any valid absolute or relative state
@@ -3014,7 +3014,7 @@ if ( typeof module !== "undefined" && typeof exports !== "undefined" && module.e
      * var app = angular.module('app', ['ui.router.compat']);
      *
      * app.config(function ($routeProvider) {
-     *   $routeProvider.when('home', {
+     *   $routeProvider.when('employeeHome', {
      *     controller: function () { ... },
      *     templateUrl: 'path/to/template'
      *   });
