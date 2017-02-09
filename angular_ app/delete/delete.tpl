@@ -4,13 +4,13 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Occupation</th>
+                <th>role</th>
                 <th>Gender</th>
                 <th>Age</th>
             </tr>
             <tr >
                 <td>{{employee.name}}</td>
-                <td>{{employee.occupation}}</td>
+                <td>{{employee.role}}</td>
                 <td>{{employee.gender}}</td>
                 <td>{{employee.age}}</td>
                

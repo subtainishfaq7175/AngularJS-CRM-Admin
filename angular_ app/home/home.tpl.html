@@ -13,15 +13,17 @@
             <tr>
                <!--  <th>ID</th> -->
                 <th>Name</th>
-                <th>Occupation</th>
+                <th>role</th>
                 <th>Gender</th>
+                <th>Rank</th>
                 <th>Age</th>
             </tr>
             <tr  class="animate" ng-repeat="employee in record | filter: searchText "> 
            
                 <td>{{employee.name}}</td>
-                <td>{{employee.occupation}}</td>
+                <td>{{employee.role}}</td>
                 <td>{{employee.gender}}</td>
+                <td>{{employee.rank}}</td>
                 <td>{{employee.age}}</td>
                 <td>
                     <input class="btn btn-primary" type="button"  ui-sref="edit({'_id':employee._id})" value="edit" />
