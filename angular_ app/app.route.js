@@ -11,7 +11,7 @@ angular.module("appRoute",[]).config(
 
         });
         $stateProvider.state('employeeHome', {
-            url: 'employee/',
+            url: '',
             templateUrl: "employee/employeeHome/employeeHome.tpl.html",
             controller: "HomeController",
 

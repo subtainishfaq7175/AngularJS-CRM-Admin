@@ -4,4 +4,4 @@ config = {
 	"read" :     "employeelist",
 	"update":    "editemployee",
 	"delete":    "deleteemployee"
-}
+};
