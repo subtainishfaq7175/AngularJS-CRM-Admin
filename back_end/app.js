@@ -8,6 +8,7 @@ var games = require('./routes/games'); //routes are defined here
 var letsplays = require('./routes/letsplays'); //routes are defined here
 var news = require('./routes/news'); //routes are defined here
 var walkthrough = require('./routes/walkthroughs'); //routes are defined here
+var pitches = require('./routes/pitches'); //routes are defined here
 var index = require('./routes/index'); //routes are defined here
 var app = express(); //Create the Express app
 var config      = require('./config/database');
@@ -47,6 +48,7 @@ require('./config/passport')(passport);
 app.use('/api', authentication);
 app.use('/api', games); //This is our route middleware
 app.use('/api', letsplays); //This is our route middleware
+app.use('/api', pitches); //This is our route middleware
 app.use('/api', news); //This is our route middleware
 app.use('/api', walkthrough); //This is our route middleware
 app.use('/api', comments); //This is our route middleware
