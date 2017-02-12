@@ -26,12 +26,12 @@ var UserSchema = new Schema({
     password: {
         type: String,
         required: true
-    },
-    userrole : String,
+    }
+  /*  userrole : String,
     rank: { type:String , default: "Employee" },
     role: { type :Number ,default : 0 },
     gender : { type:String },
-    age : { type:Number }
+    age : { type:Number }*/
 });
 
 UserSchema.pre('save', function (next) {

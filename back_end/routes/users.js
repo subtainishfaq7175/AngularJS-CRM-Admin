@@ -7,10 +7,11 @@ var passport	= require('passport');
 
 
 
+
 router.route('/users')
     .get(function(req, res) {
 
-
+console.log("in get");
       User.paginate({}, { page : req.param('page'), limit: 10 , sort : {created_time :'desc'} }, function(error, pageCount, paginatedResults) {
         if (error) {
           console.error(error);
@@ -19,10 +20,11 @@ router.route('/users')
 
           res.json(pageCount);
         }
+        res.json("nothing");
       });
 
 
-    })
+    });
 
 
 
@@ -52,11 +54,14 @@ router.post('/authenticate', function(req, res) {
   User.findOne({
     name: req.body.name
   }, function(err, user) {
-    if (err) throw err;
+      console.log("hello I found the user");
+
+      if (err) throw err;
 
     if (!user) {
       res.send({success: false, msg: 'Authentication failed. User not found.'});
     } else {
+      console.log("hello I found the user");
       // check if password matches
       user.comparePassword(req.body.password, function (err, isMatch) {
         if (isMatch && !err) {
@@ -65,7 +70,7 @@ router.post('/authenticate', function(req, res) {
           // return the information including token as JSON
           res.json({success: true, token: 'JWT ' + token});
         } else {
-          res.send({success: false, msg: 'Authentication failed. Wrong password.'});
+               res.send({success: false, msg: 'Authentication failed. Wrong password.'});
         }
       });
     }

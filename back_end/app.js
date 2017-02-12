@@ -40,6 +40,11 @@ app.use(function (req,res,next) {
 app.use('/',index);
 app.use('/public', express.static(__dirname + '/public'));
 mongoose.connect(config.database);
+// CONNECTION EVENTS
+// When successfully connected
+
+
+
 require('./config/passport')(passport);
 
 // bundle our routes
@@ -48,9 +53,9 @@ require('./config/passport')(passport);
 app.use('/api', authentication);
 app.use('/api', games); //This is our route middleware
 app.use('/api', letsplays); //This is our route middleware
-app.use('/api', pitches); //This is our route middleware
 app.use('/api', news); //This is our route middleware
 app.use('/api', walkthrough); //This is our route middleware
+app.use('/api', pitches); //This is our route middleware
 app.use('/api', comments); //This is our route middleware
 app.use('/api', faqs); //This is our route middleware
 app.use('/api', masterdata); //This is our route middleware
@@ -58,4 +63,3 @@ app.use('/api', messages); //This is our route middleware
 
 
 module.exports = app;
-

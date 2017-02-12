@@ -1,4 +1,4 @@
 module.exports = {
-    'secret': 'devdacticIsAwesome',
-    'database': 'mongodb://localhost:27017/gameDB'
+    'secret': 'crmApp',
+    'database': 'mongodb://localhost:27017/crmApp'
 };
