@@ -6696,15 +6696,17 @@ button.close {
 .btn-rounded {
   border-radius: 50px;
 }
-.user-avatar {
-  /*	cursor: pointer;
+.user-avatar img{
+
+    /*
+  	cursor: pointer;
 	transition: all .2s ease-in-out;
 	-webkit-transition: all .2s ease-in-out;
 	&:hover {
 		transform: scale(1.1);
 		-webkit-transform: scale(1.1);
 	}
-*/
+    */
 }
 /* Have to set height explicity on ui-view
 to prevent collapsing during animation*/

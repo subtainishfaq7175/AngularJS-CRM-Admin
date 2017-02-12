@@ -2,13 +2,12 @@
  * Created by subtainishfaq on 10/30/16.
  */
 angular.module('yapp')
-  .controller('GamesCtrl', function($scope, $state,SeatEatsConstants,gamesService,$rootScope,toastr) {
+  .controller('PitchesCtrl', function($scope, $state,SeatEatsConstants,pitchesService,$rootScope,toastr) {
 
     $scope.$state = $state;
 
-
     $scope.editGame = function (ID) {
-      $state.go('gamesedit',{id:ID});
+      $state.go('pitchesedit',{id:ID});
     };
 
     $scope.deleteGame = function (ID) {
@@ -31,7 +30,7 @@ angular.module('yapp')
       dataSource: {
         type: "json",
         transport: {
-          read: SeatEatsConstants.AppUrlApi+'games'
+          read: SeatEatsConstants.AppUrlApi+'pitches'
         },
 
           schema: {

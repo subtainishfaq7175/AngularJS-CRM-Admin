@@ -62,19 +62,19 @@ angular
 
             return masterdataService.getMasterdataByType("link");
           },
-          categories:  function(masterdataService)
+          pitchType:  function(masterdataService)
           {
             //get game here
 
 
-            return masterdataService.getMasterdataByType("categories");
+            return masterdataService.getMasterdataByType("pitchType");
           },
-          genre:  function(masterdataService)
+          location:  function(masterdataService)
           {
             //get game here
 
 
-            return masterdataService.getMasterdataByType("genre");
+            return masterdataService.getMasterdataByType("location");
           },
           language:  function(masterdataService)
           {
@@ -83,19 +83,33 @@ angular
 
             return masterdataService.getMasterdataByType("language");
           },
-          tags:  function(masterdataService)
+          contactType:  function(masterdataService)
           {
             //get game here
 
 
-            return masterdataService.getMasterdataByType("tags");
+            return masterdataService.getMasterdataByType("contactType");
           },
-          linktype:  function(masterdataService)
+          companyType:  function(masterdataService)
           {
             //get game here
 
 
-            return masterdataService.getMasterdataByType("linktype");
+            return masterdataService.getMasterdataByType("companyType");
+          },
+          requestedServiceType:  function(masterdataService)
+          {
+            //get game here
+
+
+            return masterdataService.getMasterdataByType("requestedServiceType");
+          }
+          ,pitchStatusType:  function(masterdataService)
+          {
+            //get game here
+
+
+            return masterdataService.getMasterdataByType("pitchStatusType");
           }},
 
         url: '/masterdata',
@@ -131,6 +145,18 @@ angular
         controller: 'NewsEditCtrl',
         templateUrl: 'private/news/edit/edit.html'
       })
+      .state('pitches', {
+            url: '/pitches',
+            parent: 'dashboard',
+            controller: 'PitchesCtrl',
+            templateUrl: 'private/pitches/pitches.html'
+          })
+      .state('pitchesadd', {
+            url: '/pitchesadd',
+            parent: 'dashboard',
+            controller: 'PitchesAddCtrl',
+            templateUrl: 'private/pitches/add/add.html'
+          })
       .state('games', {
             url: '/games',
             parent: 'dashboard',

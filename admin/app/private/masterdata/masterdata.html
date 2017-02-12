@@ -20,48 +20,7 @@
                     <td> <button class="k-primary" ng-click="saveLink(0)">Save</button> </td>
 
                 </tr>
-                <tr>
-                    <td><p style="padding: -10px">vimeo.com</p></td>
-                    <td><input k-content style="width: 100%" ng-model="model.vimeo.content"/></td>
-                    <td><input k-content style="width: 100%" ng-model="model.vimeo.secondary"/></td>
-                    <td> <button class="k-primary" ng-click="saveLink(1)">Save</button> </td>
 
-                </tr>
-                <tr>
-                    <td><p style="padding: -10px">dailymotion.com</p></td>
-                    <td><input k-content style="width: 100%" ng-model="model.dailymotion.content"/></td>
-                    <td><input k-content style="width: 100%" ng-model="model.dailymotion.secondary"/></td>
-                    <td> <button class="k-primary" ng-click="saveLink(2)">Save</button> </td>
-
-                </tr>
-                <tr>
-                    <td><p style="padding: -10px">myvideo.de</p></td>
-                    <td><input k-content style="width: 100%" ng-model="model.myvideo.content"/></td>
-                    <td><input k-content style="width: 100%" ng-model="model.myvideo.secondary"/></td>
-                    <td> <button class="k-primary" ng-click="saveLink(3)">Save</button> </td>
-
-                </tr>
-                <tr>
-                    <td><p style="padding: -10px">clipfish.com</p></td>
-                    <td><input k-content style="width: 100%" ng-model="model.clipfish.content"/></td>
-                    <td><input k-content style="width: 100%" ng-model="model.clipfish.secondary"/></td>
-                    <td> <button class="k-primary" ng-click="saveLink(4)">Save</button> </td>
-
-                </tr>
-                <tr>
-                    <td><p style="padding: -10px">twitch.tv</p></td>
-                    <td><input k-content style="width: 100%"  ng-model="model.twitch.content"/></td>
-                    <td><input k-content style="width: 100%" ng-model="model.twitch.secondary"/></td>
-                    <td> <button class="k-primary" ng-click="saveLink(5)">Save</button> </td>
-
-                </tr>
-                <tr>
-                    <td><p style="padding: -10px">sevenload.com</p></td>
-                    <td><input k-content style="width: 100%" ng-model="model.sevenload.content"/></td>
-                    <td><input k-content style="width: 100%" ng-model="model.sevenload.secondary"/></td>
-                    <td> <button class="k-primary" ng-click="saveLink(6)">Save</button> </td>
-
-                </tr>
 
             </table>
 
@@ -73,13 +32,13 @@
 
     <div class="jumbotron box">
 
-        <h4>Create Category</h4>
+        <h4>Create Pitch Type</h4>
 
         <div class="container" >
     <add-object
-        on-key-down="saveCategory"
-        object-list="model.categories"
-        on-remove="removeCategory">
+        on-key-down="savePitchType"
+        object-list="model.pitchType"
+        on-remove="removePitchType">
 
     </add-object>
 
@@ -92,15 +51,36 @@
 
     <div class="jumbotron box">
 
-        <h4>Create Genre</h4>
+        <h4>Create Location</h4>
 
 
 
         <div class="container" >
             <add-object
-                on-key-down="saveGenre"
-                object-list="model.genre"
-                on-remove="removeGenre">
+                on-key-down="saveLocation"
+                object-list="model.location"
+                on-remove="removeLocation">
+
+            </add-object>
+
+
+
+
+        </div>
+
+    </div>
+
+    <div class="jumbotron box">
+
+        <h4>Create Pitch Status Type</h4>
+
+
+
+        <div class="container" >
+            <add-object
+                on-key-down="savePitchStatusType"
+                object-list="model.pitchStatusType"
+                on-remove="removePitchStatusType">
 
             </add-object>
 
@@ -114,15 +94,15 @@
 
     <div class="jumbotron box">
 
-        <h4>Create Tags</h4>
+        <h4>Create contactType</h4>
 
 
 
         <div class="container" >
             <add-object
-                on-key-down="saveTag"
-                object-list="model.tags"
-                on-remove="removeTag">
+                on-key-down="saveContactType"
+                object-list="model.contactType"
+                on-remove="removeContactType">
 
             </add-object>
 
@@ -136,16 +116,40 @@
     </div>
     <div class="jumbotron box">
 
-        <h4>Create LinkTypes</h4>
+        <h4>Create CompanyType</h4>
 
 
 
         <div class="container" >
 
             <add-object
-                on-key-down="saveLinkType"
-                object-list="model.linktype"
-                on-remove="removeLinkType">
+                on-key-down="saveCompanyType"
+                object-list="model.companyType"
+                on-remove="removeCompanyType">
+
+            </add-object>
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+    <div class="jumbotron box">
+
+        <h4>Create Requested Service Type</h4>
+
+
+
+        <div class="container" >
+
+            <add-object
+                on-key-down="saveRequestedServiceType"
+                object-list="model.requestedServiceType"
+                on-remove="removeRequestedServiceType">
 
             </add-object>
 

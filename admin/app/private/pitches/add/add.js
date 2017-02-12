@@ -2,7 +2,7 @@
  * Created by subtainishfaq on 10/30/16.
  */
 angular.module('yapp')
-  .controller('GamesAddCtrl', function($scope, $state,SeatEatsConstants,gamesService,$rootScope,toastr) {
+  .controller('PitchesAddCtrl', function($scope, $state,SeatEatsConstants,gamesService,$rootScope,toastr) {
 
 
     $scope.$state = $state;
@@ -10,14 +10,15 @@ angular.module('yapp')
     $scope.model.tags=[];
     $scope.model.genre=[];
     $scope.model.languages=[];
-    $scope.model.categories=[];
+    $scope.model.pitchType=[];
+    $scope.model.location=[];
     $scope.model.screen_images=[];
     $scope.isImageUploading = false;
     $scope.isImageUploadingScreen = false;
 
-    $scope.selectOptionsLanguage = {
+    $scope.selectOptionsPitchType = {
       filter: "contains",
-      placeholder: "Select languages...",
+      placeholder: "Select Type...",
       dataTextField: "content",
       dataValueField: "content",
       valuePrimitive: true,
@@ -33,14 +34,14 @@ angular.module('yapp')
         serverFiltering: true,
         transport: {
           read: {
-            url: SeatEatsConstants.AppUrlApi+"masterdata?type=languages"
+            url: SeatEatsConstants.AppUrlApi+"masterdata?type=pitchType"
           }
         }
       }
     };
-    $scope.selectOptionsTags = {
+    $scope.selectOptionsContactType = {
       filter: "contains",
-      placeholder: "Select tags...",
+      placeholder: "Select ContactType...",
       dataTextField: "content",
       dataValueField: "content",
       valuePrimitive: true,
@@ -56,11 +57,215 @@ angular.module('yapp')
         serverFiltering: true,
         transport: {
           read: {
-            url: SeatEatsConstants.AppUrlApi+"masterdata?type=tags"
+            url: SeatEatsConstants.AppUrlApi+"masterdata?type=contactType"
+          }
+        }
+      }
+    }; $scope.selectOptionsCompanyType = {
+      filter: "contains",
+      placeholder: "Select CompanyType...",
+      dataTextField: "content",
+      dataValueField: "content",
+      valuePrimitive: true,
+      autoBind: false,
+      animation: {
+        close: {
+          effects: "zoom:out",
+          duration: 500
+        }
+      },
+      dataSource: {
+        type: "json",
+        serverFiltering: true,
+        transport: {
+          read: {
+            url: SeatEatsConstants.AppUrlApi+"masterdata?type=companyType"
           }
         }
       }
     };
+
+    $scope.selectOptionsRequestedServiceType = {
+      filter: "contains",
+      placeholder: "Select Requested Service Type...",
+      dataTextField: "content",
+      dataValueField: "content",
+      valuePrimitive: true,
+      autoBind: false,
+      animation: {
+        close: {
+          effects: "zoom:out",
+          duration: 500
+        }
+      },
+      dataSource: {
+        type: "json",
+        serverFiltering: true,
+        transport: {
+          read: {
+            url: SeatEatsConstants.AppUrlApi+"masterdata?type=requestedServiceType"
+          }
+        }
+      }
+    };  $scope.selectOptionsPitchStatusType = {
+      filter: "contains",
+      placeholder: "Select Pitch StatusType...",
+      dataTextField: "content",
+      dataValueField: "content",
+      valuePrimitive: true,
+      autoBind: false,
+      animation: {
+        close: {
+          effects: "zoom:out",
+          duration: 500
+        }
+      },
+      dataSource: {
+        type: "json",
+        serverFiltering: true,
+        transport: {
+          read: {
+            url: SeatEatsConstants.AppUrlApi+"masterdata?type=pitchStatusType"
+          }
+        }
+      }
+    };  $scope.selectOptionsPitchClientType = {
+      filter: "contains",
+      placeholder: "Select Pitch Client Type...",
+      dataTextField: "content",
+      dataValueField: "content",
+      valuePrimitive: true,
+      autoBind: false,
+      animation: {
+        close: {
+          effects: "zoom:out",
+          duration: 500
+        }
+      },
+      dataSource: {
+        type: "json",
+        serverFiltering: true,
+        transport: {
+          read: {
+            url: SeatEatsConstants.AppUrlApi+"masterdata?type=pitchClientType"
+          }
+        }
+      }
+    };  $scope.selectOptionsPitchClientResponseType = {
+      filter: "contains",
+      placeholder: "Select Client Response Type...",
+      dataTextField: "content",
+      dataValueField: "content",
+      valuePrimitive: true,
+      autoBind: false,
+      animation: {
+        close: {
+          effects: "zoom:out",
+          duration: 500
+        }
+      },
+      dataSource: {
+        type: "json",
+        serverFiltering: true,
+        transport: {
+          read: {
+            url: SeatEatsConstants.AppUrlApi+"masterdata?type=pitchClientResponseType"
+          }
+        }
+      }
+    };
+  $scope.selectOptionsPitchClientCurrentServiceType = {
+      filter: "contains",
+      placeholder: "Select Client Current Service Type...",
+      dataTextField: "content",
+      dataValueField: "content",
+      valuePrimitive: true,
+      autoBind: false,
+      animation: {
+        close: {
+          effects: "zoom:out",
+          duration: 500
+        }
+      },
+      dataSource: {
+        type: "json",
+        serverFiltering: true,
+        transport: {
+          read: {
+            url: SeatEatsConstants.AppUrlApi+"masterdata?type=pitchClientCurrentServiceType"
+          }
+        }
+      }
+    };
+  $scope.selectOptionsPitchSourceType = {
+      filter: "contains",
+      placeholder: "Select Source Type...",
+      dataTextField: "content",
+      dataValueField: "content",
+      valuePrimitive: true,
+      autoBind: false,
+      animation: {
+        close: {
+          effects: "zoom:out",
+          duration: 500
+        }
+      },
+      dataSource: {
+        type: "json",
+        serverFiltering: true,
+        transport: {
+          read: {
+            url: SeatEatsConstants.AppUrlApi+"masterdata?type=pitchSourceType"
+          }
+        }
+      }
+    };  $scope.selectOptionslocation= {
+      filter: "contains",
+      placeholder: "Select Locations...",
+      dataTextField: "content",
+      dataValueField: "content",
+      valuePrimitive: true,
+      autoBind: false,
+      animation: {
+        close: {
+          effects: "zoom:out",
+          duration: 500
+        }
+      },
+      dataSource: {
+        type: "json",
+        serverFiltering: true,
+        transport: {
+          read: {
+            url: SeatEatsConstants.AppUrlApi+"masterdata?type=location"
+          }
+        }
+      }
+    };
+  $scope.selectOptionsPitchCurrencyType = {
+      filter: "contains",
+      placeholder: "Select Currency Type...",
+      dataTextField: "content",
+      dataValueField: "content",
+      valuePrimitive: true,
+      autoBind: false,
+      animation: {
+        close: {
+          effects: "zoom:out",
+          duration: 500
+        }
+      },
+      dataSource: {
+        type: "json",
+        serverFiltering: true,
+        transport: {
+          read: {
+            url: SeatEatsConstants.AppUrlApi+"masterdata?type=pitchCurrencyType"
+          }
+        }
+      }
+    };
+
     $scope.selectOptionsGenre = {
       filter: "contains",
       placeholder: "Select tags...",
@@ -107,10 +312,18 @@ angular.module('yapp')
         }
       }
     };
-    $scope.selectedTags = [];
-    $scope.selectedGenre = [];
+    $scope.companyType = [];
+    $scope.location = [];
+    $scope.pitchType = [];
+    $scope.requestedServiceType = [];
     $scope.selectedLanguage = [];
-    $scope.selectedCategories = [];
+    $scope.contactType = [];
+    $scope.pitchCurrencyType = [];
+    $scope.pitchSourceType = [];
+    $scope.pitchStatusType = [];
+    $scope.pitchClientResponseType = [];
+    $scope.pitchClientType = [];
+    $scope.pitchClientCurrentServiceType = [];
     $scope.mainUploadOptions={
       async: {
         saveUrl: SeatEatsConstants.AppUrlApi+"letsplayimage",

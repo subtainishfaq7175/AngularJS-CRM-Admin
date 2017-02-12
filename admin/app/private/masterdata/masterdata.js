@@ -2,33 +2,43 @@
  * Created by subtainishfaq on 10/30/16.
  */
 angular.module('yapp')
-  .controller('MasterdataCtrl', function($scope, $state,masterdataService,link,categories,genre,language,tags,linktype,$rootScope,toastr)
+  .controller('MasterdataCtrl', function($scope, $state,masterdataService,link,pitchType,location,language,contactType,companyType,requestedServiceType,pitchStatusType,$rootScope,toastr)
   {
 
     $scope.$state = $state;
     $scope.model={};
-    if(angular.isDefined(categories))
-    $scope.model.categories=categories.data;
+    if(angular.isDefined(pitchType))
+    $scope.model.pitchType=pitchType.data;
     else
-      $scope.model.categories={};
-    if(angular.isDefined(genre))
-    $scope.model.genre=genre.data;
+      $scope.model.pitchType={};
+    if(angular.isDefined(location))
+    $scope.model.location=location.data;
     else
-      $scope.model.genre={};
+      $scope.model.location={};
 
     if(angular.isDefined(language))
     $scope.model.language=language.data;
     else
       $scope.model.language={};
-    if(angular.isDefined(tags))
-    $scope.model.tags=tags.data;
+    if(angular.isDefined(contactType))
+    $scope.model.contactType=contactType.data;
     else
-      $scope.model.tags={};
+      $scope.model.contactType={};
 
-    if(angular.isDefined(linktype))
-    $scope.model.linktype=linktype.data;
+    if(angular.isDefined(companyType))
+    $scope.model.companyType=companyType.data;
     else
-      $scope.model.linktype={};
+      $scope.model.companyType={};
+
+ if(angular.isDefined(requestedServiceType))
+    $scope.model.requestedServiceType=requestedServiceType.data;
+    else
+      $scope.model.requestedServiceType={};
+
+ if(angular.isDefined(pitchStatusType))
+    $scope.model.pitchStatusType=pitchStatusType.data;
+    else
+      $scope.model.pitchStatusType={};
 
     $scope.model.youtube={    title: undefined,     content:undefined,     secondary:undefined,     content_type:undefined };
     $scope.model.dailymotion={    title: undefined,     content:undefined,     secondary:undefined,     content_type:undefined };
@@ -77,16 +87,20 @@ angular.module('yapp')
 
 
     $scope.saveLink=saveLink;
-    $scope.saveCategory=saveCategory;
-    $scope.removeCategory=removeCategory;
-    $scope.saveGenre=saveGenre;
-    $scope.removeGenre=removeGenre;
-    $scope.removeLanguage=removeCategory;
+    $scope.savePitchType=savePitchType;
+    $scope.removePitchType=removePitchType;
+    $scope.saveLocation=saveLocation;
+    $scope.removeLocation=removeLocation;
+    $scope.removeLanguage=removePitchType;
     $scope.saveLanguage=saveLanguage;
-    $scope.removeTag=removeCategory;
-    $scope.saveTag=saveTag;
-    $scope.removeLinkType=removeCategory;
-    $scope.saveLinkType=saveLinkType;
+    $scope.removeContactType=removePitchType;
+    $scope.saveContactType=saveContactType;
+    $scope.removeCompanyType=removePitchType;
+    $scope.removeRequestedServiceType=removePitchType;
+    $scope.removePitchStatusType=removePitchType;
+    $scope.saveCompanyType=saveCompanyType;
+    $scope.saveRequestedServiceType=saveRequestedServiceType;
+    $scope.savePitchStatusType=savePitchStatusType;
 
     function saveLanguage(index) {
       index.content_type="language";
@@ -103,8 +117,8 @@ angular.module('yapp')
         console.log(response);
       });
     }
-    function saveTag(index) {
-      index.content_type="tags";
+    function saveContactType(index) {
+      index.content_type="contactType";
       $rootScope.scopeWorkingVariable = true;
 
       masterdataService.postObj(index).then(function (response)
@@ -118,8 +132,8 @@ angular.module('yapp')
         console.log(response);
       });
     }
-    function saveLinkType(index) {
-      index.content_type="linktype";
+    function saveCompanyType(index) {
+      index.content_type="companyType";
       $rootScope.scopeWorkingVariable = true;
 
       masterdataService.postObj(index).then(function (response)
@@ -133,8 +147,38 @@ angular.module('yapp')
         console.log(response);
       });
     }
-    function saveCategory(index) {
-      index.content_type="categories";
+    function saveRequestedServiceType(index) {
+      index.content_type="requestedServiceType";
+      $rootScope.scopeWorkingVariable = true;
+
+      masterdataService.postObj(index).then(function (response)
+      {
+        $rootScope.scopeWorkingVariable = false;
+        if(response.status=200)
+          toastr.success('Done','Operation Complete');
+        else
+          toastr.error('Error','Operation Was not complete');
+        index._id=response.data._id;
+        console.log(response);
+      });
+    }
+    function savePitchStatusType(index) {
+      index.content_type="pitchStatusType";
+      $rootScope.scopeWorkingVariable = true;
+
+      masterdataService.postObj(index).then(function (response)
+      {
+        $rootScope.scopeWorkingVariable = false;
+        if(response.status=200)
+          toastr.success('Done','Operation Complete');
+        else
+          toastr.error('Error','Operation Was not complete');
+        index._id=response.data._id;
+        console.log(response);
+      });
+    }
+    function savePitchType(index) {
+      index.content_type="pitchType";
       $rootScope.scopeWorkingVariable = true;
 
       masterdataService.postObj(index).then(function (response)
@@ -149,7 +193,7 @@ angular.module('yapp')
         console.log(response);
       });
     }
-    function removeCategory(id) {
+    function removePitchType(id) {
       $rootScope.scopeWorkingVariable = true;
 
       masterdataService.deleteMasterdataById(id).then(function (response)
@@ -162,8 +206,8 @@ angular.module('yapp')
       console.log(response);
       });
     }
-    function saveGenre(index) {
-      index.content_type="genre";
+    function saveLocation(index) {
+      index.content_type="location";
       $rootScope.scopeWorkingVariable = true;
 
       masterdataService.postObj(index).then(function (response)
@@ -177,7 +221,7 @@ angular.module('yapp')
         console.log(response);
       });
     }
-    function removeGenre(id) {
+    function removeLocation(id) {
       $rootScope.scopeWorkingVariable = true;
 
       masterdataService.deleteMasterdataById(id).then(function (response)

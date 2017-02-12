@@ -5,7 +5,7 @@
  * Created by subtainishfaq on 10/13/16.
  */
 
-angular.module("yapp").factory('gamesService',['$http','SeatEatsConstants', function($http,SeatEatsConstants){
+angular.module("yapp").factory('pitchesService',['$http','SeatEatsConstants', function($http,SeatEatsConstants){
 
   var game = {};
 

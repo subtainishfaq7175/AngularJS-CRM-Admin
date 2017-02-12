@@ -1,14 +1,14 @@
 <div>
-    <a ui-sref="games" class="pull-right btn btn-primary btn-outline btn-rounded">Games</a>
-    <h3>Games <small>Add Games</small></h3>
-    <div class="jumbotron box">
+    <a ui-sref="games" class="pull-right btn btn-primary btn-outline btn-rounded">TeleSales</a>
+    <h3>TeleSales <small>Add Sale</small></h3>
+   <!-- <div class="jumbotron box">
         <h4>Picture</h4>
 
 
 
         <div class="container" >
             <h6>Show in slider</h6>
-            <input class="k-content" type="checkbox" name="vehicle" ng-model="model.is_feed">
+            <input class="k-content" type="checkbox" name="vehicle" ng-model="model.decisionMaker">
             <br>
             <br>
             <div>
@@ -30,7 +30,7 @@
         </div>
 
 
-    </div>
+    </div>-->
 
     <div class="jumbotron box">
 
@@ -40,31 +40,101 @@
 
         <div class="container" >
             <h6>Title</h6>
-            <input k-content style="width: 100%" ng-model="model.title">
-            <br>
-            <h6>Studio</h6>
-            <input k-content style="width: 100%" ng-model="model.studio">
+            <input k-content style="width: 100%" ng-model="model.pitchTitle">
             <br>
 
-            <h6>Series</h6>
-            <input k-content style="width: 100%" ng-model="model.series">
+            <h6>Sale Type</h6>
+           <select kendo-multi-select k-options="selectOptionsPitchType" k-ng-model="pitchType" style="width: 100%;"></select>
+             <br>
+
+            <h6>Company Type</h6>
+           <select kendo-multi-select k-options="selectOptionsCompanyType" k-ng-model="companyType" style="width: 100%;"></select>
             <br>
-            <h6>OS</h6>
-            <input k-content style="width: 100%" ng-model="model.os">
+
+           <h6>Company Name</h6>
+           <input k-content style="width: 100%" ng-model="model.companyName">
+           <br>
+
+           <h6>Contact Person</h6>
+           <input k-content style="width: 100%" ng-model="model.contactPerson">
+           <br>
+
+           <h6>Designation</h6>
+           <input k-content style="width: 100%" ng-model="model.designation">
+           <br>
+
+           <h6>Contact Number</h6>
+           <input k-content style="width: 100%" ng-model="model.contactNumber">
+           <br>
+
+            <h6>Contact Type</h6>
+            <select kendo-multi-select k-options="selectOptionsContactType" k-ng-model="contactType" style="width: 100%;"></select>
             <br>
 
 
-            <h6>Release Date</h6>
+            <h6>Client Type</h6>
+            <select kendo-multi-select k-options="selectOptionsPitchClientType" k-ng-model="pitchClientType" style="width: 100%;"></select>
+            <br>
+
+
+            <h6>Client Response Type</h6>
+            <select kendo-multi-select k-options="selectOptionsPitchClientResponseType" k-ng-model="pitchClientResponseType" style="width: 100%;"></select>
+            <br>
+
+            <h6>Requested Service Type</h6>
+            <select kendo-multi-select k-options="selectOptionsRequestedServiceType" k-ng-model="requestedServiceType" style="width: 100%;"></select>
+            <br>
+
+            <h6>Client Current Service Type</h6>
+            <select kendo-multi-select k-options="selectOptionsPitchClientCurrentServiceType" k-ng-model="pitchClientCurrentServiceType" style="width: 100%;"></select>
+            <br>
+
+            <h6>Is Decision Maker ?</h6>
+           <input class="k-content" type="checkbox" name="vehicle" ng-model="model.decisionMaker">
+           <br>
+           <h6>Is Client New ?</h6>
+           <input class="k-content" type="checkbox" name="vehicle" ng-model="model.isPitchClientNew">
+           <br>
+
+ <!--will make it dropdown-->
+            <h6>Assigned TeamLeader</h6>
+            <input k-content style="width: 100%" ng-model="model.assignedTeamLeader">
+            <br>
+
+            <!--will make it dropdown-->
+            <h6>Assigned SalesPerson</h6>
+            <input k-content style="width: 100%" ng-model="model.assignedSalesPerson">
+            <br>
+
+
+
+
+            <h6>Status</h6>
+            <select kendo-multi-select k-options="selectOptionsPitchStatusType" k-ng-model="pitchStatusType" style="width: 100%;"></select>
+            <br>
+
+            <!--will make it dropdown-->
+
+            <h6>Location</h6>
+            <select kendo-multi-select k-options="selectOptionslocation" k-ng-model="location" style="width: 100%;"></select>
+            <br>
+
+
+
+           <!-- <h6>Release Date</h6>
             <input kendo-date-picker
                    style="width: 100%;"
                    k-ng-model="model.release_date"
-            />
+            />-->
 
 
-            <h6>Description</h6>
-            <textarea kendo-editor k-ng-model="model.content"></textarea><br>
+            <h6>Remarks about Current Status by Sales Person</h6>
+            <textarea kendo-editor k-ng-model="model.pitchStatusRemarks"></textarea><br>
 
-            <h6>Languages</h6>
+            <h6>Remarks about Sales Person</h6>
+            <textarea kendo-editor k-ng-model="model.pitchSalesPersonRemarks"></textarea><br>
+
+          <!--  <h6>Languages</h6>
             <select kendo-multi-select k-options="selectOptionsLanguage" k-ng-model="selectedLanguage" style="width: 100%;"></select>
 
             <h6>Genre</h6>
@@ -76,7 +146,7 @@
             <h6>Tags</h6>
             <select kendo-multi-select k-options="selectOptionsTags" k-ng-model="selectedTags" style="width: 100%;"></select>
             <br>
-
+-->
 
 
         </div>
@@ -87,32 +157,49 @@
 
     <div class="jumbotron box">
 
-        <h4>Operational Requirement</h4>
+        <h4>Business Details</h4>
 
 
 
         <div class="container" >
-            <h6>File/Size</h6>
-            <input k-content style="width: 100%" ng-model="model.file_size">
+            <h6>Expected Bussiness</h6>
+            <input k-content style="width: 100%" ng-model="model.pitchExpectedBusiness">
             <br>
 
-            <h6>CPU</h6>
-            <input k-content style="width: 100%" ng-model="model.cpu">
+            <h6>Actual Bussiness</h6>
+            <input k-content style="width: 100%" ng-model="model.pitchActualBusiness">
             <br>
 
 
-            <h6>Memory</h6>
+            <h6>Currency Type</h6>
+            <select kendo-multi-select k-options="selectOptionsPitchCurrencyType" k-ng-model="pitchCurrencyType" style="width: 100%;"></select>
+            <br>
+
+
+            <h6>Source Type</h6>
+            <select kendo-multi-select k-options="selectOptionsPitchSourceType" k-ng-model="pitchSourceType" style="width: 100%;"></select>
+            <br>
+
+           <!--
+            add expected by actual here
+            <h6>Efficiency</h6>
             <input k-content style="width: 100%" ng-model="model.memory">
             <br>
+-->
+
+            <!--
+            add dropdown here
+            <h6>Currency Type</h6>
+            <input k-content style="width: 100%" ng-model="model.pitchCurrencyType">
+            <br>-->
+
+            <!--
+            add dropdown here
+            <h6>Source Type</h6>
+            <input k-content style="width: 100%" ng-model="model.pitchSourceType">
+            <br>-->
 
 
-            <h6>DirectX</h6>
-            <input k-content style="width: 100%" ng-model="model.directx">
-            <br>
-
-            <h6>Trailer Link (Embedded)</h6>
-            <input k-content style="width: 100%" ng-model="model.trailer_link">
-            <br>
 
 
         </div>
@@ -121,16 +208,17 @@
     </div>
     <div class="jumbotron box">
 
-        <h4>Screenshots</h4>
+        <h4>Scheduled Dates</h4>
 
 
 
         <div class="container" >
-            <h6>Screenshots</h6>
-            <input name="sampleFile"
-                   kendo-upload
-                   k-options="mainUploadOptionsScreen"
-                   type="file" />
+
+             <h6>Contact Date</h6>
+             <input kendo-date-picker
+                    style="width: 100%;"
+                    k-ng-model="model.scheduelDate"
+             />
 
 
         </div>
@@ -138,7 +226,7 @@
 
 
     </div>
-    <div class="jumbotron box">
+   <!-- <div class="jumbotron box">
 
         <h4>External Links</h4>
 
@@ -146,17 +234,6 @@
 
         <div class="container" >
 
-            <h6>Steam Link</h6>
-            <input k-content style="width: 100%" ng-model="model.steam_url">
-            <br>
-
-            <h6>Amazon</h6>
-            <input k-content style="width: 100%" ng-model="model.amazon_url">
-            <br>
-
-            <h6>Gamestop</h6>
-            <input k-content style="width: 100%" ng-model="model.gamestop_url">
-            <br>
 
 
 
@@ -164,7 +241,7 @@
 
 
 
-    </div>
+    </div>-->
 
     <div class="jumbotron box">
     <div class="container">
