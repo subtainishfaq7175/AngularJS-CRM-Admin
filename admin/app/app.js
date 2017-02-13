@@ -110,6 +110,36 @@ angular
 
 
             return masterdataService.getMasterdataByType("pitchStatusType");
+          },pitchClientResponseType:  function(masterdataService)
+          {
+            //get game here
+
+
+            return masterdataService.getMasterdataByType("pitchClientResponseType");
+          },pitchClientCurrentServiceType:  function(masterdataService)
+          {
+            //get game here
+
+
+            return masterdataService.getMasterdataByType("pitchClientCurrentServiceType");
+          },pitchClientType:  function(masterdataService)
+          {
+            //get game here
+
+
+            return masterdataService.getMasterdataByType("pitchClientType");
+          },pitchCurrencyType:  function(masterdataService)
+          {
+            //get game here
+
+
+            return masterdataService.getMasterdataByType("pitchCurrencyType");
+          },pitchSourceType:  function(masterdataService)
+          {
+            //get game here
+
+
+            return masterdataService.getMasterdataByType("pitchSourceType");
           }},
 
         url: '/masterdata',

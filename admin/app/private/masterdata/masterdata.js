@@ -2,7 +2,7 @@
  * Created by subtainishfaq on 10/30/16.
  */
 angular.module('yapp')
-  .controller('MasterdataCtrl', function($scope, $state,masterdataService,link,pitchType,location,language,contactType,companyType,requestedServiceType,pitchStatusType,$rootScope,toastr)
+  .controller('MasterdataCtrl', function($scope, $state,masterdataService,link,pitchType,location,language,contactType,companyType,requestedServiceType,pitchStatusType,pitchClientResponseType,pitchClientCurrentServiceType,pitchClientType,pitchSourceType,pitchCurrencyType,$rootScope,toastr)
   {
 
     $scope.$state = $state;
@@ -39,6 +39,26 @@ angular.module('yapp')
     $scope.model.pitchStatusType=pitchStatusType.data;
     else
       $scope.model.pitchStatusType={};
+ if(angular.isDefined(pitchClientResponseType))
+    $scope.model.pitchClientResponseType=pitchClientResponseType.data;
+    else
+      $scope.model.pitchClientResponseType={};
+ if(angular.isDefined(pitchClientCurrentServiceType))
+    $scope.model.pitchClientCurrentServiceType=pitchClientCurrentServiceType.data;
+    else
+      $scope.model.pitchClientCurrentServiceType={};
+ if(angular.isDefined(pitchClientType))
+    $scope.model.pitchClientType=pitchClientType.data;
+    else
+      $scope.model.pitchClientType={};
+ if(angular.isDefined(pitchCurrencyType))
+    $scope.model.pitchCurrencyType=pitchCurrencyType.data;
+    else
+      $scope.model.pitchCurrencyType={};
+ if(angular.isDefined(pitchSourceType))
+    $scope.model.pitchSourceType=pitchSourceType.data;
+    else
+      $scope.model.pitchSourceType={};
 
     $scope.model.youtube={    title: undefined,     content:undefined,     secondary:undefined,     content_type:undefined };
     $scope.model.dailymotion={    title: undefined,     content:undefined,     secondary:undefined,     content_type:undefined };
@@ -98,9 +118,19 @@ angular.module('yapp')
     $scope.removeCompanyType=removePitchType;
     $scope.removeRequestedServiceType=removePitchType;
     $scope.removePitchStatusType=removePitchType;
+    $scope.removePitchClientResponseType=removePitchType;
+    $scope.removePitchClientCurrentServiceType=removePitchType;
+    $scope.removePitchClientType=removePitchType;
+    $scope.removePitchSourceType=removePitchType;
+    $scope.removePitchCurrencyType=removePitchType;
     $scope.saveCompanyType=saveCompanyType;
     $scope.saveRequestedServiceType=saveRequestedServiceType;
     $scope.savePitchStatusType=savePitchStatusType;
+    $scope.savePitchClientResponseType=savePitchClientResponseType;
+    $scope.savePitchClientCurrentServiceType=savePitchClientCurrentServiceType;
+    $scope.savePitchClientType=savePitchClientType;
+    $scope.savePitchSourceType=savePitchSourceType;
+    $scope.savePitchCurrencyType=savePitchCurrencyType;
 
     function saveLanguage(index) {
       index.content_type="language";
@@ -164,6 +194,82 @@ angular.module('yapp')
     }
     function savePitchStatusType(index) {
       index.content_type="pitchStatusType";
+      $rootScope.scopeWorkingVariable = true;
+
+      masterdataService.postObj(index).then(function (response)
+      {
+        $rootScope.scopeWorkingVariable = false;
+        if(response.status=200)
+          toastr.success('Done','Operation Complete');
+        else
+          toastr.error('Error','Operation Was not complete');
+        index._id=response.data._id;
+        console.log(response);
+      });
+    }
+    function savePitchClientResponseType(index) {
+      index.content_type="pitchClientResponseType";
+      $rootScope.scopeWorkingVariable = true;
+
+      masterdataService.postObj(index).then(function (response)
+      {
+        $rootScope.scopeWorkingVariable = false;
+        if(response.status=200)
+          toastr.success('Done','Operation Complete');
+        else
+          toastr.error('Error','Operation Was not complete');
+        index._id=response.data._id;
+        console.log(response);
+      });
+    }
+    function savePitchClientCurrentServiceType(index) {
+      index.content_type="pitchClientCurrentServiceType";
+      $rootScope.scopeWorkingVariable = true;
+
+      masterdataService.postObj(index).then(function (response)
+      {
+        $rootScope.scopeWorkingVariable = false;
+        if(response.status=200)
+          toastr.success('Done','Operation Complete');
+        else
+          toastr.error('Error','Operation Was not complete');
+        index._id=response.data._id;
+        console.log(response);
+      });
+    }
+    function savePitchClientType(index) {
+      index.content_type="pitchClientType";
+      $rootScope.scopeWorkingVariable = true;
+
+      masterdataService.postObj(index).then(function (response)
+      {
+        $rootScope.scopeWorkingVariable = false;
+        if(response.status=200)
+          toastr.success('Done','Operation Complete');
+        else
+          toastr.error('Error','Operation Was not complete');
+        index._id=response.data._id;
+        console.log(response);
+      });
+    }
+    function savePitchCurrencyType(index) {
+      index.content_type="pitchCurrencyType";
+      $rootScope.scopeWorkingVariable = true;
+
+      masterdataService.postObj(index).then(function (response)
+      {
+        $rootScope.scopeWorkingVariable = false;
+        if(response.status=200)
+          toastr.success('Done','Operation Complete');
+        else
+          toastr.error('Error','Operation Was not complete');
+        index._id=response.data._id;
+        console.log(response);
+      });
+    }
+
+    function savePitchSourceType(index) {
+      index.content_type="pitchSourceType";
       $rootScope.scopeWorkingVariable = true;
 
       masterdataService.postObj(index).then(function (response)
