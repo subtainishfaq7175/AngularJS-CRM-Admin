@@ -6,14 +6,14 @@ angular.module('yapp')
 
     $scope.$state = $state;
 
-    $scope.editGame = function (ID) {
+    $scope.editPitch = function (ID) {
       $state.go('pitchesedit',{id:ID});
     };
 
-    $scope.deleteGame = function (ID) {
+    $scope.deletePitch = function (ID) {
       $rootScope.scopeWorkingVariable = true;
 
-      gamesService.deleteGameById(ID).then(function (response)
+      pitchesService.deletePitchById(ID).then(function (response)
       {
         $rootScope.scopeWorkingVariable = false;
         if(response.status=200)
@@ -45,17 +45,17 @@ angular.module('yapp')
       sortable: true,
       pageable: true,
       columns: [{
-        field: "title",
+        field: "pitchTitle",
         title: "title",
         width: "120px"
       },{
         title: "Edit",
         width: "120px",
-        template: '<a ng-click="editGame(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Edit</a>'
+        template: '<a ng-click="editPitch(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Edit</a>'
       },{
         title: "Delete",
         width: "120px",
-        template: '<a ng-click="deleteGame(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Delete</a>'
+        template: '<a ng-click="deletePitch(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Delete</a>'
       }]
     };
 

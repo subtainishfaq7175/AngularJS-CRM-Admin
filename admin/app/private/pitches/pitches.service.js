@@ -15,27 +15,27 @@ angular.module("yapp").factory('pitchesService',['$http','SeatEatsConstants', fu
     var promise = $http.get(SeatEatsConstants.AppUrlApi+'games');
     return promise;
   };
-  game.getGameById= function (ID)
+  game.getPitchById= function (ID)
   {
-
-    var promise = $http.get(SeatEatsConstants.AppUrlApi+'games/'+ID);
+debugger;
+    var promise = $http.get(SeatEatsConstants.AppUrlApi+'pitches/'+ID);
     return promise;
   };
 
-  game.deleteGameById= function (ID)
+  game.deletePitchById= function (ID)
   {
 
-    var promise = $http.delete(SeatEatsConstants.AppUrlApi+'games/'+ID);
+    var promise = $http.delete(SeatEatsConstants.AppUrlApi+'pitches/'+ID);
     return promise;
   };
 
 
-  game.postGame=function (obj)
+  game.postPitch=function (obj)
   {
     if(angular.isDefined(obj._id))
-      return $http.put(SeatEatsConstants.AppUrlApi+'games/'+obj._id, obj);
+      return $http.put(SeatEatsConstants.AppUrlApi+'pitches/'+obj._id, obj);
     else
-      return $http.post(SeatEatsConstants.AppUrlApi+'games/', obj);
+      return $http.post(SeatEatsConstants.AppUrlApi+'pitches/', obj);
 
 
   };

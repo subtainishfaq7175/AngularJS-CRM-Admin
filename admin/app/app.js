@@ -187,6 +187,21 @@ angular
             controller: 'PitchesAddCtrl',
             templateUrl: 'private/pitches/add/add.html'
           })
+      .state('pitchesedit', {
+            url: '/pitchesedit/:id',
+            parent: 'dashboard',
+            controller: 'PitchesEditCtrl',
+            templateUrl: 'private/pitches/edit/edit.html',
+        resolve:{
+
+          simpleObj:  function(pitchesService,$stateParams)
+          {
+            //get game here
+
+
+            return pitchesService.getPitchById($stateParams.id);
+          }}
+          })
       .state('games', {
             url: '/games',
             parent: 'dashboard',

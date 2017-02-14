@@ -2,20 +2,15 @@
  * Created by subtainishfaq on 10/30/16.
  */
 angular.module('yapp')
-  .controller('PitchesAddCtrl', function($scope, $state,SeatEatsConstants,gamesService,$rootScope,toastr) {
+  .controller('PitchesAddCtrl', function($scope, $state,SeatEatsConstants,pitchesService,$rootScope,toastr) {
 
 
     $scope.$state = $state;
     $scope.model={};
-    $scope.model.tags=[];
-    $scope.model.genre=[];
-    $scope.model.languages=[];
-    $scope.model.pitchType=[];
-    $scope.model.location=[];
-    $scope.model.screen_images=[];
+
     $scope.isImageUploading = false;
     $scope.isImageUploadingScreen = false;
-
+    $scope.validator;
     $scope.selectOptionsPitchType = {
       filter: "contains",
       placeholder: "Select Type...",
@@ -61,7 +56,8 @@ angular.module('yapp')
           }
         }
       }
-    }; $scope.selectOptionsCompanyType = {
+    };
+    $scope.selectOptionsCompanyType = {
       filter: "contains",
       placeholder: "Select CompanyType...",
       dataTextField: "content",
@@ -84,7 +80,6 @@ angular.module('yapp')
         }
       }
     };
-
     $scope.selectOptionsRequestedServiceType = {
       filter: "contains",
       placeholder: "Select Requested Service Type...",
@@ -107,7 +102,8 @@ angular.module('yapp')
           }
         }
       }
-    };  $scope.selectOptionsPitchStatusType = {
+    };
+    $scope.selectOptionsPitchStatusType = {
       filter: "contains",
       placeholder: "Select Pitch StatusType...",
       dataTextField: "content",
@@ -129,7 +125,8 @@ angular.module('yapp')
           }
         }
       }
-    };  $scope.selectOptionsPitchClientType = {
+    };
+    $scope.selectOptionsPitchClientType = {
       filter: "contains",
       placeholder: "Select Pitch Client Type...",
       dataTextField: "content",
@@ -151,7 +148,8 @@ angular.module('yapp')
           }
         }
       }
-    };  $scope.selectOptionsPitchClientResponseType = {
+    };
+    $scope.selectOptionsPitchClientResponseType = {
       filter: "contains",
       placeholder: "Select Client Response Type...",
       dataTextField: "content",
@@ -174,7 +172,7 @@ angular.module('yapp')
         }
       }
     };
-  $scope.selectOptionsPitchClientCurrentServiceType = {
+    $scope.selectOptionsPitchClientCurrentServiceType = {
       filter: "contains",
       placeholder: "Select Client Current Service Type...",
       dataTextField: "content",
@@ -197,7 +195,7 @@ angular.module('yapp')
         }
       }
     };
-  $scope.selectOptionsPitchSourceType = {
+    $scope.selectOptionsPitchSourceType = {
       filter: "contains",
       placeholder: "Select Source Type...",
       dataTextField: "content",
@@ -219,7 +217,8 @@ angular.module('yapp')
           }
         }
       }
-    };  $scope.selectOptionslocation= {
+    };
+    $scope.selectOptionslocation= {
       filter: "contains",
       placeholder: "Select Locations...",
       dataTextField: "content",
@@ -242,7 +241,7 @@ angular.module('yapp')
         }
       }
     };
-  $scope.selectOptionsPitchCurrencyType = {
+    $scope.selectOptionsPitchCurrencyType = {
       filter: "contains",
       placeholder: "Select Currency Type...",
       dataTextField: "content",
@@ -265,7 +264,6 @@ angular.module('yapp')
         }
       }
     };
-
     $scope.selectOptionsGenre = {
       filter: "contains",
       placeholder: "Select tags...",
@@ -312,85 +310,17 @@ angular.module('yapp')
         }
       }
     };
-    $scope.companyType = [];
-    $scope.location = [];
-    $scope.pitchType = [];
-    $scope.requestedServiceType = [];
-    $scope.selectedLanguage = [];
-    $scope.contactType = [];
-    $scope.pitchCurrencyType = [];
-    $scope.pitchSourceType = [];
-    $scope.pitchStatusType = [];
-    $scope.pitchClientResponseType = [];
-    $scope.pitchClientType = [];
-    $scope.pitchClientCurrentServiceType = [];
-    $scope.mainUploadOptions={
-      async: {
-        saveUrl: SeatEatsConstants.AppUrlApi+"letsplayimage",
-        removeUrl: "http://my-app.localhost/remove",
-        removeVerb: "DELETE"
-      },
-      validation: {
-        allowedExtensions: [".jpg",".png"]
-      },
-      multiple: false,
-      showFileList: true,
-      complete: onComplete,
-      success: onSuccess,
-      select: onSelect,
-      cancel: onCancel,
-      remove: onRemove
+
+
+    $scope.publishPitch= publishPitch;
+
+    function publishPitch() {
 
 
 
 
-    };
-    $scope.mainUploadOptionsScreen={
-      async: {
-        saveUrl: SeatEatsConstants.AppUrlApi+"letsplayimage",
-        removeUrl: "http://my-app.localhost/remove",
-        removeVerb: "DELETE"
-      },
-      validation: {
-        allowedExtensions: [".jpg",".png"]
-      },
-      multiple: true,
-      showFileList: true,
-      complete: onCompleteScreen,
-      success: onSuccessScreen,
-      select: onSelectScreen,
-      cancel: onCancelScreen,
-      remove: onRemoveScreen
-
-
-
-
-    };
-    $scope.publishGames= publishGames;
-
-    function publishGames() {
-
-
-
-      for(var i=0;i<$scope.selectedTags.length;i++)
-      {
-        $scope.model.tags.push({title: $scope.selectedTags[i]});
-      }
-      for(var i=0;i<$scope.selectedGenre.length;i++)
-      {
-        $scope.model.genre.push({title: $scope.selectedGenre[i]});
-      }
-      for(var i=0;i<$scope.selectedLanguage.length;i++)
-      {
-        $scope.model.languages.push({title: $scope.selectedLanguage[i]});
-      }
-      for(var i=0;i<$scope.selectedCategories.length;i++)
-      {
-        $scope.model.categories.push({title: $scope.selectedCategories[i]});
-      }
-
-   //if(!$scope.isImageUploading && !$scope.isImageUploadingScreen)
-      gamesService.postGame($scope.model).then(function (response) {
+      if($scope.validator.validate())
+      pitchesService.postPitch($scope.model).then(function (response) {
 
         $rootScope.scopeWorkingVariable = false;
         if(response.status=200)
@@ -400,8 +330,12 @@ angular.module('yapp')
         debugger;
         console.log(response);
 
-        $state.go("games");
-      })
+        $state.go("pitches");
+      });
+
+      else
+        toastr.error('Error','Operation Was not complete');
+
 
     }
     function onCancel(e) {

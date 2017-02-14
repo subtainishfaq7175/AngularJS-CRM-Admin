@@ -6820,3 +6820,16 @@ small {
   line-height: 1.428571429;
   color: #999;
 }
+
+.confirm {
+  padding-top: 1em;
+}
+
+.valid {
+  color: green;
+}
+
+.invalid {
+  color: red;
+}
+

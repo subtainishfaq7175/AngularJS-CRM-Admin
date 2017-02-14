@@ -1,36 +1,10 @@
+
 <div>
-    <a ui-sref="games" class="pull-right btn btn-primary btn-outline btn-rounded">TeleSales</a>
+    <a ui-sref="pitches" class="pull-right btn btn-primary btn-outline btn-rounded">TeleSales</a>
     <h3>TeleSales <small>Add Sale</small></h3>
-   <!-- <div class="jumbotron box">
-        <h4>Picture</h4>
 
 
-
-        <div class="container" >
-            <h6>Show in slider</h6>
-            <input class="k-content" type="checkbox" name="vehicle" ng-model="model.decisionMaker">
-            <br>
-            <br>
-            <div>
-                <div >
-                    <h6> Select Cover Image</h6>  <br>
-                    <input name="sampleFile"
-                           kendo-upload
-                           k-options="mainUploadOptions"
-                           type="file" />
-
-                    <p>Width=390px
-                        <br>
-                        Height=294px</p>
-                </div>
-            </div>
-
-
-
-        </div>
-
-
-    </div>-->
+    <form kendo-validator="validator" ng-submit="publishPitch()">
 
     <div class="jumbotron box">
 
@@ -40,92 +14,88 @@
 
         <div class="container" >
             <h6>Title</h6>
-            <input k-content style="width: 100%" ng-model="model.pitchTitle">
+            <input k-content style="width: 100%" required name="title"
+                    ng-model="model.pitchTitle">
             <br>
 
             <h6>Sale Type</h6>
-           <select kendo-multi-select k-options="selectOptionsPitchType" k-ng-model="pitchType" style="width: 100%;"></select>
-             <br>
+           <select kendo-drop-down-list name="saletype"   k-options="selectOptionsPitchType"required  k-ng-model="model.pitchType" style="width: 100%;"></select>
+
+            <br>
 
             <h6>Company Type</h6>
-           <select kendo-multi-select k-options="selectOptionsCompanyType" k-ng-model="companyType" style="width: 100%;"></select>
+           <select kendo-drop-down-list  k-options="selectOptionsCompanyType" required k-ng-model="model.companyType" style="width: 100%;"></select>
             <br>
 
            <h6>Company Name</h6>
-           <input k-content style="width: 100%" ng-model="model.companyName">
+           <input k-content style="width: 100%" required  ng-model="model.companyName">
            <br>
 
            <h6>Contact Person</h6>
-           <input k-content style="width: 100%" ng-model="model.contactPerson">
+           <input k-content style="width: 100%" required ng-model="model.contactPerson">
            <br>
 
            <h6>Designation</h6>
-           <input k-content style="width: 100%" ng-model="model.designation">
+           <input k-content style="width: 100%" required   ng-model="model.designation">
            <br>
 
            <h6>Contact Number</h6>
-           <input k-content style="width: 100%" ng-model="model.contactNumber">
+           <input k-content style="width: 100%" pattern="\d{14}" required   ng-model="model.contactNumber">
            <br>
 
             <h6>Contact Type</h6>
-            <select kendo-multi-select k-options="selectOptionsContactType" k-ng-model="contactType" style="width: 100%;"></select>
+            <select kendo-drop-down-list  required   k-options="selectOptionsContactType" k-ng-model="model.contactType" style="width: 100%;"></select>
             <br>
 
 
             <h6>Client Type</h6>
-            <select kendo-multi-select k-options="selectOptionsPitchClientType" k-ng-model="pitchClientType" style="width: 100%;"></select>
+            <select kendo-drop-down-list required   k-options="selectOptionsPitchClientType" k-ng-model="model.pitchClientType" style="width: 100%;"></select>
             <br>
 
 
             <h6>Client Response Type</h6>
-            <select kendo-multi-select k-options="selectOptionsPitchClientResponseType" k-ng-model="pitchClientResponseType" style="width: 100%;"></select>
+            <select kendo-drop-down-list required  k-options="selectOptionsPitchClientResponseType" k-ng-model="model.pitchClientResponseType" style="width: 100%;"></select>
             <br>
 
             <h6>Requested Service Type</h6>
-            <select kendo-multi-select k-options="selectOptionsRequestedServiceType" k-ng-model="requestedServiceType" style="width: 100%;"></select>
+            <select kendo-drop-down-list required   k-options="selectOptionsRequestedServiceType" k-ng-model="model.requestedServiceType" style="width: 100%;"></select>
             <br>
 
             <h6>Client Current Service Type</h6>
-            <select kendo-multi-select k-options="selectOptionsPitchClientCurrentServiceType" k-ng-model="pitchClientCurrentServiceType" style="width: 100%;"></select>
+            <select kendo-drop-down-list required   k-options="selectOptionsPitchClientCurrentServiceType" k-ng-model="model.pitchClientCurrentServiceType" style="width: 100%;"></select>
             <br>
 
             <h6>Is Decision Maker ?</h6>
-           <input class="k-content" type="checkbox" name="vehicle" ng-model="model.decisionMaker">
+           <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.decisionMaker">
            <br>
            <h6>Is Client New ?</h6>
            <input class="k-content" type="checkbox" name="vehicle" ng-model="model.isPitchClientNew">
            <br>
 
- <!--will make it dropdown-->
+             <!--will make it dropdown-->
+
             <h6>Assigned TeamLeader</h6>
-            <input k-content style="width: 100%" ng-model="model.assignedTeamLeader">
+            <input k-content style="width: 100%"  required   ng-model="model.assignedTeamLeader">
             <br>
 
             <!--will make it dropdown-->
             <h6>Assigned SalesPerson</h6>
-            <input k-content style="width: 100%" ng-model="model.assignedSalesPerson">
+            <input k-content style="width: 100%" required  ng-model="model.assignedSalesPerson">
             <br>
 
 
 
 
             <h6>Status</h6>
-            <select kendo-multi-select k-options="selectOptionsPitchStatusType" k-ng-model="pitchStatusType" style="width: 100%;"></select>
+            <select kendo-drop-down-list  k-options="selectOptionsPitchStatusType" required   k-ng-model="model.pitchStatusType" style="width: 100%;"></select>
             <br>
 
             <!--will make it dropdown-->
 
             <h6>Location</h6>
-            <select kendo-multi-select k-options="selectOptionslocation" k-ng-model="location" style="width: 100%;"></select>
+            <select kendo-drop-down-list  k-options="selectOptionslocation" required  k-ng-model="model.location" style="width: 100%;"></select>
             <br>
 
-
-
-           <!-- <h6>Release Date</h6>
-            <input kendo-date-picker
-                   style="width: 100%;"
-                   k-ng-model="model.release_date"
-            />-->
 
 
             <h6>Remarks about Current Status by Sales Person</h6>
@@ -134,19 +104,7 @@
             <h6>Remarks about Sales Person</h6>
             <textarea kendo-editor k-ng-model="model.pitchSalesPersonRemarks"></textarea><br>
 
-          <!--  <h6>Languages</h6>
-            <select kendo-multi-select k-options="selectOptionsLanguage" k-ng-model="selectedLanguage" style="width: 100%;"></select>
 
-            <h6>Genre</h6>
-            <select kendo-multi-select k-options="selectOptionsGenre" k-ng-model="selectedGenre" style="width: 100%;"></select>
-            <br>
-            <h6>Category</h6>
-            <select kendo-multi-select k-options="selectOptionsCategories" k-ng-model="selectedCategories" style="width: 100%;"></select>
-
-            <h6>Tags</h6>
-            <select kendo-multi-select k-options="selectOptionsTags" k-ng-model="selectedTags" style="width: 100%;"></select>
-            <br>
--->
 
 
         </div>
@@ -163,41 +121,24 @@
 
         <div class="container" >
             <h6>Expected Bussiness</h6>
-            <input k-content style="width: 100%" ng-model="model.pitchExpectedBusiness">
+            <input kendo-numeric-text-box k-min="0"required   k-ng-model="model.pitchExpectedBusiness" style="width: 100%" n>
             <br>
 
             <h6>Actual Bussiness</h6>
-            <input k-content style="width: 100%" ng-model="model.pitchActualBusiness">
+            <input kendo-numeric-text-box k-min="0" required    k-ng-model="model.pitchActualBusiness" style="width: 100%" >
             <br>
 
 
             <h6>Currency Type</h6>
-            <select kendo-multi-select k-options="selectOptionsPitchCurrencyType" k-ng-model="pitchCurrencyType" style="width: 100%;"></select>
+            <select kendo-drop-down-list  k-options="selectOptionsPitchCurrencyType" required   k-ng-model="model.pitchCurrencyType" style="width: 100%;"></select>
             <br>
 
 
             <h6>Source Type</h6>
-            <select kendo-multi-select k-options="selectOptionsPitchSourceType" k-ng-model="pitchSourceType" style="width: 100%;"></select>
+            <select kendo-drop-down-list  k-options="selectOptionsPitchSourceType" required  k-ng-model="model.pitchSourceType" style="width: 100%;"></select>
             <br>
 
-           <!--
-            add expected by actual here
-            <h6>Efficiency</h6>
-            <input k-content style="width: 100%" ng-model="model.memory">
-            <br>
--->
 
-            <!--
-            add dropdown here
-            <h6>Currency Type</h6>
-            <input k-content style="width: 100%" ng-model="model.pitchCurrencyType">
-            <br>-->
-
-            <!--
-            add dropdown here
-            <h6>Source Type</h6>
-            <input k-content style="width: 100%" ng-model="model.pitchSourceType">
-            <br>-->
 
 
 
@@ -217,6 +158,7 @@
              <h6>Contact Date</h6>
              <input kendo-date-picker
                     style="width: 100%;"
+                    required
                     k-ng-model="model.scheduelDate"
              />
 
@@ -226,28 +168,16 @@
 
 
     </div>
-   <!-- <div class="jumbotron box">
 
-        <h4>External Links</h4>
-
-
-
-        <div class="container" >
-
-
-
-
-        </div>
-
-
-
-    </div>-->
 
     <div class="jumbotron box">
     <div class="container">
-        <button class="k-primary" ng-click="publishGames()">Publish</button>
+        <button class="k-primary"  class="k-button k-primary" type="submit" >Publish</button>
     </div>
     </div>
+
+    </form>
+
 
 </div>
 
