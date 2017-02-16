@@ -50,6 +50,10 @@ angular.module('yapp')
         title: "User Name",
         width: "120px"
       },{
+        field: "rank",
+        title: "Ranks",
+        width: "120px"
+      },{
         title: "Edit",
         width: "120px",
         template: '<a ng-click="editProfile(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Edit</a>'

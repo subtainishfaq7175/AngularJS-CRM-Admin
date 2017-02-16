@@ -20,7 +20,7 @@ console.log("in get");
 
           res.json(pageCount);
         }
-        res.json("nothing");
+      //  res.json("nothing");
       });
 
 
@@ -37,7 +37,7 @@ router.post('/signup', function(req, res) {
       password: req.body.password,
       userrole:req.body.userrole,
         favourite_games:[],
-        favourite_letsplay:[],
+        favourite_company:[],
         favourite_news:[]
     });
     // save the user
@@ -158,17 +158,17 @@ router.route('/users/:id').put(function(req, res) {
       } else
       {
 
-          User.findOne({ _id: req.params.id }, function(err, letsplay) {
+          User.findOne({ _id: req.params.id }, function(err, company) {
               if (err) {
                   return res.send(err);
               }
 
               for (prop in req.body) {
-                  letsplay[prop] = req.body[prop];
+                  company[prop] = req.body[prop];
               }
 
-              // save the letsplay
-              letsplay.save(function(err) {
+              // save the company
+              company.save(function(err) {
                   if (err) {
                       return res.send(err);
                   }

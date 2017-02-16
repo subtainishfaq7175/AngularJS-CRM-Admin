@@ -5,6 +5,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
 var mongoosePaginate = require('mongoose-paginate');
+var tree = require('mongoose-tree');
+
 
 
 
@@ -19,20 +21,18 @@ var UserSchema = new Schema({
 
     },
     created_time:  { type: Date, default: Date.now },
-    favourite_games : [{ type: Schema.Types.ObjectId, ref: 'Game' }],
-    favourite_letsplay : [{ type: Schema.Types.ObjectId, ref: 'Letsplay' }],
-    favourite_news : [{ type: Schema.Types.ObjectId, ref: 'News' }]
-,
+
+
     password: {
         type: String,
         required: true
-    }
-  /*  userrole : String,
+    },
     rank: { type:String , default: "Employee" },
-    role: { type :Number ,default : 0 },
     gender : { type:String },
-    age : { type:Number }*/
+    age : { type:Number }
 });
+
+
 
 UserSchema.pre('save', function (next) {
     var user = this;
@@ -62,6 +62,9 @@ UserSchema.methods.comparePassword = function (passw, cb) {
         cb(null, isMatch);
     });
 };
+
+UserSchema.plugin(tree);
+
 
 UserSchema.plugin(mongoosePaginate);
 module.exports = mongoose.model('User', UserSchema);

@@ -229,33 +229,33 @@ angular
         controller: 'GamesEditCtrl',
         templateUrl: 'private/games/edit/edit.html'
       })
-      .state('letsplay', {
-            url: '/letsplay',
+      .state('companies', {
+            url: '/companies',
             parent: 'dashboard',
-            controller: 'LetsplayCtrl',
-            templateUrl: 'private/letsplay/letsplay.html'
+            controller: 'CompaniesCtrl',
+            templateUrl: 'private/companies/companies.html'
           })
-      .state('letsplayadd', {
-        url: '/letsplayadd',
+      .state('companiesadd', {
+        url: '/companiesadd',
         parent: 'dashboard',
-        controller: 'LetsplayAddCtrl',
-        templateUrl: 'private/letsplay/add/add.html'
+        controller: 'CompaniesAddCtrl',
+        templateUrl: 'private/companies/add/add.html'
       })
-      .state('letsplayedit', {
+      .state('companiesedit', {
 
         resolve:{
 
-          itemLetsplay:  function(letsplayService,$stateParams)
+          itemCompanies:  function(companiesService,$stateParams)
           {
             //get game here
 
 
-            return letsplayService.getLetsplayById($stateParams.id);
+            return companiesService.getLetsplayById($stateParams.id);
           }},
-        url: '/letsplayedit/:id',
+        url: '/companiesedit/:id',
         parent: 'dashboard',
-        controller: 'LetsplayEditCtrl',
-        templateUrl: 'private/letsplay/edit/edit.html'
+        controller: 'CompaniesEditCtrl',
+        templateUrl: 'private/companies/edit/edit.html'
       })
       .state('walkthrough', {
             url: '/walkthrough',
@@ -323,18 +323,7 @@ angular
             controller: 'MessagesAddCtrl',
             templateUrl: 'private/messages/add/add.html'
           })
-      .state('comments', {
-            url: '/comments',
-            parent: 'dashboard',
-            controller: 'CommentsCtrl',
-            templateUrl: 'private/comments/comments.html'
-          })
-      .state('commentsadd', {
-        url: '/commentsadd',
-        parent: 'dashboard',
-        controller: 'CommentsAddCtrl',
-        templateUrl: 'private/comments/add/add.html'
-      })
+
       .state('profiles', {
         url: '/profiles',
         parent: 'dashboard',

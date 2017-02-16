@@ -138,45 +138,7 @@ router.route('/pitches')
 
 
 });
-//pitches according to date
-/*
-router.route('/gamesgte/:dat')
-    .get(function(req, res) {
 
-        Pitches.find({
-
-            release_date: { $gte: req.params.dat }
-        }, function(err, pitch) {
-            if (err) {
-                return res.send(err);
-            }
-
-            res.json(pitch);
-        });
-
-    });
-router.route('/gamesrange')
-    .get(function(req, res) {
-
-
-        Pitches.find({
-                release_date: {$gte: new Date(req.param('datstart')),$lte: new Date(req.param('datend') ) }
-
-            }
-
-            , function(err, pitch) {
-                if (err) {
-                    return res.send(err);
-                }
-
-                res.json(pitch);
-            });
-
-
-
-
-
-    });*/
 
 router.route('/pitches/:id').put(function(req,res){
     var token = getToken(req.headers);

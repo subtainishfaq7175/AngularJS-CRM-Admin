@@ -113,7 +113,7 @@ angular.module('yapp')
     $scope.selectedCategories = [];
     $scope.mainUploadOptions={
       async: {
-        saveUrl: SeatEatsConstants.AppUrlApi+"letsplayimage",
+        saveUrl: SeatEatsConstants.AppUrlApi+"companiesimage",
         removeUrl: "http://my-app.localhost/remove",
         removeVerb: "DELETE"
       },
@@ -134,7 +134,7 @@ angular.module('yapp')
     };
     $scope.mainUploadOptionsScreen={
       async: {
-        saveUrl: SeatEatsConstants.AppUrlApi+"letsplayimage",
+        saveUrl: SeatEatsConstants.AppUrlApi+"companiesimage",
         removeUrl: "http://my-app.localhost/remove",
         removeVerb: "DELETE"
       },
