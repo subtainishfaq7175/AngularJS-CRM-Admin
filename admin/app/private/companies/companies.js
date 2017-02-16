@@ -46,7 +46,7 @@ angular.module('yapp')
       sortable: true,
       pageable: true,
       columns: [{
-        field: "title",
+        field: "companyName",
         title: "title",
         width: "120px"
       },{

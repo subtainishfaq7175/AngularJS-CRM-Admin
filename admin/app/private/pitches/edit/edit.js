@@ -68,29 +68,7 @@ angular.module('yapp')
         }
       }
     };
-    $scope.selectOptionsCompanyType = {
-      filter: "contains",
-      placeholder: "Select CompanyType...",
-      dataTextField: "content",
-      dataValueField: "content",
-      valuePrimitive: true,
-      autoBind: false,
-      animation: {
-        close: {
-          effects: "zoom:out",
-          duration: 500
-        }
-      },
-      dataSource: {
-        type: "json",
-        serverFiltering: true,
-        transport: {
-          read: {
-            url: SeatEatsConstants.AppUrlApi+"masterdata?type=companyType"
-          }
-        }
-      }
-    };
+
     $scope.selectOptionsRequestedServiceType = {
       filter: "contains",
       placeholder: "Select Requested Service Type...",

@@ -47,7 +47,6 @@ require('./config/passport')(passport);
 
 app.use('/api', authentication);
 app.use('/api', company); //This is our route middleware
-app.use('/api', news); //This is our route middleware
 app.use('/api', pitches); //This is our route middleware
 app.use('/api', masterdata); //This is our route middleware
 app.use('/api', messages); //This is our route middleware

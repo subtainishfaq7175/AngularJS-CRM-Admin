@@ -30,11 +30,11 @@ angular.module('yapp')
       }
     };
 
-    $scope.publishLetsplay=publishLetsplay;
+    $scope.publishCompany=publishCompany;
 
 
 
-    function publishLetsplay() {
+    function publishCompany() {
 
 
       companiesService.postLetsplay($scope.model).then(function (response) {
@@ -43,9 +43,6 @@ angular.module('yapp')
           toastr.success('Done','Operation Complete');
         else
           toastr.error('Error','Operation Was not complete');
-
-        debugger;
-        console.log(response);
 
         $state.go("companies");
       })

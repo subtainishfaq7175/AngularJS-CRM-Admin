@@ -1,6 +1,7 @@
-/**
+/*
+/!**
  * Created by subtainishfaq on 10/18/16.
- */
+ *!/
 var News = require('../models/news');
 var express = require('express');
 var jwt    = require('jwt-simple');
@@ -56,11 +57,11 @@ router.route('/commentsadmin/:id')
             if (err)     res.send(err);
          else
              {
-                 /*var comments=[];
+                 /!*var comments=[];
                  for(var i=0 ; i <someValue.length; i++)
                  {
                      comments=comments.concat(someValue[i].comments);
-                 }*/
+                 }*!/
                  res.json(someValue);
              }
 
@@ -103,10 +104,10 @@ router.route('/news')
             } else {
                 //  console.log('Pages:', pageCount);
                 //  console.log(paginatedResults);
-     /*           if(typeof req.param('page') == 'undefined')
+     /!*           if(typeof req.param('page') == 'undefined')
                 pageCount['currentPage']=1;
 
-                pageCount['currentPage']=req.param('page')*/
+                pageCount['currentPage']=req.param('page')*!/
                 res.json(pageCount);
             }
         });
@@ -512,3 +513,4 @@ getToken = function (headers) {
 };
 
 module.exports = router;
+*/
