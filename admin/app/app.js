@@ -147,34 +147,6 @@ angular
             controller: 'MasterdataCtrl',
             templateUrl: 'private/masterdata/masterdata.html'
           })
-      .state('news', {
-            url: '/news',
-            parent: 'dashboard',
-            controller: 'NewsCtrl',
-            templateUrl: 'private/news/news.html'
-          })
-      .state('newsadd', {
-         url: '/newsadd',
-        parent: 'dashboard',
-        controller: 'NewsAddCtrl',
-        templateUrl: 'private/news/add/add.html'
-      })
-      .state('newsedit', {
-        resolve:{
-
-          simpleObj:  function(newsService,$stateParams)
-          {
-            //get game here
-
-
-            return newsService.getNewsById($stateParams.id);
-          }},
-
-        url: '/newsedit/:id',
-        parent: 'dashboard',
-        controller: 'NewsEditCtrl',
-        templateUrl: 'private/news/edit/edit.html'
-      })
       .state('pitches', {
             url: '/pitches',
             parent: 'dashboard',
@@ -202,33 +174,6 @@ angular
             return pitchesService.getPitchById($stateParams.id);
           }}
           })
-      .state('games', {
-            url: '/games',
-            parent: 'dashboard',
-            controller: 'GamesCtrl',
-            templateUrl: 'private/games/games.html'
-          })
-      .state('gamesadd', {
-        url: '/gamesadd',
-        parent: 'dashboard',
-        controller: 'GamesAddCtrl',
-        templateUrl: 'private/games/add/add.html'
-      })
-      .state('gamesedit', {
-        resolve:{
-
-          simpleObj:  function(gamesService,$stateParams)
-          {
-            //get game here
-
-
-            return gamesService.getGameById($stateParams.id);
-          }},
-        url: '/gamesedit/:id',
-        parent: 'dashboard',
-        controller: 'GamesEditCtrl',
-        templateUrl: 'private/games/edit/edit.html'
-      })
       .state('companies', {
             url: '/companies',
             parent: 'dashboard',
@@ -257,73 +202,34 @@ angular
         controller: 'CompaniesEditCtrl',
         templateUrl: 'private/companies/edit/edit.html'
       })
-      .state('walkthrough', {
-            url: '/walkthrough',
+      .state('contactPerson', {
+            url: '/contactPerson',
             parent: 'dashboard',
-            controller: 'WalkthroughCtrl',
-            templateUrl: 'private/walkthrough/walkthrough.html'
+            controller: 'ContactPersonCtrl',
+            templateUrl: 'private/contactPerson/contactPerson.html'
           })
-      .state('walkthroughadd', {
-        url: '/walkthroughadd',
+      .state('contactPersonadd', {
+        url: '/contactPersonadd',
         parent: 'dashboard',
-        controller: 'WalkthroughAddCtrl',
-        templateUrl: 'private/walkthrough/add/add.html'
+        controller: 'ContactPersonAddCtrl',
+        templateUrl: 'private/contactPerson/add/add.html'
       })
-      .state('walkthroughedit', {
+      .state('contactPersonedit', {
+
         resolve:{
 
-          itemWalkthrough:  function(walkthroughService,$stateParams)
+          itemContactPerson:  function(contactPersonService,$stateParams)
           {
             //get game here
 
 
-            return walkthroughService.getWalkthroughById($stateParams.id);
+            return contactPersonService.getLetsplayById($stateParams.id);
           }},
-        url: '/walkthroughedit/:id',
+        url: '/contactPersonedit/:id',
         parent: 'dashboard',
-        controller: 'WalkthroughEditCtrl',
-        templateUrl: 'private/walkthrough/edit/edit.html'
+        controller: 'ContactPersonEditCtrl',
+        templateUrl: 'private/contactPerson/edit/edit.html'
       })
-      .state('faqs', {
-            url: '/faqs',
-            parent: 'dashboard',
-            controller: 'FaqsCtrl',
-            templateUrl: 'private/faqs/faqs.html'
-          })
-      .state('faqsadd', {
-        url: '/faqsadd',
-        parent: 'dashboard',
-        controller: 'FaqsAddCtrl',
-        templateUrl: 'private/faqs/add/add.html'
-      })
-      .state('faqsedit', {
-        resolve:{
-
-          simpleObj:  function(faqsService,$stateParams)
-          {
-            //get game here
-
-
-            return faqsService.getFaqsById($stateParams.id);
-          }},
-        url: '/faqsedit/:id',
-        parent: 'dashboard',
-        controller: 'FaqsEditCtrl',
-        templateUrl: 'private/faqs/edit/edit.html'
-      })
-      .state('messages', {
-            url: '/messages',
-            parent: 'dashboard',
-            controller: 'MessagesCtrl',
-            templateUrl: 'private/messages/messages.html'
-          })
-      .state('messagesadd', {
-            url: '/messagesadd',
-            parent: 'dashboard',
-            controller: 'MessagesAddCtrl',
-            templateUrl: 'private/messages/add/add.html'
-          })
-
       .state('profiles', {
         url: '/profiles',
         parent: 'dashboard',

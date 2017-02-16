@@ -2,34 +2,36 @@
  * Created by subtainishfaq on 10/30/16.
  */
 angular.module('yapp')
-  .controller('WalkthroughCtrl', function($scope, $state,SeatEatsConstants,walkthroughService,$rootScope,toastr) {
+  .controller('ContactPersonCtrl', function($scope, $state,SeatEatsConstants,companiesService,toastr,$rootScope) {
 
     $scope.$state = $state;
-    $scope.editWalkthrough = function (ID)
+    $scope.editLetsplay = function (ID)
     {
-      console.log(ID);
 
-      $state.go('walkthroughedit',{id:ID});
+      $state.go('companiesedit',{id:ID});
     };
-    $scope.deleteWalkthrough = function (ID)
+    $scope.deleteLetsplay = function (ID)
     {
       $rootScope.scopeWorkingVariable = true;
 
-      walkthroughService.deleteWalkthroughById(ID).then(function (reponse)
+      companiesService.deleteLetsplayById(ID).then(function (response)
       {
         $rootScope.scopeWorkingVariable = false;
         if(response.status=200)
           toastr.success('Done','Operation Complete');
         else
           toastr.error('Error','Operation Was not complete');
+
         $state.reload();
+
       });
-      };
+
+    };
     $scope.mainGridOptions={
       dataSource: {
         type: "json",
         transport: {
-          read: SeatEatsConstants.AppUrlApi+'walkthrough'
+          read: SeatEatsConstants.AppUrlApi+'company'
         },
 
         schema: {
@@ -44,19 +46,18 @@ angular.module('yapp')
       sortable: true,
       pageable: true,
       columns: [{
-        field: "title",
+        field: "companyName",
         title: "title",
         width: "120px"
       },{
         title: "Edit",
         width: "120px",
-        template: '<a ng-click="editWalkthrough(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">edit</a>'
+        template: '<a ng-click="editLetsplay(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Edit</a>'
       },{
         title: "Delete",
         width: "120px",
-        template: '<a ng-click="deleteWalkthrough(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Delete</a>'
+        template: '<a ng-click="deleteLetsplay(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Delete</a>'
       }]
     };
-
 
   });
