@@ -2,25 +2,59 @@
  * Created by subtainishfaq on 10/30/16.
  */
 angular.module('yapp')
-  .controller('CompaniesEditCtrl', function($scope, $state,itemCompanies,$sce,companiesService) {
+  .controller('CompaniesEditCtrl', function($scope, $state,itemCompanies,$sce,companiesService,$rootScope,SeatEatsConstants,toastr) {
     console.log(itemCompanies);
 
     $scope.$state = $state;
-    $scope.itemCompanies = itemCompanies.data;
-    $scope.content = $sce.trustAsHtml($scope.itemCompanies.content);
-    if(!angular.isDefined($scope.itemCompanies.episodes))
-      $scope.itemCompanies["episodes"]=[];
+    if(angular.isDefined(itemCompanies))
+    $scope.model = itemCompanies.data;
+    else
+      $scope.model={};
 
-$scope.UpldateLetsPlay=UpldateLetsPlay;
+    $scope.selectOptionsCompanyType = {
+      filter: "contains",
+      placeholder: "Select CompanyType...",
+      dataTextField: "content",
+      dataValueField: "content",
+      valuePrimitive: true,
+      autoBind: false,
+      animation: {
+        close: {
+          effects: "zoom:out",
+          duration: 500
+        }
+      },
+      dataSource: {
+        type: "json",
+        serverFiltering: true,
+        transport: {
+          read: {
+            url: SeatEatsConstants.AppUrlApi+"masterdata?type=companyType"
+          }
+        }
+      }
+    };
 
-    function UpldateLetsPlay()
+
+
+
+    $scope.publishCompany=publishCompany;
+
+    function publishCompany()
     {
-      debugger;
-      companiesService.putLetsplay($scope.itemCompanies).then(function (response)
+      $rootScope.scopeWorkingVariable = true;
+
+      companiesService.putLetsplay($scope.model).then(function (response)
       {
 
         debugger;
         console.log(response);
+        $rootScope.scopeWorkingVariable = false;
+        if(response.status=200)
+          toastr.success('Done','Operation Complete');
+        else
+          toastr.error('Error','Operation Was not complete');
+
         $state.go("companies");
 
       })

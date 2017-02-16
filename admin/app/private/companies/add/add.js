@@ -36,7 +36,7 @@ angular.module('yapp')
 
     function publishCompany() {
 
-
+      $rootScope.scopeWorkingVariable = true;
       companiesService.postLetsplay($scope.model).then(function (response) {
         $rootScope.scopeWorkingVariable = false;
         if(response.status=200)
