@@ -31,7 +31,7 @@ angular.module('yapp')
       dataSource: {
         type: "json",
         transport: {
-          read: SeatEatsConstants.AppUrlApi+'companiess'
+          read: SeatEatsConstants.AppUrlApi+'company'
         },
 
         schema: {
