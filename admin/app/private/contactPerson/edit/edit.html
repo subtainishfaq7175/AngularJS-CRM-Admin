@@ -1,6 +1,6 @@
 <div>
-    <a ui-sref="companies" class="pull-right btn btn-primary btn-outline btn-rounded">Company</a>
-    <h3>Company <small>Add/Remove Company</small></h3>
+    <a ui-sref="contactPerson" class="pull-right btn btn-primary btn-outline btn-rounded">Contact Person</a>
+    <h3>Contact Person <small>Add/Remove Contact Person</small></h3>
 
     <div class="jumbotron box">
 
@@ -9,18 +9,45 @@
 
 
         <div class="container" >
-            <h6>Company Name</h6>
-            <input k-content style="width: 100%" ng-model="model.companyName">
+            <h6>Contact Person Name</h6>
+            <input k-content style="width: 100%" ng-model="model.contactPersonName">
+            <br>
+
+            <h6>Contact Person Designation</h6>
+            <input k-content style="width: 100%" ng-model="model.contactPersonDesignation">
+            <br>
+
+
+            <h6>Contact Number</h6>
+            <input k-content style="width: 100%" ng-model="model.contactPersonContactNumber">
             <br>
 
 
 
-            <h6>Company Type</h6>
-            <select kendo-drop-down-list  k-options="selectOptionsCompanyType" k-ng-model="model.companyType" style="width: 100%;"></select>
+
+            <h6>Contact Type</h6>
+            <select kendo-drop-down-list  k-options="selectOptionsCompanyType" k-ng-model="model.contactPersonContactType" style="width: 100%;"></select>
             <br>
 
-            <h6>Company Description</h6>
-            <textarea kendo-editor k-ng-model="model.companyDescription"></textarea><br>
+
+
+
+            <h6>Email</h6>
+            <input k-content style="width: 100%" ng-model="model.contactPersonEmail">
+            <br>
+
+
+            <h6>Is Decision Maker ?</h6>
+            <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.contactPersonIsDecisionMaker">
+            <br>
+
+            <h6>Is Client New ?</h6>
+            <input class="k-content" type="checkbox" name="vehicle" ng-model="model.contactPersonIsClientNew">
+            <br>
+
+
+            <h6>Remarks</h6>
+            <textarea kendo-editor k-ng-model="model.contactPersonRemarks"></textarea><br>
             <br>
 
 
@@ -30,31 +57,6 @@
 
     </div>
 
-
-    <div class="jumbotron box">
-
-        <h4>Contact Information</h4>
-
-
-
-        <div class="container" >
-            <h6>Company Contact Number</h6>
-            <input k-content ng-model="model.companyContactNumber" style="width: 100%;" />
-            <br>
-
-            <h6>Company Billing Address</h6>
-            <input k-content ng-model="model.companyBillingAddress" style="width: 100%;" />
-            <br>
-
-            <h6>Company Email Address</h6>
-            <input k-content ng-model="model.companyEmail" style="width: 100%;" />
-            <br>
-
-
-        </div>
-
-
-    </div>
 
     <div class="jumbotron box">
         <div class="container">

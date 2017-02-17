@@ -2,18 +2,17 @@
  * Created by subtainishfaq on 10/30/16.
  */
 angular.module('yapp')
-  .controller('ContactPersonEditCtrl', function($scope, $state,itemCompanies,$sce,companiesService,$rootScope,SeatEatsConstants,toastr) {
-    console.log(itemCompanies);
+  .controller('ContactPersonEditCtrl', function($scope, $state,$sce,companiesService,$rootScope,SeatEatsConstants,toastr,$stateParams) {
 
     $scope.$state = $state;
-    if(angular.isDefined(itemCompanies))
-    $scope.model = itemCompanies.data;
-    else
-      $scope.model={};
+    $scope.companyItem=$stateParams.myParam;
+
+    $scope.model =  $scope.companyItem.contactPersons[$scope.companyItem.editIndex];
+
 
     $scope.selectOptionsCompanyType = {
       filter: "contains",
-      placeholder: "Select CompanyType...",
+      placeholder: "Select contactType...",
       dataTextField: "content",
       dataValueField: "content",
       valuePrimitive: true,
@@ -29,7 +28,7 @@ angular.module('yapp')
         serverFiltering: true,
         transport: {
           read: {
-            url: SeatEatsConstants.AppUrlApi+"masterdata?type=companyType"
+            url: SeatEatsConstants.AppUrlApi+"masterdata?type=contactType"
           }
         }
       }
@@ -44,10 +43,8 @@ angular.module('yapp')
     {
       $rootScope.scopeWorkingVariable = true;
 
-      companiesService.putLetsplay($scope.model).then(function (response)
+      companiesService.putLetsplay( $scope.companyItem).then(function (response)
       {
-
-        debugger;
         console.log(response);
         $rootScope.scopeWorkingVariable = false;
         if(response.status=200)
@@ -55,9 +52,10 @@ angular.module('yapp')
         else
           toastr.error('Error','Operation Was not complete');
 
-        $state.go("companies");
+        $state.go('contactPerson',{myParam:$scope.companyItem});
 
-      })
+      });
+
 
     }
 

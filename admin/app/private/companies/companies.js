@@ -10,6 +10,14 @@ angular.module('yapp')
 
       $state.go('companiesedit',{id:ID});
     };
+
+    $scope.addContactPerson = function (dataItem)
+    {
+
+      $state.go('contactPerson',{myParam:dataItem});
+    };
+
+
     $scope.deleteLetsplay = function (ID)
     {
       $rootScope.scopeWorkingVariable = true;
@@ -50,6 +58,10 @@ angular.module('yapp')
         title: "title",
         width: "120px"
       },{
+        title: "Contact Person",
+        width: "120px",
+        template: '<a ng-click="addContactPerson(dataItem)" class="btn k-primary btn-outline btn-rounded btn-sm">Add Contact Person</a>'
+      },{
         title: "Edit",
         width: "120px",
         template: '<a ng-click="editLetsplay(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Edit</a>'
@@ -59,5 +71,19 @@ angular.module('yapp')
         template: '<a ng-click="deleteLetsplay(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Delete</a>'
       }]
     };
+    $scope.mainTreeOptions={
+      dataSource: {
+        type: "json",
+        transport: {
+          read: SeatEatsConstants.AppUrlApi+'company'
+        },
+
+        schema: {
+          data: "docs"}
+
+      }
+
+    };
+
 
   });

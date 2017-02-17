@@ -206,29 +206,23 @@ angular
             url: '/contactPerson',
             parent: 'dashboard',
             controller: 'ContactPersonCtrl',
-            templateUrl: 'private/contactPerson/contactPerson.html'
+            templateUrl: 'private/contactPerson/contactPerson.html',
+            params: {myParam: null}
           })
       .state('contactPersonadd', {
         url: '/contactPersonadd',
         parent: 'dashboard',
         controller: 'ContactPersonAddCtrl',
-        templateUrl: 'private/contactPerson/add/add.html'
+        templateUrl: 'private/contactPerson/add/add.html',
+        params: {myParam: null}
+
       })
       .state('contactPersonedit', {
-
-        resolve:{
-
-          itemContactPerson:  function(contactPersonService,$stateParams)
-          {
-            //get game here
-
-
-            return contactPersonService.getLetsplayById($stateParams.id);
-          }},
-        url: '/contactPersonedit/:id',
+        url: '/contactPersonedit',
         parent: 'dashboard',
         controller: 'ContactPersonEditCtrl',
-        templateUrl: 'private/contactPerson/edit/edit.html'
+        templateUrl: 'private/contactPerson/edit/edit.html',
+        params: {myParam: null}
       })
       .state('profiles', {
         url: '/profiles',

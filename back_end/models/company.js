@@ -13,7 +13,18 @@ var companySchema = new Schema({
     companyContactNumber:String,
     companyBillingAddress: String,
     companyEmail: String,
-    companyDescription : String
+    companyDescription : String,
+    contactPersons:[
+        {
+            contactPersonName:String,
+            contactPersonDesignation:String,
+            contactPersonContactNumber:String,
+            contactPersonEmail:String,
+            contactPersonContactType:String,
+            contactPersonIsDecisionMaker:String,
+            contactPersonIsClientNew:String,
+            contactPersonRemarks: String
+        }]
 
 
 //array of contact person
