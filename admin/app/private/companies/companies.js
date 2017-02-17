@@ -53,6 +53,7 @@ angular.module('yapp')
       },
       sortable: true,
       pageable: true,
+
       columns: [{
         field: "companyName",
         title: "title",
@@ -71,18 +72,40 @@ angular.module('yapp')
         template: '<a ng-click="deleteLetsplay(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Delete</a>'
       }]
     };
-    $scope.mainTreeOptions={
-      dataSource: {
-        type: "json",
-        transport: {
-          read: SeatEatsConstants.AppUrlApi+'company'
+
+    $scope.detailGridOptions = function(dataItem) {
+      return {
+        dataSource: {
+          data:  dataItem.contactPersons,
+          schema: {
+            model: {
+              fields: {
+                contactPersonName:{type : "string"},
+                contactPersonDesignation:{type : "string"},
+                contactPersonContactNumber:{type : "string"},
+                contactPersonEmail:{type : "string"},
+                contactPersonContactType:{type : "string"},
+                contactPersonIsDecisionMaker:{type : "boolean"},
+                contactPersonIsClientNew:{type : "boolean"},
+                contactPersonRemarks: {type : "string"}
+              }
+            }
+          },
         },
-
-        schema: {
-          data: "docs"}
-
-      }
-
+        columns: [{
+          field: "contactPersonName",
+          title: "title",
+          width: "120px"
+        },{
+          title: "Edit",
+          width: "120px",
+          template: '<a  class="btn k-primary btn-outline btn-rounded btn-sm">Edit</a>'
+        },{
+          title: "Delete",
+          width: "120px",
+          template: '<a  class="btn k-primary btn-outline btn-rounded btn-sm">Delete</a>'
+        }]
+      };
     };
 
 

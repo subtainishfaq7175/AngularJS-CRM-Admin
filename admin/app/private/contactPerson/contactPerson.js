@@ -6,8 +6,7 @@ angular.module('yapp')
 
     $scope.$state = $state;
     $scope.companyItem=$stateParams.myParam;
-    $scope.editLetsplay = function (ID)
-    {
+    $scope.editLetsplay = function (ID) {
       var i;
       for ( i=0;i<$scope.companyItem.contactPersons.length;i++)
         if($scope.companyItem.contactPersons[i]._id==ID)
@@ -18,14 +17,12 @@ angular.module('yapp')
 
     };
 
-    $scope.goToContactPersonadd=function()
-    {
+    $scope.goToContactPersonadd=function() {
       $state.go('contactPersonadd',{myParam:$scope.companyItem});
 
     };
 
-    $scope.deleteLetsplay = function (ID)
-    {
+    $scope.deleteLetsplay = function (ID) {
 
       var i;
       for ( i=0;i<$scope.companyItem.contactPersons.length;i++)
@@ -45,6 +42,7 @@ angular.module('yapp')
         $state.go('contactPerson',{myParam:$scope.companyItem});
       })
     };
+
     $scope.mainGridOptions={
       dataSource: {
         data:  $scope.companyItem.contactPersons,
