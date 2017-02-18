@@ -23,22 +23,6 @@
 
                 <br>
 
-                <h6>Contact Person</h6>
-                <input k-content style="width: 100%" required ng-model="model.contactPerson">
-                <br>
-
-                <h6>Designation</h6>
-                <input k-content style="width: 100%" required   ng-model="model.designation">
-                <br>
-
-                <h6>Contact Number</h6>
-                <input k-content style="width: 100%" pattern="\d{14}" required   ng-model="model.contactNumber">
-                <br>
-
-                <h6>Contact Type</h6>
-                <select kendo-drop-down-list  required   k-options="selectOptionsContactType" k-ng-model="model.contactType" style="width: 100%;"></select>
-                <br>
-
 
                 <h6>Client Type</h6>
                 <select kendo-drop-down-list required   k-options="selectOptionsPitchClientType" k-ng-model="model.pitchClientType" style="width: 100%;"></select>
@@ -57,25 +41,19 @@
                 <select kendo-drop-down-list required   k-options="selectOptionsPitchClientCurrentServiceType" k-ng-model="model.pitchClientCurrentServiceType" style="width: 100%;"></select>
                 <br>
 
-                <h6>Is Decision Maker ?</h6>
-                <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.decisionMaker">
-                <br>
-                <h6>Is Client New ?</h6>
-                <input class="k-content" type="checkbox" name="vehicle" ng-model="model.isPitchClientNew">
-                <br>
 
-                <!--will make it dropdown-->
+                <!--  &lt;!&ndash;will make it dropdown&ndash;&gt;
 
-                <h6>Assigned TeamLeader</h6>
-                <input k-content style="width: 100%"  required   ng-model="model.assignedTeamLeader">
-                <br>
+                 <h6>Assigned TeamLeader</h6>
+                 <input k-content style="width: 100%"  required   ng-model="model.assignedTeamLeader">
+                 <br>
 
-                <!--will make it dropdown-->
-                <h6>Assigned SalesPerson</h6>
-                <input k-content style="width: 100%" required  ng-model="model.assignedSalesPerson">
-                <br>
+                 &lt;!&ndash;will make it dropdown&ndash;&gt;
+                 <h6>Assigned SalesPerson</h6>
+                 <input k-content style="width: 100%" required  ng-model="model.assignedSalesPerson">
+                 <br>
 
-
+     -->
 
 
                 <h6>Status</h6>
@@ -88,15 +66,17 @@
                 <select kendo-drop-down-list  k-options="selectOptionslocation" required  k-ng-model="model.location" style="width: 100%;"></select>
                 <br>
 
+                <!--
 
 
-                <h6>Remarks about Current Status by Sales Person</h6>
-                <textarea kendo-editor k-ng-model="model.pitchStatusRemarks"></textarea><br>
+                            <h6>Remarks about Current Status by Sales Person</h6>
+                            <textarea kendo-editor k-ng-model="model.pitchStatusRemarks"></textarea><br>
 
-                <h6>Remarks about Sales Person</h6>
-                <textarea kendo-editor k-ng-model="model.pitchSalesPersonRemarks"></textarea><br>
+                            <h6>Remarks about Sales Person</h6>
+                            <textarea kendo-editor k-ng-model="model.pitchSalesPersonRemarks"></textarea><br>
 
 
+                -->
 
 
             </div>

@@ -18,6 +18,8 @@ angular.module('yapp')
     };
 
 
+
+
     $scope.deleteLetsplay = function (ID)
     {
       $rootScope.scopeWorkingVariable = true;
@@ -35,6 +37,8 @@ angular.module('yapp')
       });
 
     };
+
+
     $scope.mainGridOptions={
       dataSource: {
         type: "json",
@@ -61,15 +65,15 @@ angular.module('yapp')
       },{
         title: "Contact Person",
         width: "120px",
-        template: '<a ng-click="addContactPerson(dataItem)" class="btn k-primary btn-outline btn-rounded btn-sm">Add Contact Person</a>'
+        template: '<a ng-click="addContactPerson(dataItem)" class="btn k-primary btn-outline btn-rounded btn-sm">Add/Edit Contact Person</a>'
       },{
         title: "Edit",
         width: "120px",
-        template: '<a ng-click="editLetsplay(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Edit</a>'
+        template: '<a ng-click="editLetsplay(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Edit Company</a>'
       },{
         title: "Delete",
         width: "120px",
-        template: '<a ng-click="deleteLetsplay(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Delete</a>'
+        template: '<a ng-click="deleteLetsplay(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Delete Comapny</a>'
       }]
     };
 
@@ -94,16 +98,13 @@ angular.module('yapp')
         },
         columns: [{
           field: "contactPersonName",
-          title: "title",
-          width: "120px"
+          title: "Name"
         },{
-          title: "Edit",
-          width: "120px",
-          template: '<a  class="btn k-primary btn-outline btn-rounded btn-sm">Edit</a>'
+          title: "Contact Number",
+          field:  "contactPersonContactNumber"
         },{
-          title: "Delete",
-          width: "120px",
-          template: '<a  class="btn k-primary btn-outline btn-rounded btn-sm">Delete</a>'
+          title: "Email",
+          field: "contactPersonEmail"
         }]
       };
     };
