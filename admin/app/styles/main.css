@@ -6832,4 +6832,5 @@ small {
 .invalid {
   color: red;
 }
-
+.oneliner{display:inline-block;}
+.box2 {border:1px solid #c3dff2; margin: 4px}

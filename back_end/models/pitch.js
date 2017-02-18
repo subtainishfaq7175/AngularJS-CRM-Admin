@@ -11,13 +11,6 @@ var pitchSchema = new Schema({
 
     pitchType :  {type:String },
     pitchTitle:{type :String},// this will ListOfValues
-    contactType :  {type:String },// this will ListOfValues
-    companyName :  {type:String },
-    companyType :  {type:String },// this will ListOfValues
-    contactPerson :  {type:String },
-    designation :  {type:String },
-    decisionMaker :  {type:Boolean },
-    contactNumber :  {type:String },
     location :  {type:String },
     requestedServiceType :  {type:String },// this will ListOfValues
     pitchStatusType :  {type:String },// this will ListOfValues
@@ -36,10 +29,7 @@ var pitchSchema = new Schema({
     followUpCount :  {type:String },
     createdDate: { type:Date , default: Date.now() },
     scheduelDate: { type:Date , default: Date.now() },
-    role: { type :Number ,default : 0 },
-    gender : { type:String },
-    age : { type:Number }
-});
+   });
 
 pitchSchema.plugin(mongoosePaginate);
 
