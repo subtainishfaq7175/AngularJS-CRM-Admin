@@ -252,6 +252,35 @@ angular
         parent: 'dashboard',
         controller: 'ProfilesEditCtrl',
         templateUrl: 'private/profiles/edit/edit.html'
+      })
+      .state('fieldvalidation', {
+        url: '/fieldvalidation',
+        parent: 'dashboard',
+        controller: 'FieldvalidationCtrl',
+        templateUrl: 'private/fieldvalidation/fieldvalidation.html'
+      })
+      .state('fieldvalidationadd', {
+        url: '/fieldvalidationadd',
+        parent: 'dashboard',
+        controller: 'FieldvalidationAddCtrl',
+        templateUrl: 'private/fieldvalidation/add/add.html'
+      })
+      .state('fieldvalidationedit', {
+
+      resolve:{
+
+        simpleObj:  function(fieldvalidationService,$stateParams)
+        {
+          //get game here
+
+
+          return fieldvalidationService.getProfileById($stateParams.id);
+        }},
+
+        url: '/fieldvalidationedit/:id',
+        parent: 'dashboard',
+        controller: 'FieldvalidationEditCtrl',
+        templateUrl: 'private/fieldvalidation/edit/edit.html'
       });
 
   })
