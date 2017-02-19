@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
+var Validation = require('../models/validation');
 var jwt    = require('jwt-simple');
 var config      = require('../config/database');
 var passport	= require('passport');
@@ -68,8 +69,25 @@ router.post('/authenticate', function(req, res) {
           // if user is found and password is right create a token
           var token = jwt.encode(user, config.secret);
           // return the information including token as JSON
-          res.json({success: true, token: 'JWT ' + token});
-        } else {
+
+            Validation.count({}, function(err, count)
+            {
+                if(count>0)
+                {
+                    Validation.findOne(function (err,val)
+                    {
+                        console.log(val);
+                        console.log("inside Validation");
+                        console.log(err);
+                        res.json({success: true, token: 'JWT ' + token,settings:true , validation: val });
+
+                    });
+                }
+                 else
+                 res.json({success: true, token: 'JWT ' + token,settings:false});
+
+            });
+          } else {
                res.send({success: false, msg: 'Authentication failed. Wrong password.'});
         }
       });

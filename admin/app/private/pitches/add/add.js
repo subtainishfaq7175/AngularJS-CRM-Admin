@@ -2,15 +2,17 @@
  * Created by subtainishfaq on 10/30/16.
  */
 angular.module('yapp')
-  .controller('PitchesAddCtrl', function($scope, $state,SeatEatsConstants,pitchesService,$rootScope,toastr) {
+  .controller('PitchesAddCtrl', function($scope, $state,SeatEatsConstants,pitchesService,$rootScope,toastr,$localStorage) {
 
 
     $scope.$state = $state;
     $scope.model={};
 
+    $scope.validatorServer=$localStorage.currentUser.validation.leadValidator;
+
+    $scope.validator;
     $scope.isImageUploading = false;
     $scope.isImageUploadingScreen = false;
-    $scope.validator;
     $scope.selectOptionsPitchType = {
       filter: "contains",
       placeholder: "Select Type...",

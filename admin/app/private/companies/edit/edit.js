@@ -2,9 +2,10 @@
  * Created by subtainishfaq on 10/30/16.
  */
 angular.module('yapp')
-  .controller('CompaniesEditCtrl', function($scope, $state,itemCompanies,$sce,companiesService,$rootScope,SeatEatsConstants,toastr) {
+  .controller('CompaniesEditCtrl', function($scope, $state,itemCompanies,$sce,companiesService,$rootScope,SeatEatsConstants,toastr,$localStorage) {
     console.log(itemCompanies);
-
+    $scope.validatorServer=$localStorage.currentUser.validation.companyValidator;
+    $scope.validator;
     $scope.$state = $state;
     if(angular.isDefined(itemCompanies))
     $scope.model = itemCompanies.data;
@@ -42,7 +43,10 @@ angular.module('yapp')
 
     function publishCompany()
     {
-      $rootScope.scopeWorkingVariable = true;
+
+      if($scope.validator.validate())
+      {
+        $rootScope.scopeWorkingVariable = true;
 
       companiesService.putLetsplay($scope.model).then(function (response)
       {
@@ -60,5 +64,11 @@ angular.module('yapp')
       })
 
     }
+
+      else
+        toastr.error('Error','Operation Was not complete');
+
+    }
+
 
   });

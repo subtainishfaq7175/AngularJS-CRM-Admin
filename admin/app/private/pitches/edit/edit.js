@@ -2,10 +2,12 @@
  * Created by subtainishfaq on 10/30/16.
  */
 angular.module('yapp')
-  .controller('PitchesEditCtrl', function($scope, $state,SeatEatsConstants,pitchesService,$rootScope,toastr,simpleObj) {
+  .controller('PitchesEditCtrl', function($scope, $state,SeatEatsConstants,pitchesService,$rootScope,toastr,simpleObj,$localStorage) {
     console.log(simpleObj);
 
     $scope.$state = $state;
+    $scope.validatorServer=$localStorage.currentUser.validation.leadValidator;
+
     $scope.model={};
 
     $scope.isImageUploading = false;

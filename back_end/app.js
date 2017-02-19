@@ -6,6 +6,7 @@ var passport	= require('passport');
 var company = require('./routes/companies'); //routes are defined here
 var news = require('./routes/news'); //routes are defined here
 var pitches = require('./routes/pitches'); //routes are defined here
+var validations = require('./routes/validations'); //routes are defined here
 var index = require('./routes/index'); //routes are defined here
 var app = express(); //Create the Express app
 var config      = require('./config/database');
@@ -50,6 +51,7 @@ app.use('/api', company); //This is our route middleware
 app.use('/api', pitches); //This is our route middleware
 app.use('/api', masterdata); //This is our route middleware
 app.use('/api', messages); //This is our route middleware
+app.use('/api', validations); //This is our route middleware
 
 
 module.exports = app;

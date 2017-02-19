@@ -2,65 +2,67 @@
     <a ui-sref="companies" class="pull-right btn btn-primary btn-outline btn-rounded">Company</a>
     <h3>Company <small>Add/Remove Company</small></h3>
 
-    <div class="jumbotron box">
+    <form kendo-validator="validator" ng-submit="publishCompany()">
 
-        <h4>Title and details</h4>
+        <div class="jumbotron box">
 
-
-
-        <div class="container" >
-            <h6>Company Name</h6>
-            <input k-content style="width: 100%" ng-model="model.companyName">
-            <br>
+            <h4>Title and details</h4>
 
 
 
-            <h6>Company Type</h6>
-            <select kendo-drop-down-list  k-options="selectOptionsCompanyType" k-ng-model="model.companyType" style="width: 100%;"></select>
-            <br>
-
-            <h6>Company Description</h6>
-            <textarea kendo-editor k-ng-model="model.companyDescription"></textarea><br>
-            <br>
+            <div class="container" >
+                <h6>Company Name</h6>
+                <input k-content style="width: 100%" ng-required="{{validatorServer.companyName}}" ng-model="model.companyName">
+                <br>
 
 
 
-        </div>
+                <h6>Company Type</h6>
+                <select kendo-drop-down-list  ng-required="{{validatorServer.companyType}}" k-options="selectOptionsCompanyType" k-ng-model="model.companyType"  style="width: 100%;"></select>
+                <br>
 
-
-    </div>
-
-
-    <div class="jumbotron box">
-
-        <h4>Contact Information</h4>
+                <h6>Company Description</h6>
+                <textarea kendo-editor k-ng-model="model.companyDescription" ng-required="{{validatorServer.companyDescription}}"></textarea><br>
+                <br>
 
 
 
-        <div class="container" >
-            <h6>Company Contact Number</h6>
-            <input k-content ng-model="model.companyContactNumber" style="width: 100%;" />
-            <br>
-
-            <h6>Company Billing Address</h6>
-            <input k-content ng-model="model.companyBillingAddress" style="width: 100%;" />
-            <br>
-
-            <h6>Company Email Address</h6>
-            <input k-content ng-model="model.companyEmail" style="width: 100%;" />
-            <br>
+            </div>
 
 
         </div>
 
 
-    </div>
+        <div class="jumbotron box">
 
-    <div class="jumbotron box">
-        <div class="container">
-            <button class="k-primary"  class="k-button k-primary" ng-click="publishCompany()" >Publish</button>
+            <h4>Contact Information</h4>
+
+
+
+            <div class="container" >
+                <h6>Company Contact Number</h6>
+                <input k-content ng-model="model.companyContactNumber" ng-required="{{validatorServer.companyContactNumber}}" style="width: 100%;" />
+                <br>
+
+                <h6>Company Billing Address</h6>
+                <input k-content ng-model="model.companyBillingAddress" ng-required="{{validatorServer.companyBillingAddress}}" style="width: 100%;" />
+                <br>
+
+                <h6>Company Email Address</h6>
+                <input k-content ng-model="model.companyEmail"  ng-required="{{validatorServer.companyEmail}}" style="width: 100%;" />
+                <br>
+
+
+            </div>
+
+
         </div>
-    </div>
 
+        <div class="jumbotron box">
+            <div class="container">
+                <button class="k-primary"  class="k-button k-primary" type="submit" >Publish</button>
+            </div>
+        </div>
+    </form>
 </div>
 

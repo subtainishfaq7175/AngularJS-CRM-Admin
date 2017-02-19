@@ -14,31 +14,31 @@
 
         <div class="container" >
             <h6>Title</h6>
-            <input k-content style="width: 100%" required name="title"
+            <input k-content style="width: 100%" ng-required="{{validatorServer.pitchTitle}}" name="title"
                     ng-model="model.pitchTitle">
             <br>
 
             <h6>Sale Type</h6>
-           <select kendo-drop-down-list name="saletype"   k-options="selectOptionsPitchType"required  k-ng-model="model.pitchType" style="width: 100%;"></select>
+           <select kendo-drop-down-list name="saletype"   k-options="selectOptionsPitchType" ng-required="{{validatorServer.pitchType}}"  k-ng-model="model.pitchType" style="width: 100%;"></select>
 
             <br>
 
 
            <h6>Client Type</h6>
-            <select kendo-drop-down-list required   k-options="selectOptionsPitchClientType" k-ng-model="model.pitchClientType" style="width: 100%;"></select>
+            <select kendo-drop-down-list ng-required="{{validatorServer.pitchClientType}}"   k-options="selectOptionsPitchClientType" k-ng-model="model.pitchClientType" style="width: 100%;"></select>
             <br>
 
 
             <h6>Client Response Type</h6>
-            <select kendo-drop-down-list required  k-options="selectOptionsPitchClientResponseType" k-ng-model="model.pitchClientResponseType" style="width: 100%;"></select>
+            <select kendo-drop-down-list ng-required="{{validatorServer.pitchClientResponseType}}"   k-options="selectOptionsPitchClientResponseType" k-ng-model="model.pitchClientResponseType" style="width: 100%;"></select>
             <br>
 
             <h6>Requested Service Type</h6>
-            <select kendo-drop-down-list required   k-options="selectOptionsRequestedServiceType" k-ng-model="model.requestedServiceType" style="width: 100%;"></select>
+            <select kendo-drop-down-list ng-required="{{validatorServer.requestedServiceType}}"   k-options="selectOptionsRequestedServiceType" k-ng-model="model.requestedServiceType" style="width: 100%;"></select>
             <br>
 
             <h6>Client Current Service Type</h6>
-            <select kendo-drop-down-list required   k-options="selectOptionsPitchClientCurrentServiceType" k-ng-model="model.pitchClientCurrentServiceType" style="width: 100%;"></select>
+            <select kendo-drop-down-list ng-required="{{validatorServer.pitchClientCurrentServiceType}}"   k-options="selectOptionsPitchClientCurrentServiceType" k-ng-model="model.pitchClientCurrentServiceType" style="width: 100%;"></select>
             <br>
 
 
@@ -57,13 +57,13 @@
 
 
             <h6>Status</h6>
-            <select kendo-drop-down-list  k-options="selectOptionsPitchStatusType" required   k-ng-model="model.pitchStatusType" style="width: 100%;"></select>
+            <select kendo-drop-down-list  k-options="selectOptionsPitchStatusType" ng-required="{{validatorServer.pitchStatusType}}"    k-ng-model="model.pitchStatusType" style="width: 100%;"></select>
             <br>
 
             <!--will make it dropdown-->
 
             <h6>Location</h6>
-            <select kendo-drop-down-list  k-options="selectOptionslocation" required  k-ng-model="model.location" style="width: 100%;"></select>
+            <select kendo-drop-down-list  k-options="selectOptionslocation" ng-required="{{validatorServer.location}}"   k-ng-model="model.location" style="width: 100%;"></select>
             <br>
 
 <!--
@@ -93,21 +93,21 @@
 
         <div class="container" >
             <h6>Expected Bussiness</h6>
-            <input kendo-numeric-text-box k-min="0"required   k-ng-model="model.pitchExpectedBusiness" style="width: 100%" n>
+            <input kendo-numeric-text-box k-min="0" ng-required="{{validatorServer.pitchExpectedBusiness}}"    k-ng-model="model.pitchExpectedBusiness" style="width: 100%" n>
             <br>
 
             <h6>Actual Bussiness</h6>
-            <input kendo-numeric-text-box k-min="0" required    k-ng-model="model.pitchActualBusiness" style="width: 100%" >
+            <input kendo-numeric-text-box k-min="0" ng-required="{{validatorServer.pitchActualBusiness}}"     k-ng-model="model.pitchActualBusiness" style="width: 100%" >
             <br>
 
 
             <h6>Currency Type</h6>
-            <select kendo-drop-down-list  k-options="selectOptionsPitchCurrencyType" required   k-ng-model="model.pitchCurrencyType" style="width: 100%;"></select>
+            <select kendo-drop-down-list  k-options="selectOptionsPitchCurrencyType" ng-required="{{validatorServer.pitchCurrencyType}}"   k-ng-model="model.pitchCurrencyType" style="width: 100%;"></select>
             <br>
 
 
             <h6>Source Type</h6>
-            <select kendo-drop-down-list  k-options="selectOptionsPitchSourceType" required  k-ng-model="model.pitchSourceType" style="width: 100%;"></select>
+            <select kendo-drop-down-list  k-options="selectOptionsPitchSourceType" ng-required="{{validatorServer.pitchSourceType}}"  k-ng-model="model.pitchSourceType" style="width: 100%;"></select>
             <br>
 
 
@@ -130,7 +130,7 @@
              <h6>Contact Date</h6>
              <input kendo-date-picker
                     style="width: 100%;"
-                    required
+                    ng-required="{{validatorServer.scheduelDate}}"
                     k-ng-model="model.scheduelDate"
              />
 
