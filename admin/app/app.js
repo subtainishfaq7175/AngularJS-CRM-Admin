@@ -11,7 +11,8 @@ angular
     'ngSanitize',
     'angular-sortable-view',
     'ngLoader',
-    'toastr'
+    'toastr',
+    'ngCountries'
   ])
   .config(function($stateProvider, $urlRouterProvider) {
 

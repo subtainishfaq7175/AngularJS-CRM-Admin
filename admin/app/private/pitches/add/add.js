@@ -11,6 +11,7 @@ angular.module('yapp')
     $scope.validatorServer=$localStorage.currentUser.validation.leadValidator;
 
     $scope.validator;
+    $scope.country;
     $scope.isImageUploading = false;
     $scope.isImageUploadingScreen = false;
     $scope.selectOptionsPitchType = {
@@ -383,7 +384,11 @@ angular.module('yapp')
       // Optionally cancel the remove operation by calling
       // e.preventDefault()
     }
+$scope.callback=function (obj) {
+      console.log(obj);
 
+
+}
 
 
   });

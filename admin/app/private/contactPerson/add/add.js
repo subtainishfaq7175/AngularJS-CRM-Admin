@@ -7,10 +7,14 @@ angular.module('yapp')
     $scope.$state = $state;
     $scope.companyItem = $stateParams.myParam;
     $scope.model = {};
+    $scope.userDoc = {};
     $scope.validatorServer=$localStorage.currentUser.validation.companyValidator.contactPersons;
 
-    if (angular.isDefined($scope.companyItem.contactPersons))
-      ;//      $scope.companyItem.contactPersons.push($scope.model);
+    $scope.publishCompany = publishCompany;
+
+
+
+    if (angular.isDefined($scope.companyItem.contactPersons));//      $scope.companyItem.contactPersons.push($scope.model);
     else {
       $scope.companyItem.contactPersons = [];
     }
@@ -38,11 +42,6 @@ angular.module('yapp')
         }
       }
     };
-    $scope.validator;
-
-    $scope.publishCompany = publishCompany;
-
-
     function publishCompany() {
       if ($scope.validator.validate()) {
 
@@ -65,6 +64,10 @@ angular.module('yapp')
 
     else
     toastr.error('Error', 'Operation Was not complete');
-  }
+  };
+
+    $scope.callback = function () {
+      console.log($scope.userDoc);
+    };
 
   });

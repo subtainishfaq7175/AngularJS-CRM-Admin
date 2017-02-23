@@ -62,8 +62,10 @@
 
             <!--will make it dropdown-->
 
+
             <h6>Location</h6>
-            <select kendo-drop-down-list  k-options="selectOptionslocation" ng-required="{{validatorServer.location}}"   k-ng-model="model.location" style="width: 100%;"></select>
+            <input k-content class="form-control" type="text" placeholder="Country" list="countrylist"  ng-model="country" ng-controller="ngCountriesCtrl" ng-change="getCountryObj(country, callback)">
+            <ngcountries></ngcountries>
             <br>
 
 <!--

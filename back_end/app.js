@@ -12,6 +12,7 @@ var app = express(); //Create the Express app
 var config      = require('./config/database');
 var authentication=require('./routes/users');
 var messages=require('./routes/messages');
+var publicRoutes=require('./routes/publicRoutes');
 var masterdata=require('./routes/masterdata');
 var fileUpload = require('express-fileupload');
 
@@ -52,6 +53,7 @@ app.use('/api', pitches); //This is our route middleware
 app.use('/api', masterdata); //This is our route middleware
 app.use('/api', messages); //This is our route middleware
 app.use('/api', validations); //This is our route middleware
+app.use('/api', publicRoutes); //This is our route middleware
 
 
 module.exports = app;
