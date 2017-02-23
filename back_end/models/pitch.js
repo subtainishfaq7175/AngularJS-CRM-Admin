@@ -4,6 +4,8 @@
 
 var mongoose=require('mongoose');
 var mongoosePaginate = require('mongoose-paginate');
+var User = require('../models/user');
+
 
 var Schema=mongoose.Schema;
 
@@ -29,7 +31,9 @@ var pitchSchema = new Schema({
     followUpCount :  {type:String },
     createdDate: { type:Date , default: Date.now() },
     scheduelDate: { type:Date , default: Date.now() },
-   });
+    assignedPeople: [{_id:{type: mongoose.Schema.ObjectId, ref: User }}]
+
+});
 
 pitchSchema.plugin(mongoosePaginate);
 

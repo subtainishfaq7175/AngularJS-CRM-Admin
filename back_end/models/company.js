@@ -14,6 +14,7 @@ var companySchema = new Schema({
     companyBillingAddress: String,
     companyEmail: String,
     companyDescription : String,
+    postedBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     contactPersons:[
         {
             contactPersonName:String,

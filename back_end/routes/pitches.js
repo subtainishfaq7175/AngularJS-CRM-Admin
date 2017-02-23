@@ -85,17 +85,47 @@ router.route('/pitchsearch')
 
 router.route('/pitches')
     .get(function(req, res) {
+        var token = getToken(req.headers);
+        if (token) {
+            var decoded = jwt.decode(token, config.secret);
+            User.findOne({
+                name: decoded.name
+            }, function(err, user) {
+                if (err) throw err;
+
+                if (!user)
+                {
+                    return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
+                } else
+                {
+
+                    Pitches.paginate({}, { page : req.param('page'), limit: 10 , sort : {created_time :'desc'} }, function(error, pageCount, paginatedResults) {
+                        if (error) {
+                            console.error(error);
+                            res.send(error);
+                        } else {
+                         /*   if (typeof pageCount.docs != 'undefined' && pageCount.docs.length>0 )
+                                for(var i=0;i<pageCount.docs.length;i++)
+                                {
+                                    if( typeof pageCount.docs[i].assignedPeople != 'undefined'&&  pageCount.docs[i].assignedPeople.length>0)
+                                    {
+
+                                    }
+                                }
+*/
+                            res.json(pageCount);
+                        }
+                    });
+
+                }
+            });
+        } else {
+            return res.status(403).send({success: false, msg: 'No token provided.'});
+        }
 
 
-        Pitches.paginate({}, { page : req.param('page'), limit: 10 , sort : {created_time :'desc'} }, function(error, pageCount, paginatedResults) {
-            if (error) {
-                console.error(error);
-                res.send(error);
-            } else {
 
-                res.json(pageCount);
-            }
-        });
+
 
 
 })

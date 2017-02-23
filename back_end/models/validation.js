@@ -27,25 +27,25 @@ var validationSchema = new Schema({
             }
 
     },
-    leadValidator:{
+    pitchValidator:{
 
-        leadType :  { type:Boolean , default: false },
-        leadTitle:{ type:Boolean , default: false },// this will ListOfValues
+        pitchType :  { type:Boolean , default: false },
+        pitchTitle:{ type:Boolean , default: false },// this will ListOfValues
         location :  { type:Boolean , default: false },
         requestedServiceType :  { type:Boolean , default: false },// this will ListOfValues
-        leadStatusType :  { type:Boolean , default: false },// this will ListOfValues
+        pitchStatusType :  { type:Boolean , default: false },// this will ListOfValues
         assignedTeamLeader :  { type:Boolean , default: false }, // this will be Employee
         assignedSalesPerson :  { type:Boolean , default: false }, // this will be Employee
-        leadClientType :  { type:Boolean , default: false }, // this will be ListOfValue
-        leadClientResponseType :  { type:Boolean , default: false }, // this will be ListOfValue
-        leadClientCurrentServiceType :  { type:Boolean , default: false }, // this will be ListOfValue
+        pitchClientType :  { type:Boolean , default: false }, // this will be ListOfValue
+        pitchClientResponseType :  { type:Boolean , default: false }, // this will be ListOfValue
+        pitchClientCurrentServiceType :  { type:Boolean , default: false }, // this will be ListOfValue
         isPitchClientNew :  { type:Boolean , default: false },
-        leadStatusRemarks :  { type:Boolean , default: false },
-        leadSalesPersonRemarks :  { type:Boolean , default: false },
-        leadExpectedBusiness :  { type:Boolean , default: false },
-        leadActualBusiness :  { type:Boolean , default: false },
-        leadCurrencyType :  { type:Boolean , default: false }, // this will be ListOfValue
-        leadSourceType :  { type:Boolean , default: false }, // this will be ListOfValue
+        pitchStatusRemarks :  { type:Boolean , default: false },
+        pitchSalesPersonRemarks :  { type:Boolean , default: false },
+        pitchExpectedBusiness :  { type:Boolean , default: false },
+        pitchActualBusiness :  { type:Boolean , default: false },
+        pitchCurrencyType :  { type:Boolean , default: false }, // this will be ListOfValue
+        pitchSourceType :  { type:Boolean , default: false }, // this will be ListOfValue
         followUpCount :  { type:Boolean , default: false },
         createdDate: { type:Boolean , default: false },
         scheduelDate: { type:Boolean , default: false },

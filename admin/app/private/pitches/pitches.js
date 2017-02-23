@@ -2,7 +2,7 @@
  * Created by subtainishfaq on 10/30/16.
  */
 angular.module('yapp')
-  .controller('PitchesCtrl', function($scope, $state,SeatEatsConstants,pitchesService,$rootScope,toastr) {
+  .controller('PitchesCtrl', function($scope, $state,SeatEatsConstants,pitchesService,$rootScope,toastr,$localStorage) {
 
     $scope.$state = $state;
 
@@ -30,7 +30,14 @@ angular.module('yapp')
       dataSource: {
         type: "json",
         transport: {
-          read: SeatEatsConstants.AppUrlApi+'pitches'
+          read:{
+            url: SeatEatsConstants.AppUrlApi+'pitches',
+            beforeSend: function(req) {
+
+              req.setRequestHeader('Authorization', $localStorage.currentUser.token);
+            }
+          }
+
         },
 
           schema: {
