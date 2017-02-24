@@ -31,7 +31,7 @@ var pitchSchema = new Schema({
     followUpCount :  {type:String },
     createdDate: { type:Date , default: Date.now() },
     scheduelDate: { type:Date , default: Date.now() },
-    assignedPeople: [{_id:{type: mongoose.Schema.ObjectId, ref: User }}]
+    assignedPeople: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 
 });
 

@@ -9,6 +9,8 @@ var jwt    = require('jwt-simple');
 var config      = require('../config/database');
 var passport	= require('passport');
 var User = require('../models/user');
+var mongoose=require('mongoose');
+
 
 
 var router = express.Router();
@@ -98,13 +100,36 @@ router.route('/pitches')
                     return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
                 } else
                 {
+                    Pitches
+                        .find()
+                        .populate('assignedPeople')
+                        .exec(function (err, story) {
+                            if (err) return handleError(err);
 
+                            var response=[];
+                            for(var i=0;i<story.length;i++) {
+                                if (typeof story[i].assignedPeople != 'undefined' && story[i].assignedPeople.length > 0)
+                                    for(var j=0;j< story[i].assignedPeople.length;j++)
+                                         if (user._id == story[i].assignedPeople[j]._id)
+                                                response.push(story[i]);
+                                        else if  (user.level >= story[i].assignedPeople[j].level)
+                                         {
+                                             response.push(story[i]);
+                                         }
+                                    console.log(story);
+                            }
+                            res.json(response);
+
+
+                            // prints "The creator is Aaron"
+                        });
+/*
                     Pitches.paginate({}, { page : req.param('page'), limit: 10 , sort : {created_time :'desc'} }, function(error, pageCount, paginatedResults) {
                         if (error) {
                             console.error(error);
                             res.send(error);
                         } else {
-                         /*   if (typeof pageCount.docs != 'undefined' && pageCount.docs.length>0 )
+                         /!*   if (typeof pageCount.docs != 'undefined' && pageCount.docs.length>0 )
                                 for(var i=0;i<pageCount.docs.length;i++)
                                 {
                                     if( typeof pageCount.docs[i].assignedPeople != 'undefined'&&  pageCount.docs[i].assignedPeople.length>0)
@@ -112,10 +137,10 @@ router.route('/pitches')
 
                                     }
                                 }
-*/
+*!/
                             res.json(pageCount);
                         }
-                    });
+                    },{columns: {}, populate: ['assignedPeople'], sortBy: {title: -1}});*/
 
                 }
             });
@@ -149,8 +174,10 @@ router.route('/pitches')
             } else
                 {
 
-                var pitch = new Pitches(req.body);
-                pitch.save(function(err)
+                   var pitch = new Pitches(req.body);
+                    //pitch.assignedPeople=[];
+                   pitch.assignedPeople.push(new User(user));
+                   pitch.save(function(err)
                 {
                     if (err) {
                         return res.send(err);
