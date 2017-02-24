@@ -2,7 +2,7 @@
  * Created by subtainishfaq on 10/30/16.
  */
 angular.module('yapp')
-  .controller('ProfilesCtrl', function($scope, $state, SeatEatsConstants,profilesService,$rootScope,toastr) {
+  .controller('ProfilesCtrl', function($scope, $state, SeatEatsConstants,profilesService,$rootScope,toastr,$localStorage) {
 
     $scope.$state = $state;
     $scope.editProfile = function (ID) {
@@ -10,6 +10,33 @@ angular.module('yapp')
 
       $state.go('profilesedit',{id:ID});
     };
+
+
+    homogeneous = new kendo.data.HierarchicalDataSource({
+      transport: {
+        read: {
+          url: SeatEatsConstants.AppUrlApi+'userstree',
+          dataType: "json",
+          beforeSend: function(req) {
+
+            req.setRequestHeader('Authorization', $localStorage.currentUser.token);
+          }
+        }
+      },
+      schema: {
+        model: {
+          id: "_id",
+          hasChildren: "HasEmployees"
+        }
+      }
+    });
+
+   $scope.treeOptions={
+      dataSource: homogeneous,
+      dataTextField: "name"
+    };
+
+
     $scope.deleteProfile = function (ID) {
       console.log(ID);
       $rootScope.scopeWorkingVariable = true;

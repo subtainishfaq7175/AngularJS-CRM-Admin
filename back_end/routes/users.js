@@ -28,6 +28,123 @@ console.log("in get");
     });
 
 
+router.route('/userstree')
+    .get(function(req, res) {
+
+
+        var token = getToken(req.headers);
+        if (token) {
+            var decoded = jwt.decode(token, config.secret);
+            User.findOne({
+                name: decoded.name
+            }, function(err, user) {
+                if (err) throw err;
+
+                if (!user)
+                {
+                    return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
+                } else
+                {
+
+
+                    // logic after authentication will be here
+
+               //  var   gotUser=    new User(user);
+
+                 user.getChildrenTree(function(err, users) {
+
+
+
+                        res.json(users);
+                      //  console.log(users);
+                 });
+
+                }
+            });
+        } else {
+            return res.status(403).send({success: false, msg: 'No token provided.'});
+        }
+
+    });
+
+router.route('/userschildren')
+    .get(function(req, res) {
+
+
+        var token = getToken(req.headers);
+        if (token) {
+            var decoded = jwt.decode(token, config.secret);
+            User.findOne({
+                name: decoded.name
+            }, function(err, user) {
+                if (err) throw err;
+
+                if (!user)
+                {
+                    return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
+                } else
+                {
+
+
+
+                    user.getChildren(true,function(err, users) {
+
+
+
+                        res.json(users);
+                      //  console.log(users);
+                 });
+
+                }
+            });
+        } else {
+            return res.status(403).send({success: false, msg: 'No token provided.'});
+        }
+
+    });
+
+
+
+router.route('/userscreatechildren')
+    .get(function(req, res) {
+
+
+        var token = getToken(req.headers);
+        if (token) {
+            var decoded = jwt.decode(token, config.secret);
+            User.findOne({
+                name: decoded.name
+            }, function(err, user) {
+                if (err) throw err;
+
+                if (!user)
+                {
+                    return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
+                } else
+                {
+
+
+
+                  User.findOne({name:"subtain"},function (err,subtain)
+                  {
+                        subtain.parent=user;
+                        user.save(function (err) {
+                            subtain.save(function (err) {
+                                res.json({success:"hurray"});
+                            });
+
+                        })
+                  })
+
+                }
+            });
+        } else {
+            return res.status(403).send({success: false, msg: 'No token provided.'});
+        }
+
+    });
+
+
 
 router.post('/signup', function(req, res) {
   if (!req.body.name || !req.body.password) {
@@ -35,13 +152,11 @@ router.post('/signup', function(req, res) {
   } else {
     var newUser = new User({
       name: req.body.name,
-      password: req.body.password,
-      userrole:req.body.userrole,
-        favourite_games:[],
-        favourite_company:[],
-        favourite_news:[]
+      password: req.body.password
+
     });
-    // save the user
+
+
     newUser.save(function(err) {
       if (err) {
         return res.json({success: false, msg: 'Username already exists.'});
@@ -50,6 +165,57 @@ router.post('/signup', function(req, res) {
     });
   }
 });
+
+
+
+//editLater
+
+
+router.post('/assignSenior', function(req, res) {
+
+    var token = getToken(req.headers);
+    if (token) {
+        var decoded = jwt.decode(token, config.secret);
+        User.findOne({
+            name: decoded.name
+        }, function(err, user) {
+            if (err) throw err;
+
+            if (!user)
+            {
+                return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
+            } else
+            {
+
+
+                if (!req.body.name || !req.body.password) {
+                    res.json({success: false, msg: 'Please pass name and password.'});
+                } else {
+                    var newUser = new User({
+                        name: req.body.name,
+                        password: req.body.password
+
+                    });
+
+
+                    newUser.save(function(err) {
+                        if (err) {
+                            return res.json({success: false, msg: 'Username already exists.'});
+                        }
+                        res.json({success: true, msg: 'Successful created new user.'});
+                    });
+                }
+
+            }
+        });
+    } else {
+        return res.status(403).send({success: false, msg: 'No token provided.'});
+    }
+
+
+});
+
+
 
 router.post('/authenticate', function(req, res) {
   User.findOne({

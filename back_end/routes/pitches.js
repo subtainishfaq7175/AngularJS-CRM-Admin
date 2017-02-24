@@ -175,8 +175,6 @@ router.route('/pitches')
                 {
 
                    var pitch = new Pitches(req.body);
-                    //pitch.assignedPeople=[];
-                   pitch.assignedPeople.push(new User(user));
                    pitch.save(function(err)
                 {
                     if (err) {

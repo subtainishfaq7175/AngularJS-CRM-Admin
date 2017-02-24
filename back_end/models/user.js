@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
 var mongoosePaginate = require('mongoose-paginate');
-var tree = require('mongoose-tree');
+var tree = require('mongoose-path-tree');
 
 
 
