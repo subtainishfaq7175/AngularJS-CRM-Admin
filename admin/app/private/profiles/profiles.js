@@ -13,11 +13,13 @@ angular.module('yapp')
 
     $scope.dataResponse=[];
     $rootScope.scopeWorkingVariable = true;
+    $scope.tree;
 
     profilesService.getProfileTree().then(function (res) {
 
       $scope.dataResponse=res.data;
       debugger;
+      $scope.tree.dataSource.data($scope.dataResponse)//refresh();
       $rootScope.scopeWorkingVariable = false;
 
     });
@@ -27,7 +29,8 @@ angular.module('yapp')
       data:$scope.dataResponse,
       schema: {
         model: {
-          children: "children"
+          children: "children",
+          hasChildren:"children.length>0"
         }
       }
 
