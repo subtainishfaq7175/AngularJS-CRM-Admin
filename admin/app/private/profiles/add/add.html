@@ -1,6 +1,6 @@
 <div>
     <a ui-sref="profiles" class="pull-right btn btn-primary btn-outline btn-rounded">Profiles</a>
-    <h3>Profiles <small>Edit Profiles</small></h3>
+    <h3>Profiles <small>Add Team Members</small></h3>
     <div class="jumbotron box">
         <h4>Profiles</h4>
 
@@ -10,31 +10,21 @@
 
             <h6>Username</h6>
 
-            <input k-content style="width: 100%" ng-model="model.name">
+            <select kendo-drop-down-list name="saletype"   k-options="selectOptionsUsers"   k-ng-model="model.assignedUser" style="width: 100%;"></select>
 
 
 
 
 
         </div>
-        <div class="container" >
 
-            <h6>password</h6>
-
-            <input k-content type="password" style="width: 100%" ng-model="model.password">
-
-
-
-
-
-        </div>
 
 
 
 
 
         <div class="container">
-            <button ng-click="publishProfile()" class="k-primary">Update</button>
+            <button ng-click="publishAssignment()" class="k-primary">Update</button>
         </div>
     </div>
 </div>

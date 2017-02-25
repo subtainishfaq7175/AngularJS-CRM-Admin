@@ -14,6 +14,7 @@
     service.Login = Login;
     service.Logout = Logout;
     service.SignUp = SignUp;
+    service.Assignment = Assignment;
 
     return service;
 
@@ -40,6 +41,12 @@
           }
         });
     }
+
+    function Assignment (id)
+    {
+      return $http.get(SeatEatsConstants.AppUrlApi+'userssetup/'+ id);
+
+    };
 
     function SignUp(username, password, callback) {
       $http.post(SeatEatsConstants.AppUrlApi+'signup', { name: username, password: password })
