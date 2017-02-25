@@ -47,9 +47,6 @@ router.route('/userstree')
                 {
 
 
-                    // logic after authentication will be here
-
-               //  var   gotUser=    new User(user);
 
                  user.getChildrenTree(function(err, users) {
 
@@ -105,7 +102,38 @@ router.route('/userschildren')
 
 
 
-router.route('/userscreatechildren')
+router.route('/usersbylevel')
+    .get(function(req, res) {
+
+
+        var token = getToken(req.headers);
+        if (token) {
+            var decoded = jwt.decode(token, config.secret);
+            User.findOne({
+                name: decoded.name
+            }, function(err, user) {
+                if (err) throw err;
+
+                if (!user)
+                {
+                    return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
+                } else
+                {
+
+
+                    User.find({ level: { $gte: user.level }},function (err,users) {
+                        res.json(users);
+                    });
+
+                }
+            });
+        } else {
+            return res.status(403).send({success: false, msg: 'No token provided.'});
+        }
+
+    });
+
+router.route('/userssetup/:userchild')
     .get(function(req, res) {
 
 
@@ -125,16 +153,40 @@ router.route('/userscreatechildren')
 
 
 
-                  User.findOne({name:"subtain"},function (err,subtain)
-                  {
-                        subtain.parent=user;
-                        user.save(function (err) {
-                            subtain.save(function (err) {
-                                res.json({success:"hurray"});
-                            });
+                    User.findOne({name:req.params.userchild},function (err,us)
+                    {
+                         if (err)  return res.status(505).send({success: false, msg: 'Authentication failed. User Problem.'});
 
-                        })
-                  })
+                         if(!us) return res.status(505).send({success: false, msg: 'Authentication failed. User Problem.'});
+
+                         else  if(!us.isAssingned)
+                          {
+                              us.parent=user;
+                              us.isAssingned=true;
+
+                              user.save(function (err) {
+                                  us.save(function (err) {
+
+                                      user.getChildrenTree(function (err,use) {
+
+                                          res.json(use);
+
+                                      });
+
+
+                                  });
+
+
+
+                              });
+                          }
+
+                          else
+                              res.json({success:false , msg : 'Already Assigned'})
+                    });
+
+
+                    ;
 
                 }
             });
@@ -167,53 +219,6 @@ router.post('/signup', function(req, res) {
 });
 
 
-
-//editLater
-
-
-router.post('/assignSenior', function(req, res) {
-
-    var token = getToken(req.headers);
-    if (token) {
-        var decoded = jwt.decode(token, config.secret);
-        User.findOne({
-            name: decoded.name
-        }, function(err, user) {
-            if (err) throw err;
-
-            if (!user)
-            {
-                return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
-            } else
-            {
-
-
-                if (!req.body.name || !req.body.password) {
-                    res.json({success: false, msg: 'Please pass name and password.'});
-                } else {
-                    var newUser = new User({
-                        name: req.body.name,
-                        password: req.body.password
-
-                    });
-
-
-                    newUser.save(function(err) {
-                        if (err) {
-                            return res.json({success: false, msg: 'Username already exists.'});
-                        }
-                        res.json({success: true, msg: 'Successful created new user.'});
-                    });
-                }
-
-            }
-        });
-    } else {
-        return res.status(403).send({success: false, msg: 'No token provided.'});
-    }
-
-
-});
 
 
 
