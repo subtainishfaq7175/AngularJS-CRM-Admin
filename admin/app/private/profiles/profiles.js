@@ -11,29 +11,32 @@ angular.module('yapp')
       $state.go('profilesedit',{id:ID});
     };
 
+    $scope.dataResponse=[];
+    $rootScope.scopeWorkingVariable = true;
+
+    profilesService.getProfileTree().then(function (res) {
+
+      $scope.dataResponse=res.data;
+      debugger;
+      $rootScope.scopeWorkingVariable = false;
+
+    });
 
     homogeneous = new kendo.data.HierarchicalDataSource({
-      transport: {
-        read: {
-          url: SeatEatsConstants.AppUrlApi+'userstree',
-          dataType: "json",
-          beforeSend: function(req) {
 
-            req.setRequestHeader('Authorization', $localStorage.currentUser.token);
-          }
-        }
-      },
+      data:$scope.dataResponse,
       schema: {
         model: {
-          id: "_id",
-          hasChildren: "HasEmployees"
+          children: "children"
         }
       }
+
+
     });
 
    $scope.treeOptions={
       dataSource: homogeneous,
-      dataTextField: "name"
+     dataTextField: "name"
     };
 
 

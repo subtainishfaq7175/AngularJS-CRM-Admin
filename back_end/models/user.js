@@ -30,7 +30,8 @@ var UserSchema = new Schema({
     rank: { type:String , default: "Employee" },
     gender : { type:String },
     age : { type:Number },
-    isAssingned :{ type: Boolean , default : false}
+    isAssingned :{ type: Boolean , default : false},
+    hasChild: { type: Boolean , default : false}
 
 
 

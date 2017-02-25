@@ -194,7 +194,7 @@ router.route('/userssetup/:userchild')
                           {
                               us.parent=user;
                               us.isAssingned=true;
-
+                              user.
                               user.save(function (err) {
                                   us.save(function (err) {
 
