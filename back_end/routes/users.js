@@ -50,9 +50,16 @@ router.route('/userstree')
 
                  user.getChildrenTree(function(err, users) {
 
+                  var   parsed = JSON.parse(JSON.stringify(users), function(k, v) {
+                         if (k === "children")
+                             this.treeNode = v;
 
+                         else
+                             return v;
+                     });
 
-                        res.json(users);
+                  console.log(parsed);
+                        res.json(parsed);
                       //  console.log(users);
                  });
 
@@ -194,7 +201,6 @@ router.route('/userssetup/:userchild')
                           {
                               us.parent=user;
                               us.isAssingned=true;
-                              user.
                               user.save(function (err) {
                                   us.save(function (err) {
 

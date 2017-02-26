@@ -11,36 +11,31 @@ angular.module('yapp')
       $state.go('profilesedit',{id:ID});
     };
 
-    $scope.dataResponse=[];
-    $rootScope.scopeWorkingVariable = true;
     $scope.tree;
 
-    profilesService.getProfileTree().then(function (res) {
-
-      $scope.dataResponse=res.data;
-      debugger;
-      $scope.tree.dataSource.data($scope.dataResponse)//refresh();
-      $rootScope.scopeWorkingVariable = false;
-
-    });
 
     homogeneous = new kendo.data.HierarchicalDataSource({
+      transport: {
+        read: {
+          url: SeatEatsConstants.AppUrlApi + "/userstree",
+          beforeSend: function(req) {
 
-      data:$scope.dataResponse,
+            req.setRequestHeader('Authorization', $localStorage.currentUser.token);
+          },
+          dataType: "json"
+        }
+      },
       schema: {
         model: {
-          children: "children",
-          hasChildren:"children.length>0"
+          id: "_id",
+          hasChildren: "treeNode.length>0",
+          children:"treeNode"
         }
       }
-
-
     });
-
    $scope.treeOptions={
-      dataSource: homogeneous,
-     dataTextField: "name"
-    };
+     dataSource: homogeneous,
+     dataTextField: "name"};
 
 
     $scope.deleteProfile = function (ID) {
