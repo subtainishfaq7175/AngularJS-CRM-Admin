@@ -10,9 +10,7 @@ angular.module('yapp')
 
       $state.go('profilesedit',{id:ID});
     };
-
     $scope.tree;
-
 
     homogeneous = new kendo.data.HierarchicalDataSource({
       transport: {
@@ -33,9 +31,13 @@ angular.module('yapp')
         }
       }
     });
-   $scope.treeOptions={
+    $scope.treeOptions={
+
      dataSource: homogeneous,
-     dataTextField: "name"};
+     dataTextField: "name",
+     dragAndDrop: true
+
+   };
 
 
     $scope.deleteProfile = function (ID) {
@@ -59,13 +61,19 @@ angular.module('yapp')
       dataSource: {
         type: "json",
         transport: {
-          read: SeatEatsConstants.AppUrlApi+'users'
-        },
+          read: {
+            url: SeatEatsConstants.AppUrlApi + "/userschildren",
+            beforeSend: function(req) {
+
+              req.setRequestHeader('Authorization', $localStorage.currentUser.token);
+            }
+        }
+        }/*,
 
         schema: {
           data: "docs",
           total: "total"
-        }
+        }*/
         ,
         pageSize: 10,
         serverPaging: true,

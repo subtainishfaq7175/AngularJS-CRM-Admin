@@ -12,17 +12,41 @@ var passport	= require('passport');
 router.route('/users')
     .get(function(req, res) {
 
-console.log("in get");
-      User.paginate({}, { page : req.param('page'), limit: 10 , sort : {created_time :'desc'} }, function(error, pageCount, paginatedResults) {
-        if (error) {
-          console.error(error);
-          res.send(error);
-        } else {
 
-          res.json(pageCount);
+        var token = getToken(req.headers);
+        if (token) {
+            var decoded = jwt.decode(token, config.secret);
+            User.findOne({
+                name: decoded.name
+            }, function(err, user) {
+                if (err) throw err;
+
+                if (!user)
+                {
+                    return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
+                } else
+                {
+
+
+                    console.log("in get");
+                    User.paginate({}, { page : req.param('page'), limit: 10 , sort : {created_time :'desc'} }, function(error, pageCount, paginatedResults) {
+                        if (error) {
+                            console.error(error);
+                            res.send(error);
+                        } else {
+
+                            res.json(pageCount);
+                            console.log(pageCount);
+                        }
+                        //  res.json("nothing");
+                    });
+
+                }
+            });
+        } else {
+            return res.status(403).send({success: false, msg: 'No token provided.'});
         }
-      //  res.json("nothing");
-      });
+
 
 
     });
@@ -58,7 +82,6 @@ router.route('/userstree')
                              return v;
                      });
 
-                  console.log(parsed);
                         res.json(parsed);
                       //  console.log(users);
                  });
