@@ -10,7 +10,8 @@ angular.module('yapp')
 
       $state.go('profilesedit',{id:ID});
     };
-    $scope.tree;
+    $scope.treeView;
+    $scope.parentId;
 
     homogeneous = new kendo.data.HierarchicalDataSource({
       transport: {
@@ -36,19 +37,54 @@ angular.module('yapp')
      dataSource: homogeneous,
      dataTextField: "name",
      dragAndDrop: true,
-     /* drag: function(e) {
-        console.log("Drag", e.sourceNode, "over", e.dropTarget);
-      },*/
-      dragend: function(e) {
-      console.log(  e.sender.dataItem(e.sourceNode));
-      console.log(  e.sender.dataItem(e.destinationNode));
-      console.log(  e.dropPosition);
+     dragstart :function (e) {
+       var parent = e.sender.dataItem( $scope.treeView.parent(e.sourceNode));
+       if(angular.isDefined(parent))
+       $scope.parentId = parent._id;
+       else
+         $scope.parentId="404";
+       console.log(parent);
 
-        debugger;
-      //  console.log("Drag end", e.sourceNode, e.dropPosition, e.destinationNode);
+     },
+     dragend: function(e) {
+
+       var parent = e.sender.dataItem( $scope.treeView.parent(e.sourceNode));
+      if(angular.isDefined(parent) && $scope.parentId !== parent._id) {
+        var sourceNode = e.sender.dataItem(e.sourceNode);
+        var destNode = parent; // Change source path and parent
+        sourceNode.parentId = destNode._id;
+        sourceNode.path = destNode.path + "#" + sourceNode._id;
+        $rootScope.scopeWorkingVariable = true;
+
+        profilesService.updateProfile(sourceNode).then(function (response) {
+
+          $rootScope.scopeWorkingVariable = false;
+
+        });
       }
 
-   };
+        else if( !angular.isDefined(parent) && $scope.parentId!=="404")
+      {
+
+
+        var sourceNode= e.sender.dataItem(e.sourceNode);
+        sourceNode.path=sourceNode._id;
+        sourceNode.parentId=undefined;
+        $rootScope.scopeWorkingVariable = true;
+
+        profilesService.updateProfile(sourceNode).then(function (response) {
+
+          $rootScope.scopeWorkingVariable = false;
+          console.log(response)
+
+        });
+      }
+
+      }
+
+      }
+
+
 
 
     $scope.deleteProfile = function (ID) {

@@ -182,7 +182,7 @@ router.route('/usersunassigned')
                 {
 
 
-                    User.find({ isAssingned:false },function (err,users) {
+                    User.find({ isAssingned:false,_id: { $ne: user._id } },function (err,users) {
                         res.json(users);
                     });
 
@@ -222,7 +222,7 @@ router.route('/userssetup/:userchild')
 
                          else  if(!us.isAssingned)
                           {
-                              us.parent=user;
+                              us.parent=user._id;
                               us.isAssingned=true;
                               user.save(function (err) {
                                   us.save(function (err) {
@@ -412,7 +412,16 @@ router.route('/users/:id').put(function(req, res) {
                   return res.send(err);
               }
 
-              for (prop in req.body) {
+              if (typeof(req.body.parentId) == "undefined")
+              {
+                  company.parent=user._id;
+              }
+
+
+                  for (prop in req.body) {
+                  if(prop=="parentId")
+                  company.parent= req.body[prop];
+                  else
                   company[prop] = req.body[prop];
               }
 
