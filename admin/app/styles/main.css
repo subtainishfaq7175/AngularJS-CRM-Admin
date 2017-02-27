@@ -6834,3 +6834,11 @@ small {
 }
 .oneliner{display:inline-block;}
 .box2 {border:1px solid #c3dff2; margin: 4px}
+
+.centerClass{
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-align-content: center;
+  align-content: center;}

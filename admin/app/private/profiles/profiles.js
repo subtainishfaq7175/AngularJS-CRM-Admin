@@ -35,7 +35,18 @@ angular.module('yapp')
 
      dataSource: homogeneous,
      dataTextField: "name",
-     dragAndDrop: true
+     dragAndDrop: true,
+     /* drag: function(e) {
+        console.log("Drag", e.sourceNode, "over", e.dropTarget);
+      },*/
+      dragend: function(e) {
+      console.log(  e.sender.dataItem(e.sourceNode));
+      console.log(  e.sender.dataItem(e.destinationNode));
+      console.log(  e.dropPosition);
+
+        debugger;
+      //  console.log("Drag end", e.sourceNode, e.dropPosition, e.destinationNode);
+      }
 
    };
 
