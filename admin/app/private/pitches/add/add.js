@@ -293,6 +293,26 @@ angular.module('yapp')
         }
       }
     };
+    $scope.selectOptionsCities = {
+      filter: "contains",
+      placeholder: "City",
+
+      valuePrimitive: true,
+      autoBind: false,
+      animation: {
+        close: {
+          effects: "zoom:out",
+          duration: 500
+        }
+      },
+
+      select :function (e) {
+        console.log(e);
+        console.log(e.sender.dataItem(e.item));
+        $scope.model.city=e.sender.dataItem(e.item);
+      }
+
+    };
 
     $scope.source=new kendo.data.DataSource({
       data: $scope.selectedCities
