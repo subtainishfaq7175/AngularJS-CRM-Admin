@@ -31,7 +31,8 @@ var UserSchema = new Schema({
     gender : { type:String },
     age : { type:Number },
     isAssingned :{ type: Boolean , default : false},
-    hasChild: { type: Boolean , default : false}
+    hasChild: { type: Boolean , default : false},
+    nodeLevel : {type:Number}
 
 
 
@@ -41,7 +42,9 @@ var UserSchema = new Schema({
 
 
 UserSchema.pre('save', function (next) {
+    console.log("preCalled");
     var user = this;
+  user.nodeLevel=  this.path ? this.path.split("#").length : 0;
     if (this.isModified('password') || this.isNew) {
         bcrypt.genSalt(10, function (err, salt) {
             if (err) {

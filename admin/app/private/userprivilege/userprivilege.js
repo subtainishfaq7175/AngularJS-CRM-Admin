@@ -2,30 +2,39 @@
  * Created by subtainishfaq on 10/30/16.
  */
 angular.module('yapp')
-  .controller('UserprivilegeCtrl', function($scope, $state, SeatEatsConstants,fieldvalidationService,$rootScope,toastr) {
+  .controller('UserprivilegeCtrl', function($scope, $state, SeatEatsConstants,fieldvalidationService,$rootScope,toastr,$localStorage) {
 
     $scope.$state = $state;
-    $scope.editProfile = function (ID) {
-   /*   console.log(ID);
+    $scope.model={};
 
-      $state.go('fieldvalidationedit',{id:ID});*/
-    };
-    $scope.deleteProfile = function (ID) {
-/*      console.log(ID);
-      $rootScope.scopeWorkingVariable = true;
 
-      fieldvalidationService.deletsProfilesById(ID).then(function (response)
-      {
-        $rootScope.scopeWorkingVariable = false;
-        if(response.status=200)
-          toastr.success('Done','Operation Complete');
-        else
-          toastr.error('Error','Operation Was not complete');
-        $state.reload();
 
-      });
+    $scope.selectOptionsUserType = {
+      filter: "contains",
+      placeholder: "Select Type...",
+      dataTextField: "name",
+      dataValueField: "nodeLevel",
+      valuePrimitive: true,
+      autoBind: false,
+      animation: {
+        close: {
+          effects: "zoom:out",
+          duration: 500
+        }
+      },
+      dataSource: {
+        type: "json",
+        serverFiltering: true,
+        transport: {
+          read: {
+            url: SeatEatsConstants.AppUrlApi+"usersbylevel",
+          beforeSend: function(req) {
 
-      $state.go('fieldvalidation',{id:ID});*/
+            req.setRequestHeader('Authorization', $localStorage.currentUser.token);
+          }
+          }
+        }
+      }
     };
 
 

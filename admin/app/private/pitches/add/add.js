@@ -14,6 +14,8 @@ angular.module('yapp')
     $scope.country;
     $scope.isImageUploading = false;
     $scope.isImageUploadingScreen = false;
+    $scope.isCountrySelected=false;
+
     $scope.selectOptionsPitchType = {
       filter: "contains",
       placeholder: "Select Type...",
@@ -292,8 +294,15 @@ angular.module('yapp')
       }
     };
 
+    $scope.source=new kendo.data.DataSource({
+      data: $scope.selectedCities
+
+    });
+
 
     $scope.publishPitch= publishPitch;
+
+
 
     function publishPitch() {
 
@@ -319,73 +328,25 @@ angular.module('yapp')
 
 
     }
-    function onCancel(e) {
-      // Array with information about the uploaded files
-      var files = e.files;
-      console.log(e);
-      $scope.isImageUploading=false;
-
-      // Process the Cancel event
-    }
-    function onComplete(e) {
-      // The upload is now idle
-      console.log(e);
-      $scope.isImageUploading=false;
-
-    }
-    function onSuccess(e) {
-      // Array with information about the uploaded files
-      $scope.isImageUploading=true;
-      $scope.model.image_url= e.response.url;
-
-    }
-    function onSelect(e) {
-
-      $scope.isImageUploading=true;
-    };
-    function onRemove(e) {
-      // Array with information about the removed files
-      $scope.isImageUploading=false;
-      // Process the Remove event
-      // Optionally cancel the remove operation by calling
-      // e.preventDefault()
-    };
-    function onCancelScreen(e) {
-      // Array with information about the uploaded files
-      var files = e.files;
-      console.log(e);
-      $scope.isImageUploadingScreen=false;
-
-      // Process the Cancel event
-    }
-    function onCompleteScreen(e) {
-      // The upload is now idle
-      console.log(e);
-      $scope.isImageUploadingScreen=false;
-
-    }
-    function onSuccessScreen(e) {
-      // Array with information about the uploaded files
-
-      $scope.model.screen_images.push({image_url: e.response.url});
-      $scope.isImageUploadingScreen=false
 
 
-
-    }
-    function onSelectScreen(e) {
-
-      $scope.isImageUploadingScreen=true;
-    };
-    function onRemoveScreen(e) {
-      // Array with information about the removed files
-      $scope.isImageUploadingScreen=false;
-      // Process the Remove event
-      // Optionally cancel the remove operation by calling
-      // e.preventDefault()
-    }
 $scope.callback=function (obj) {
-      console.log(obj);
+  if(angular.isDefined(obj))
+  {
+    $rootScope.scopeWorkingVariable = true;
+    pitchesService.getCities().then(function (response) {
+      debugger;
+    $scope.selectedCities=response.data[obj.name];
+    //console.log($scope.source);
+      $scope.source.data($scope.selectedCities);
+
+      $rootScope.scopeWorkingVariable = false;
+      $scope.isCountrySelected=true;
+
+  });
+
+
+  }
 
 
 }

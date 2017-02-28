@@ -151,7 +151,8 @@ router.route('/usersbylevel')
                 {
 
 
-                    User.find({ level: { $gte: user.level }},function (err,users) {
+                    User.find({/*nodeLevel:{$gt :user.nodeLevel }*/ },function (err,users) {
+                        console.log(users);
                         res.json(users);
                     });
 

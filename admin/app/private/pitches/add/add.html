@@ -63,22 +63,28 @@
             <!--will make it dropdown-->
 
 
-            <h6>Location</h6>
-            <input k-content class="form-control" type="text" placeholder="Country" list="countrylist"  ng-model="country" ng-controller="ngCountriesCtrl" ng-change="getCountryObj(country, callback)">
+            <h6>Country</h6>
+            <input k-content class="form-control" type="text" placeholder="Country" list="countrylist"  ng-model="model.country" ng-controller="ngCountriesCtrl" ng-change="getCountryObj(model.country, callback)">
             <ngcountries></ngcountries>
             <br>
 
-<!--
+         <div ng-if="isCountrySelected">
+             <h6>City</h6>
+            <select kendo-drop-down-list k-data-source="source"  placeholder="City"   k-ng-model="model.city" style="width: 100%;"></select>
+            <br>
+         </div>
+
+            <!--
 
 
-            <h6>Remarks about Current Status by Sales Person</h6>
-            <textarea kendo-editor k-ng-model="model.pitchStatusRemarks"></textarea><br>
+                        <h6>Remarks about Current Status by Sales Person</h6>
+                        <textarea kendo-editor k-ng-model="model.pitchStatusRemarks"></textarea><br>
 
-            <h6>Remarks about Sales Person</h6>
-            <textarea kendo-editor k-ng-model="model.pitchSalesPersonRemarks"></textarea><br>
+                        <h6>Remarks about Sales Person</h6>
+                        <textarea kendo-editor k-ng-model="model.pitchSalesPersonRemarks"></textarea><br>
 
 
--->
+            -->
 
 
         </div>

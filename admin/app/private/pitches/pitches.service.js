@@ -15,6 +15,12 @@ angular.module("yapp").factory('pitchesService',['$http','SeatEatsConstants', fu
     var promise = $http.get(SeatEatsConstants.AppUrlApi+'games');
     return promise;
   };
+  game.getCities= function ()
+  {
+
+    var promise = $http.get("countriesToCities.json");
+    return promise;
+  };
   game.getPitchById= function (ID)
   {
 debugger;
