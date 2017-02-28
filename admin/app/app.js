@@ -260,6 +260,12 @@ angular
         controller: 'FieldvalidationCtrl',
         templateUrl: 'private/fieldvalidation/fieldvalidation.html'
       })
+      .state('userprivilege', {
+        url: '/userprivilege',
+        parent: 'dashboard',
+        controller: 'UserprivilegeCtrl',
+        templateUrl: 'private/userprivilege/userprivilege.html'
+      })
       .state('settings', {
 
 
