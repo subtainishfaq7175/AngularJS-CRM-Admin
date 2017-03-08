@@ -6,7 +6,7 @@ angular.module('yapp')
 
     $scope.$state = $state;
     $scope.companyItem = $stateParams.myParam;
-    $scope.model = {};
+    $scope.model = {customFeilds:[]};
     $scope.userDoc = {};
     $scope.validatorServer=$localStorage.currentUser.validation.companyValidator.contactPersons;
 

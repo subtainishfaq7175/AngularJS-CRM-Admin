@@ -1,7 +1,7 @@
 
 <div>
-    <a ui-sref="pitches" class="pull-right btn btn-primary btn-outline btn-rounded">TeleSales</a>
-    <h3>TeleSales <small>Add Sale</small></h3>
+    <a ui-sref="pitches" class="pull-right btn btn-primary btn-outline btn-rounded">Leads</a>
+    <h3>Leads <small>Add Sale</small></h3>
 
 
     <form kendo-validator="validator" ng-submit="publishPitch()">
@@ -141,6 +141,29 @@
                     ng-required="{{validatorServer.scheduelDate}}"
                     k-ng-model="model.scheduelDate"
              />
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+        <div class="jumbotron box">
+
+        <h4>Custom Fields</h4>
+
+
+
+        <div class="container" >
+
+            <add-form-feild
+            object-list="model.customFeilds"
+
+            ></add-form-feild>
+
 
 
         </div>

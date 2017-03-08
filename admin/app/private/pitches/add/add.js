@@ -6,7 +6,7 @@ angular.module('yapp')
 
 
     $scope.$state = $state;
-    $scope.model={};
+    $scope.model={customFeilds:[]};
 
     $scope.validatorServer=$localStorage.currentUser.validation.leadValidator;
 
@@ -331,7 +331,7 @@ angular.module('yapp')
 
       if($scope.validator.validate())
       pitchesService.postPitch($scope.model).then(function (response) {
-
+debugger;
         $rootScope.scopeWorkingVariable = false;
         if(response.status=200)
           toastr.success('Done','Operation Complete');

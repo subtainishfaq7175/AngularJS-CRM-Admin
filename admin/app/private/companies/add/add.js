@@ -5,7 +5,7 @@ angular.module('yapp')
   .controller('CompaniesAddCtrl', function($scope, $state,SeatEatsConstants,masterdataService,companiesService,$rootScope,toastr,$localStorage) {
 
     $scope.$state = $state;
-    $scope.model={};
+    $scope.model={customFeilds:[]};
     $scope.selectOptionsCompanyType = {
       filter: "contains",
       placeholder: "Select CompanyType...",
