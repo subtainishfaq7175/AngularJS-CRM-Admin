@@ -4,6 +4,7 @@
 var mongoose = require('mongoose');
 var mongoosePaginate = require('mongoose-paginate');
 
+
 var Schema = mongoose.Schema;
 
 var messageSchema = new Schema({
@@ -14,6 +15,8 @@ var messageSchema = new Schema({
 
 
 });
+
+
 
 messageSchema.plugin(mongoosePaginate);
 module.exports = mongoose.model('Message', messageSchema);

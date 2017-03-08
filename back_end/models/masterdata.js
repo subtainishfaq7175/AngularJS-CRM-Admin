@@ -4,6 +4,8 @@
 
 var mongoose=require('mongoose');
 var Schema=mongoose.Schema;
+var uniqueValidator = require('mongoose-unique-validator');
+
 
 var masterdataSchema = new Schema({
     title: String,
@@ -15,5 +17,7 @@ var masterdataSchema = new Schema({
 });
 
 
+
+masterdataSchema.plugin(uniqueValidator);
 
 module.exports = mongoose.model('Masterdata', masterdataSchema);

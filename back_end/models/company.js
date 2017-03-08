@@ -4,6 +4,8 @@
 
 var mongoose=require('mongoose');
 var mongoosePaginate = require('mongoose-paginate');
+var uniqueValidator = require('mongoose-unique-validator');
+
 
 var Schema=mongoose.Schema;
 
@@ -30,6 +32,8 @@ var companySchema = new Schema({
 
 //array of contact person
 });
+companySchema.plugin(uniqueValidator);
+
 companySchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('Company', companySchema);

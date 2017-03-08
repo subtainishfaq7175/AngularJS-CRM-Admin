@@ -5,6 +5,8 @@
 var mongoose=require('mongoose');
 var mongoosePaginate = require('mongoose-paginate');
 var User = require('../models/user');
+var uniqueValidator = require('mongoose-unique-validator');
+
 
 
 var Schema=mongoose.Schema;
@@ -37,6 +39,6 @@ var pitchSchema = new Schema({
 
 pitchSchema.plugin(mongoosePaginate);
 
-
+pitchSchema.plugin(uniqueValidator);
 
 module.exports = mongoose.model('Pitch', pitchSchema);
