@@ -9,6 +9,7 @@ angular.module('yapp')
     $scope.model = {customFeilds:[]};
     $scope.userDoc = {};
     $scope.validatorServer=$localStorage.currentUser.validation.companyValidator.contactPersons;
+    $scope.settings=$localStorage.currentUser.validation.settings;
 
     $scope.publishCompany = publishCompany;
 

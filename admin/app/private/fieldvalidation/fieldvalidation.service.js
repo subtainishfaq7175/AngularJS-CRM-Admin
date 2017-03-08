@@ -15,15 +15,21 @@ angular.module("yapp").factory('fieldvalidationService',['$http','SeatEatsConsta
 
   };
 
-  fieldvalidation.getProfileById=function (id)
+  fieldvalidation.getValidation=function ()
   {
-    return $http.get(SeatEatsConstants.AppUrlApi+'users/'+ id);
-
-  };fieldvalidation.updateProfile=function (obj)
-  {
-    return $http.put(SeatEatsConstants.AppUrlApi+'users/'+ obj._id,obj);
+    return $http.get(SeatEatsConstants.AppUrlApi+'validation/');
 
   };
+
+ fieldvalidation.updateValidation=function (obj)
+  {
+    if(angular.isDefined(obj._id))
+    return $http.put(SeatEatsConstants.AppUrlApi+'validation/',obj);
+    else
+     return $http.post(SeatEatsConstants.AppUrlApi+'validation', obj)
+
+  };
+
 
   return fieldvalidation;
 

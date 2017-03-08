@@ -256,6 +256,16 @@ angular
         templateUrl: 'private/profiles/edit/edit.html'
       })
       .state('fieldvalidation', {
+        resolve:{
+
+          simpleObj:  function(fieldvalidationService,$stateParams)
+          {
+            //get game here
+
+
+            return fieldvalidationService.getValidation();
+          }},
+
         url: '/fieldvalidation',
         parent: 'dashboard',
         controller: 'FieldvalidationCtrl',

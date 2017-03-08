@@ -1,6 +1,19 @@
 <div>
-    <a ui-sref="fieldvalidationadd" class="pull-right btn btn-primary btn-outline btn-rounded">Add</a>
-    <h3>Field Validation <small>Add/Remove Field Validation</small></h3>
+    <h3>Field Validation <small>Add/Remove Field Validation and Custom Field</small></h3>
+
+
+    <div class="jumbotron">
+        <h4>Allow Custom Fields</h4>
+        <br><br>
+
+        <div class="container">
+            <h6>Custom Field</h6>
+            <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.settings.customFeilds">
+        </div>
+    </div>
+
+
+
     <div class="jumbotron">
         <h4>Lead Form Validtion</h4>
         <small>Check the required Fields</small>
@@ -10,11 +23,11 @@
             <div class="row box2">
                 <div class="col-md-6">
                     <h6>Lead Type</h6>
-                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.leadType">
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.pitchValidator.pitchType">
                 </div>
                 <div class="col-md-6">
                     <h6>Title</h6>
-                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.leadTitle">
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.pitchValidator.pitchTitle">
 
                 </div>
 
@@ -22,11 +35,11 @@
             <div class="row box2">
                 <div class="col-md-6">
                     <h6>Location</h6>
-                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.location">
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.pitchValidator.location">
                 </div>
                 <div class="col-md-6">
                     <h6>Requested Service Type</h6>
-                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.requestedServiceType">
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.pitchValidator.requestedServiceType">
 
                 </div>
 
@@ -34,11 +47,11 @@
             <div class="row box2">
                 <div class="col-md-6">
                     <h6>Status Type</h6>
-                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.leadStatusType">
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.pitchValidator.pitchStatusType">
                 </div>
                 <div class="col-md-6">
                     <h6>Assigned Team Leader</h6>
-                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.assignedTeamLeader">
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.pitchValidator.assignedTeamLeader">
 
                 </div>
 
@@ -46,11 +59,11 @@
             <div class="row box2">
                 <div class="col-md-6">
                     <h6>Assigned Sales Person</h6>
-                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.assignedSalesPerson">
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.pitchValidator.assignedSalesPerson">
                 </div>
                 <div class="col-md-6">
                     <h6>Client Type</h6>
-                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.leadClientType">
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.pitchValidator.pitchClientType">
 
                 </div>
 
@@ -58,11 +71,11 @@
             <div class="row box2">
                 <div class="col-md-6">
                     <h6>Client Response Type</h6>
-                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.leadClientResponseType">
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.pitchValidator.pitchClientResponseType">
                 </div>
                 <div class="col-md-6">
                     <h6>Client Current Service Type</h6>
-                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.leadClientCurrentServiceType">
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.pitchValidator.pitchClientCurrentServiceType">
 
                 </div>
 
@@ -70,11 +83,11 @@
             <div class="row box2">
                 <div class="col-md-6">
                     <h6>Status Remarks</h6>
-                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.leadStatusRemarks">
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.pitchValidator.pitchStatusRemarks">
                 </div>
                 <div class="col-md-6">
                     <h6>Sales Person Remarks</h6>
-                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.leadSalesPersonRemarks">
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.pitchValidator.pitchSalesPersonRemarks">
 
                 </div>
 
@@ -82,11 +95,11 @@
             <div class="row box2">
                 <div class="col-md-6">
                     <h6>Expected Business</h6>
-                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.leadExpectedBusiness">
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.pitchValidator.pitchExpectedBusiness">
                 </div>
                 <div class="col-md-6">
                     <h6>Actual Business</h6>
-                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.leadActualBusiness">
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.pitchValidator.pitchActualBusiness">
 
                 </div>
 
@@ -94,11 +107,11 @@
             <div class="row box2">
                 <div class="col-md-6">
                     <h6>Currency Type</h6>
-                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.leadCurrencyType">
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.pitchValidator.pitchCurrencyType">
                 </div>
                 <div class="col-md-6">
                     <h6>Source Type</h6>
-                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.leadSourceType">
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.pitchValidator.pitchSourceType">
 
                 </div>
 
@@ -106,11 +119,11 @@
             <div class="row box2">
                 <div class="col-md-6">
                     <h6>Follow Up Count</h6>
-                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.followUpCount">
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.pitchValidator.followUpCount">
                 </div>
                 <div class="col-md-6">
                     <h6>Scheduel Date</h6>
-                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.scheduelDate">
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.pitchValidator.scheduelDate">
 
                 </div>
 
@@ -129,11 +142,11 @@
             <div class="row box2">
                 <div class="col-md-6">
                     <h6>Company Name</h6>
-                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.companyName">
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.companyValidator.companyName">
                 </div>
                 <div class="col-md-6">
                     <h6>Company Type</h6>
-                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.companyType">
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.companyValidator.companyType">
 
                 </div>
 
@@ -142,11 +155,11 @@
             <div class="row box2">
                 <div class="col-md-6">
                     <h6>Company Contact Number</h6>
-                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.companyContactNumber">
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.companyValidator.companyContactNumber">
                 </div>
                 <div class="col-md-6">
                     <h6>Billing Address</h6>
-                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.companyBillingAddress">
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.companyValidator.companyBillingAddress">
 
                 </div>
 
@@ -155,11 +168,11 @@
             <div class="row box2">
                 <div class="col-md-6">
                     <h6>Company Email</h6>
-                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.companyEmail">
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.companyValidator.companyEmail">
                 </div>
                 <div class="col-md-6">
                     <h6>Description</h6>
-                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.companyDescription">
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.companyValidator.companyDescription">
 
                 </div>
 
@@ -177,33 +190,33 @@
                     <div class="row box2">
                         <div class="col-md-6">
                             <h6>Contact Person Name</h6>
-                            <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.contactPersons.contactPersonName">
+                            <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.companyValidator.contactPersons.contactPersonName">
                         </div>
                         <div class="col-md-6">
                             <h6>Designation</h6>
-                            <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.contactPersons.contactPersonDesignation">
+                            <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.companyValidator.contactPersons.contactPersonDesignation">
 
                         </div>
                     </div>
                     <div class="row box2">
                         <div class="col-md-6">
                             <h6>Contact Number</h6>
-                            <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.contactPersons.contactPersonContactNumber">
+                            <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.companyValidator.contactPersons.contactPersonContactNumber">
                         </div>
                         <div class="col-md-6">
                             <h6>Email</h6>
-                            <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.contactPersons.contactPersonEmail">
+                            <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.companyValidator.contactPersons.contactPersonEmail">
 
                         </div>
                     </div>
                     <div class="row box2">
                         <div class="col-md-6">
                             <h6>Contact Type</h6>
-                            <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.contactPersons.contactPersonContactType">
+                            <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.companyValidator.contactPersons.contactPersonContactType">
                         </div>
                         <div class="col-md-6">
                             <h6>Remarks</h6>
-                            <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.contactPersons.contactPersonRemarks">
+                            <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.companyValidator.contactPersons.contactPersonRemarks">
 
                         </div>
                     </div>
@@ -213,4 +226,13 @@
 
         </div>
     </div>
+
+
+
+    <div class="jumbotron box">
+        <div class="container">
+            <button class="k-primary"  class="k-button k-primary" ng-click="publishValidator()" >Publish</button>
+        </div>
+    </div>
+
 </div>

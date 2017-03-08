@@ -63,12 +63,12 @@ router.route('/validation')
                     else {
                         var validation = new Validation(req.body);
 
-                        validation.save(function(err) {
+                        validation.save(function(err,validator) {
                             if (err) {
                                 return res.send(err);
                             }
 
-                            res.send({ message: 'Validation Added' });
+                            res.send(validator);
                         });
                     }
                 });
@@ -105,12 +105,12 @@ router.route('/validation').put(function(req,res){
                     }
 
                     // save the validation
-                    validation.save(function(err) {
+                    validation.save(function(err,validator) {
                         if (err) {
                             return res.send(err);
                         }
 
-                        res.json({ message: 'Validation updated!' });
+                        res.json(validator);
                     });
                 });
 

@@ -49,7 +49,11 @@ var validationSchema = new Schema({
         followUpCount :  { type:Boolean , default: false },
         createdDate: { type:Boolean , default: false },
         scheduelDate: { type:Boolean , default: false },
-    }
+    },
+    settings:
+        {
+            customFeilds :{type:Boolean , default: false}
+        }
 });
 
 validationSchema.plugin(mongoosePaginate);

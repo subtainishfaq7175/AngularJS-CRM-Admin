@@ -6,7 +6,8 @@ angular.module('yapp')
     console.log(simpleObj);
 
     $scope.$state = $state;
-    $scope.validatorServer=$localStorage.currentUser.validation.leadValidator;
+    $scope.validatorServer=$localStorage.currentUser.validation.pitchValidator;
+    $scope.settings=$localStorage.currentUser.validation.settings;
 
     $scope.model={};
 

@@ -5,6 +5,7 @@ angular.module('yapp')
   .controller('CompaniesEditCtrl', function($scope, $state,itemCompanies,$sce,companiesService,$rootScope,SeatEatsConstants,toastr,$localStorage) {
     console.log(itemCompanies);
     $scope.validatorServer=$localStorage.currentUser.validation.companyValidator;
+    $scope.settings=$localStorage.currentUser.validation.settings;
     $scope.validator;
     $scope.$state = $state;
     if(angular.isDefined(itemCompanies))

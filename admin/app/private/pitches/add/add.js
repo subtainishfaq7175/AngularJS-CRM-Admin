@@ -8,7 +8,8 @@ angular.module('yapp')
     $scope.$state = $state;
     $scope.model={customFeilds:[]};
 
-    $scope.validatorServer=$localStorage.currentUser.validation.leadValidator;
+    $scope.validatorServer=$localStorage.currentUser.validation.pitchValidator;
+    $scope.settings=$localStorage.currentUser.validation.settings;
 
     $scope.validator;
     $scope.country;

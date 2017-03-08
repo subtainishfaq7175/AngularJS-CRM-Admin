@@ -9,6 +9,7 @@ angular.module('yapp')
 
     $scope.model =  $scope.companyItem.contactPersons[$scope.companyItem.editIndex];
     $scope.validatorServer=$localStorage.currentUser.validation.companyValidator.contactPersons;
+    $scope.settings=$localStorage.currentUser.validation.settings;
 
 
     $scope.selectOptionsCompanyType = {

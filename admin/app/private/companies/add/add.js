@@ -30,6 +30,7 @@ angular.module('yapp')
       }
     };
     $scope.validatorServer=$localStorage.currentUser.validation.companyValidator;
+    $scope.settings=$localStorage.currentUser.validation.settings;
 
 
     $scope.publishCompany=publishCompany;
