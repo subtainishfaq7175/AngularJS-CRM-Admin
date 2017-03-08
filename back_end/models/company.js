@@ -10,7 +10,7 @@ var uniqueValidator = require('mongoose-unique-validator');
 var Schema=mongoose.Schema;
 
 var companySchema = new Schema({
-    companyName: String,
+    companyName: { type:String,unique: true},
     companyType: String,
     companyContactNumber:String,
     companyBillingAddress: String,
@@ -19,10 +19,10 @@ var companySchema = new Schema({
     postedBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     contactPersons:[
         {
-            contactPersonName:String,
+            contactPersonName:{ type:String,unique: true},
             contactPersonDesignation:String,
-            contactPersonContactNumber:String,
-            contactPersonEmail:String,
+            contactPersonContactNumber:{ type:String,unique: true},
+            contactPersonEmail:{ type:String,unique: true},
             contactPersonContactType:String,
             contactPersonIsDecisionMaker:String,
             contactPersonIsClientNew:String,
