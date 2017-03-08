@@ -12,7 +12,8 @@ angular
     'angular-sortable-view',
     'ngLoader',
     'toastr',
-    'ngCountries'
+    'ngCountries',
+    'gg.editableText'
   ])
   .config(function($stateProvider, $urlRouterProvider) {
 

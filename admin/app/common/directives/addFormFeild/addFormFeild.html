@@ -16,7 +16,7 @@
     <div layout="row" width="100%" style="margin: 10px" ng-repeat="(pIndex,item) in addFeildCtrl.objectList" flex>
 
 
-        <h6><input k-content ng-model="item.title" ></h6>
+        <h6 editable-text="item.title" placeholder="click to edit"></h6>
 
         <input k-content ng-model="item.value" >
 
