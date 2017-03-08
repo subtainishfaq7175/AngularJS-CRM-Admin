@@ -14,7 +14,7 @@ var messageSchema = new Schema({
     content:  { type: String, default: "General" }
 
 
-});
+}, {strict: false});
 
 
 

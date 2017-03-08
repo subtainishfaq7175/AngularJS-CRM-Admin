@@ -35,7 +35,7 @@ var pitchSchema = new Schema({
     scheduelDate: { type:Date , default: Date.now() },
     assignedPeople: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 
-});
+}, {strict: false});
 
 pitchSchema.plugin(mongoosePaginate);
 

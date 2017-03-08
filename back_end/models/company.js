@@ -31,7 +31,7 @@ var companySchema = new Schema({
 
 
 //array of contact person
-});
+}, {strict: false});
 companySchema.plugin(uniqueValidator);
 
 companySchema.plugin(mongoosePaginate);

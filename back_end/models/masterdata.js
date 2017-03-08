@@ -14,7 +14,7 @@ var masterdataSchema = new Schema({
     postedBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     created_time:  { type: Date, default: Date.now },
     content_type:String
-});
+}, {strict: false});
 
 
 
