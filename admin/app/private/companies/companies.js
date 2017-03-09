@@ -49,19 +49,31 @@ angular.module('yapp')
         schema: {
           data: "docs",
           total: "total"
+
         }
         ,
         pageSize: 10,
         serverPaging: true,
-        serverSorting: true
+        serverSorting: true,
+
       },
+      filterable: {
+        mode: "row"
+      }
+      ,
+
       sortable: true,
       pageable: true,
 
       columns: [{
         field: "companyName",
         title: "title",
-        width: "120px"
+        width: "120px",
+        filterable: {
+          cell: {
+            showOperators: false
+          }
+        }
       },{
         title: "Contact Person",
         width: "120px",
@@ -94,17 +106,37 @@ angular.module('yapp')
                 contactPersonRemarks: {type : "string"}
               }
             }
-          },
+          }
+        },
+        filterable: {
+          mode: "row"
         },
         columns: [{
           field: "contactPersonName",
-          title: "Name"
+          title: "Name",
+          filterable: {
+            cell: {
+              showOperators: false
+            }
+          }
         },{
           title: "Contact Number",
           field:  "contactPersonContactNumber"
+          ,
+          filterable: {
+            cell: {
+              showOperators: false
+            }
+          }
         },{
           title: "Email",
           field: "contactPersonEmail"
+          ,
+          filterable: {
+            cell: {
+              showOperators: false
+            }
+          }
         }]
       };
     };

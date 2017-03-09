@@ -51,10 +51,21 @@ angular.module('yapp')
       },
       sortable: true,
       pageable: true,
+
+      filterable: {
+      mode: "row"
+    },
+
+
       columns: [{
         field: "pitchTitle",
         title: "title",
-        width: "120px"
+        width: "120px",
+        filterable: {
+          cell: {
+            showOperators: false
+          }
+        }
       },{
         title: "Edit",
         width: "120px",
