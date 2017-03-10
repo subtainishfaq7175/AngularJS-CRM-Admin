@@ -17,7 +17,19 @@ angular.module('yapp')
       $state.go('contactPerson',{myParam:dataItem});
     };
 
+    $scope.conversionToLead = function (item) {
 
+      debugger;
+      console.log(item);
+      /* var i;
+       for ( i=0;i<$scope.companyItem.contactPersons.length;i++)
+       if($scope.companyItem.contactPersons[i]._id==ID)
+       break;
+       $scope.companyItem.editIndex=i;
+
+       $state.go('contactPersonedit',{myParam:$scope.companyItem});
+       */
+    };
 
 
     $scope.deleteLetsplay = function (ID)
@@ -71,7 +83,9 @@ angular.module('yapp')
         width: "120px",
         filterable: {
           cell: {
-            showOperators: false
+            showOperators: false,
+            operator: "contains"
+
           }
         }
       },{
@@ -116,7 +130,9 @@ angular.module('yapp')
           title: "Name",
           filterable: {
             cell: {
-              showOperators: false
+              showOperators: false,
+              operator: "contains"
+
             }
           }
         },{
@@ -125,7 +141,9 @@ angular.module('yapp')
           ,
           filterable: {
             cell: {
-              showOperators: false
+              showOperators: false,
+              operator: "contains"
+
             }
           }
         },{
@@ -134,9 +152,15 @@ angular.module('yapp')
           ,
           filterable: {
             cell: {
-              showOperators: false
+              showOperators: false,
+              operator: "contains"
+
             }
           }
+        },{
+          title: "Operation",
+          width: "120px",
+          template: '<a ng-click="conversionToLead(dataItem)" class="btn k-primary btn-outline btn-rounded btn-sm">Covert to Lead</a>'
         }]
       };
     };

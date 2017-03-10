@@ -13,7 +13,8 @@ angular
     'ngLoader',
     'toastr',
     'ngCountries',
-    'gg.editableText'
+    'gg.editableText',
+    'ui.tree'
   ])
   .config(function($stateProvider, $urlRouterProvider) {
 
@@ -283,6 +284,15 @@ angular
         url: '/settings',
         parent: 'dashboard',
         templateUrl: 'private/settings/settings.html'
+      })
+
+      .state('dynamicform', {
+
+
+        url: '/dynamicform',
+        parent: 'dashboard',
+        controller: 'DynamicfeildsCtrl',
+        templateUrl: 'private/dynamicfeilds/dynamicfeilds.html'
       });
 
   })

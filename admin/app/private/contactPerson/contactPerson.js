@@ -84,7 +84,9 @@ angular.module('yapp')
         title: "title",
         filterable: {
           cell: {
-            showOperators: false
+            showOperators: false,
+            operator: "contains"
+
           }
         },
         width: "120px"
