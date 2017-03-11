@@ -98,6 +98,9 @@ angular.module('yapp')
         }
       ]
     }];
+    $scope.publishFormSchema=function () {
+      
+    }
 
 
   });

@@ -34,6 +34,13 @@
                 <li ng-repeat="node in data" ui-tree-node ng-include="'nodes_renderer.html'"></li>
             </ol>
         </div>
+
+        <div class="jumbotron box">
+            <div class="container">
+                <button class="k-primary"  class="k-button k-primary" ng-click="publishFormSchema()" >Publish</button>
+            </div>
+        </div>
+
     </div>
 
     <div class="col-sm-6">
@@ -43,3 +50,4 @@
         <pre class="code">{{ data | json }}</pre>
     </div>
 </div>
+
