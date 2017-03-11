@@ -1,7 +1,7 @@
 /**
  * Created by subtainishfaq on 10/18/16.
  */
-var Validation = require('../models/validation');
+var Form = require('../models/form');
 var express = require('express');
 var jwt    = require('jwt-simple');
 var config      = require('../config/database');
@@ -13,7 +13,7 @@ var router = express.Router();
 
 
 
-router.route('/validation')
+router.route('/form')
     .get(function(req, res) {
 
         var token = getToken(req.headers);
@@ -27,7 +27,7 @@ router.route('/validation')
                 if (!user) {
                     return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
                 } else {
-                    Validation.findOne(function(err, user)
+                    Form.findOne(function(err, user)
                     {
                         if (err) throw err;
                         else
@@ -57,13 +57,13 @@ router.route('/validation')
             if (!user) {
                 return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
             } else {
-                Validation.count({}, function(err, count)
+                Form.count({}, function(err, count)
                 {
                     if(count>0);
                     else {
-                        var validation = new Validation(req.body);
+                        var form = new Form(req.body);
 
-                        validation.save(function(err,validator) {
+                        form.save(function(err,validator) {
                             if (err) {
                                 return res.send(err);
                             }
@@ -81,7 +81,7 @@ router.route('/validation')
     }
 });
 
-router.route('/validation').put(function(req,res){
+router.route('/form').put(function(req,res){
 
 
     var token = getToken(req.headers);
@@ -95,17 +95,17 @@ router.route('/validation').put(function(req,res){
             if (!user) {
                 return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
             } else {
-                Validation.findOne(function(err, validation) {
+                Form.findOne(function(err, form) {
                     if (err) {
                         return res.send(err);
                     }
 
                     for (prop in req.body) {
-                        validation[prop] = req.body[prop];
+                        form[prop] = req.body[prop];
                     }
 
-                    // save the validation
-                    validation.save(function(err,validator) {
+                    // save the form
+                    form.save(function(err,validator) {
                         if (err) {
                             return res.send(err);
                         }
