@@ -287,6 +287,15 @@ angular
       })
 
       .state('dynamicform', {
+        resolve:{
+
+          simpleObj:  function(dynamicfeildsService,$stateParams)
+          {
+            //get game here
+
+
+            return dynamicfeildsService.getFormJSON();
+          }},
 
 
         url: '/dynamicform',

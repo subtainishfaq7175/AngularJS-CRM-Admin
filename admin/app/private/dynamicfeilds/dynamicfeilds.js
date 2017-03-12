@@ -2,7 +2,7 @@
  * Created by subtainishfaq on 10/30/16.
  */
 angular.module('yapp')
-  .controller('DynamicfeildsCtrl', function($scope, $state) {
+  .controller('DynamicfeildsCtrl', function($scope, $state,simpleObj,dynamicfeildsService,$mdDialog,$rootScope,$localStorage,toastr) {
 
     $scope.$state = $state;
     $scope.publishValidator=function () {
@@ -36,13 +36,34 @@ angular.module('yapp')
       var a = $scope.data.pop();
       $scope.data.splice(0, 0, a);
     };
-    $scope.newSubItem = function (scope) {
-      var nodeData = scope.$modelValue;
-      nodeData.nodes.push({
-        id: nodeData.id * 10 + nodeData.nodes.length,
-        title: nodeData.title + '.' + (nodeData.nodes.length + 1),
-        nodes: []
+
+    $scope.showPrompt = function(ev) {
+      // Appending dialog to document.body to cover sidenav in docs app
+      var confirm = $mdDialog.prompt()
+        .title('Title of the field')
+        .textContent('Name of the form field.')
+        .placeholder('Name')
+        .ok('Okay!')
+        .cancel('Cancle');
+
+      $mdDialog.show(confirm).then(function(result) {
+
+        var nodeData = ev.$modelValue;
+
+        nodeData.nodes.push({
+          id: nodeData.id * 10 + nodeData.nodes.length,
+          title: result,
+          isForm:false
+        });
+
+        $scope.status = 'You Added a Field In the Form ' + result + '.';
+      }, function() {
+        $scope.status = 'You didn\'t Added a Field In the Form.';
       });
+    };
+
+    $scope.newSubItem = function (scope) {
+      $scope.showPrompt(scope);
     };
     $scope.collapseAll = function () {
       $scope.$broadcast('angular-ui-tree:collapse-all');
@@ -50,56 +71,31 @@ angular.module('yapp')
     $scope.expandAll = function () {
       $scope.$broadcast('angular-ui-tree:expand-all');
     };
-    $scope.data = [{
-      'id': 1,
-      'title': 'node1',
-      'nodes': [
-        {
-          'id': 11,
-          'title': 'node1.1',
-          'nodes': [
-            {
-              'id': 111,
-              'title': 'node1.1.1',
-              'nodes': []
-            }
-          ]
-        },
-        {
-          'id': 12,
-          'title': 'node1.2',
-          'nodes': []
-        }
-      ]
-    }, {
-      'id': 2,
-      'title': 'node2',
-      'nodrop': true, // An arbitrary property to check in custom template for nodrop-enabled
-      'nodes': [
-        {
-          'id': 21,
-          'title': 'node2.1',
-          'nodes': []
-        },
-        {
-          'id': 22,
-          'title': 'node2.2',
-          'nodes': []
-        }
-      ]
-    }, {
-      'id': 3,
-      'title': 'node3',
-      'nodes': [
-        {
-          'id': 31,
-          'title': 'node3.1',
-          'nodes': []
-        }
-      ]
-    }];
+    debugger;
+    $scope.data = simpleObj.data;
     $scope.publishFormSchema=function () {
-      
+      $rootScope.scopeWorkingVariable = true;
+
+      dynamicfeildsService.updateValidation( $scope.data).then(function (response) {
+        $rootScope.scopeWorkingVariable = false;
+
+        if(response.status=200)
+        {
+          $scope.data=response.data;
+
+            $localStorage.currentUser.forms=response.data;
+          toastr.success('Done','Operation Complete');
+
+        }
+        else
+          toastr.error('Error','Operation Was not complete');
+        debugger;
+        console.log(response);
+
+        $state.go("home");
+
+      })
+
     }
 
 

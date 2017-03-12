@@ -11,22 +11,22 @@ angular.module("yapp").factory('dynamicfeildsService',['$http','SeatEatsConstant
   var fieldvalidation = {};
   fieldvalidation.deletsProfilesById=function (id)
   {
-    return $http.delete(SeatEatsConstants.AppUrlApi+'users/'+ id);
+    return $http.delete(SeatEatsConstants.AppUrlApi+'form/'+ id);
 
   };
 
-  fieldvalidation.getValidation=function ()
+  fieldvalidation.getFormJSON=function ()
   {
-    return $http.get(SeatEatsConstants.AppUrlApi+'validation/');
+    return $http.get(SeatEatsConstants.AppUrlApi+'form/');
 
   };
 
  fieldvalidation.updateValidation=function (obj)
   {
     if(angular.isDefined(obj._id))
-    return $http.put(SeatEatsConstants.AppUrlApi+'validation/',obj);
+    return $http.put(SeatEatsConstants.AppUrlApi+'form/',obj);
     else
-     return $http.post(SeatEatsConstants.AppUrlApi+'validation', obj)
+     return $http.post(SeatEatsConstants.AppUrlApi+'form', obj)
 
   };
 

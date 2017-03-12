@@ -28,7 +28,20 @@ router.route('/form')
                     return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
                 } else {
                     Form.findOne(function(err, user)
-                    {
+                    {/*
+                        data=[];
+                        count=0;
+
+                        console.log(user);
+                        console.log(user);
+                        console.log(user[0]);
+                        while (typeof user[""+count+""] != 'undefined')
+                        {
+                            console.log(user[""+count+""] );
+                            data.push(user[""+count+""]);
+                            count++;
+                        }
+*/
                         if (err) throw err;
                         else
                             res.json(user);
@@ -100,9 +113,8 @@ router.route('/form').put(function(req,res){
                         return res.send(err);
                     }
 
-                    for (prop in req.body) {
-                        form[prop] = req.body[prop];
-                    }
+                    console.log(req.body);
+                  form.nodes=req.body.nodes;
 
                     // save the form
                     form.save(function(err,validator) {
