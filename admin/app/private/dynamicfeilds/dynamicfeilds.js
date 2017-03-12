@@ -38,29 +38,48 @@ angular.module('yapp')
     };
 
     $scope.showPrompt = function(ev) {
-      // Appending dialog to document.body to cover sidenav in docs app
-      var confirm = $mdDialog.prompt()
-        .title('Title of the field')
-        .textContent('Name of the form field.')
-        .placeholder('Name')
-        .ok('Okay!')
-        .cancel('Cancle');
+      $mdDialog.show({
+        controller: DialogController,
+        templateUrl: 'dialog1.tmpl.html',
+        parent: angular.element(document.body),
+        clickOutsideToClose:true,
+        fullscreen: false // Only for -xs, -sm breakpoints.
+      })
+        .then(function(result) {
 
-      $mdDialog.show(confirm).then(function(result) {
+          var nodeData = ev.$modelValue;
+         debugger;
+          nodeData.nodes.push({
+            id: nodeData.id * 10 + nodeData.nodes.length,
+            title: result.title,
+            name: result.name,
+            isForm:false
+          });
 
-        var nodeData = ev.$modelValue;
-
-        nodeData.nodes.push({
-          id: nodeData.id * 10 + nodeData.nodes.length,
-          title: result,
-          isForm:false
+          $scope.status = 'You Added a Field In the Form ' + result + '.';
+        }, function() {
+          $scope.status = 'You didn\'t Added a Field In the Form.';
         });
-
-        $scope.status = 'You Added a Field In the Form ' + result + '.';
-      }, function() {
-        $scope.status = 'You didn\'t Added a Field In the Form.';
-      });
     };
+
+    function DialogController($scope, $mdDialog) {
+      $scope.hide = function() {
+        $mdDialog.hide();
+      };
+
+      $scope.cancel = function() {
+        $mdDialog.cancel();
+      };
+
+      $scope.answer = function(answer) {
+        if(angular.isDefined($scope.fieldAdd.title) && angular.isDefined($scope.fieldAdd.name)&& $scope.fieldAdd.title!="" && $scope.fieldAdd.name!="")
+        $mdDialog.hide(answer);
+      };
+
+      $scope.fieldAdd={}
+    }
+
+
 
     $scope.newSubItem = function (scope) {
       $scope.showPrompt(scope);
