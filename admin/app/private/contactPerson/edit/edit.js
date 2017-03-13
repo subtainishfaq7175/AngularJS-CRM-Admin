@@ -6,6 +6,9 @@ angular.module('yapp')
 
     $scope.$state = $state;
     $scope.companyItem=$stateParams.myParam;
+    $scope.formFields=$localStorage.currentUser.forms.nodes;
+    if(angular.isDefined($scope.formFields[0].nodes))
+      $scope.formFields=$scope.formFields[0].nodes[1];
 
     $scope.model =  $scope.companyItem.contactPersons[$scope.companyItem.editIndex];
     $scope.validatorServer=$localStorage.currentUser.validation.companyValidator.contactPersons;

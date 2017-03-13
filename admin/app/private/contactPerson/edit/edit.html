@@ -59,20 +59,20 @@
 
         </div>
 
-        <div class="jumbotron box" ng-if="settings.customFeilds">
 
-            <h4>Custom Fields</h4>
+        <div class="jumbotron box" ng-if="formFields.nodes.length>0">
+
+
 
 
 
             <div class="container" >
 
-                <add-form-feild
-                    object-list="model.customFeilds"
-
-                ></add-form-feild>
-
-
+                <div  ng-repeat="(key, value) in formFields.nodes">
+                    <h6>{{value.title}}</h6>
+                    <input k-content style="width: 100%" ng-model="model[value.name]">
+                    <br>
+                </div>
 
             </div>
 
