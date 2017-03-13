@@ -61,7 +61,7 @@ angular.module('yapp')
           else
             toastr.error('Error', 'Operation Was not complete');
 
-          $state.go('contactPerson', {myParam: $scope.companyItem});
+          $state.go('contactPerson', {id: $stateParams.id});
         })
 
       }
