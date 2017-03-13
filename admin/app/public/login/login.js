@@ -8,9 +8,11 @@
  * Controller of yapp
  */
 angular.module('yapp')
-  .controller('LoginCtrl', function($scope, $location,AuthenticationService,toastr,$rootScope,dynamicfeildsService,$localStorage) {
+  .controller('LoginCtrl', function($scope, $location,AuthenticationService,toastr,$rootScope,dynamicfeildsService,$localStorage,$state) {
 
     var vm = $scope;
+    if($localStorage.currentUser)
+      $state.go('home');
 
     vm.login = login;
     vm.credentials=

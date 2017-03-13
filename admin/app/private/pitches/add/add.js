@@ -16,6 +16,10 @@ angular.module('yapp')
     $scope.isImageUploading = false;
     $scope.isImageUploadingScreen = false;
     $scope.isCountrySelected=false;
+    $scope.formFields=$localStorage.currentUser.forms.nodes;
+    if(angular.isDefined($scope.formFields[0].nodes))
+      $scope.formFields=$scope.formFields[0].nodes[0];
+
 
     $scope.selectOptionsPitchType = {
       filter: "contains",

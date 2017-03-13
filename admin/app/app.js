@@ -285,6 +285,13 @@ angular
         parent: 'dashboard',
         templateUrl: 'private/settings/settings.html'
       })
+      .state('notfound', {
+
+
+        url: '/notfound',
+        parent: 'base',
+        templateUrl: 'public/404.html'
+      })
 
       .state('dynamicform', {
         resolve:{
@@ -314,6 +321,10 @@ function run($rootScope, $http, $state, $localStorage) {
   }
 
   // redirect to login page if not logged in and trying to access a restricted page
+
+  $rootScope.$on('$stateChangeError', function(event) {
+    $state.go('notfound');
+  });
 
   $rootScope.$on('$stateChangeStart',
     function(event, toState, toParams, fromState, fromParams, options)
