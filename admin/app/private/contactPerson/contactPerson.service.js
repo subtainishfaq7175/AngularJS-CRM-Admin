@@ -12,7 +12,7 @@ angular.module("yapp").factory('contactpersonService',['$http','SeatEatsConstant
   companies.getCompanyContactPersons= function (ID)
   {
 
-    var promise = $http.get(SeatEatsConstants.AppUrlApi+'companycontactPersons/'+ID);// this id is of company
+    var promise = $http.get(SeatEatsConstants.AppUrlApi+'company/'+ID);// this id is of company
     return promise;
   };
   companies.getContactPerson= function (ID)
@@ -27,11 +27,17 @@ angular.module("yapp").factory('contactpersonService',['$http','SeatEatsConstant
     var promise = $http.put(SeatEatsConstants.AppUrlApi+'contactPerson/'+obj._id,obj);
     return promise;
   };
-
-  companies.deleteLetsplayById= function (ID)
+  companies.putContactCompany= function (obj,companyid)
   {
 
-    var promise = $http.delete(SeatEatsConstants.AppUrlApi+'contactPerson/'+ID);
+    var promise = $http.put(SeatEatsConstants.AppUrlApi+'companycontact/'+companyid,obj);//call service for contact copmany , to add person in specific contact .
+    return promise;
+  };
+
+  companies.deleteContact= function (companyID,contactID)
+  {
+
+    var promise = $http.delete(SeatEatsConstants.AppUrlApi+'companycontact/'+companyID+'/'+contactID);
     return promise;
   };
 

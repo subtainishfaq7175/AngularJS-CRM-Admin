@@ -28,22 +28,16 @@ angular.module('yapp')
 
     $scope.deleteLetsplay = function (ID) {
 
-      var i;
-      for ( i=0;i<$scope.companyItem.contactPersons.length;i++)
-        if($scope.companyItem.contactPersons[i]._id==ID)
-          break;
-
-      $scope.companyItem.contactPersons.splice(i,1);
 
 
-      companiesService.putLetsplay($scope.companyItem).then(function (response) {
+      contactpersonService.deleteContact($scope.companyItem._id,ID).then(function (response) {
         $rootScope.scopeWorkingVariable = false;
         if(response.status=200)
           toastr.success('Done','Operation Complete');
         else
           toastr.error('Error','Operation Was not complete');
-
-        $state.go('contactPerson',{myParam:$scope.companyItem});
+debugger;
+        $state.go('contactPerson',{id:response.data._id});
       })
     };
 

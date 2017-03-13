@@ -2,7 +2,7 @@
  * Created by subtainishfaq on 10/30/16.
  */
 angular.module('yapp')
-  .controller('ContactPersonAddCtrl', function($scope, $state,SeatEatsConstants,masterdataService,$rootScope,toastr,$stateParams,companiesService,$localStorage) {
+  .controller('ContactPersonAddCtrl', function($scope, $state,SeatEatsConstants,masterdataService,$rootScope,toastr,$stateParams,contactpersonService,$localStorage) {
 
     $scope.$state = $state;
    // $scope.companyItem = $stateParams.id; use id to post the contact person in particular company , this id is of company
@@ -51,10 +51,10 @@ angular.module('yapp')
       if ($scope.validator.validate()) {
 
 
-        $scope.companyItem.contactPersons.push($scope.model);
+     //   $scope.companyItem.contactPersons.push($scope.model);
 
         $rootScope.scopeWorkingVariable = true;
-        companiesService.putLetsplay($scope.companyItem).then(function (response) {
+        contactpersonService.putContactCompany($scope.model,$stateParams.id).then(function (response) {
           $rootScope.scopeWorkingVariable = false;
           if (response.status = 200)
             toastr.success('Done', 'Operation Complete');

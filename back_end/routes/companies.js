@@ -396,6 +396,21 @@ router.route('/company/:id').delete(function(req, res) {
     });
 });
 
+router.route('/companycontact/:idcompany/:idcontact').delete(function(req, res) {
+    Company .update(
+        { _id: req.params.idcompany },
+        { $pull: { contactPersons : { _id : req.params.idcontact } } },
+        { safe: true },
+        function removeConnectionsCB(err, obj) {
+            if (err) {
+                return res.send(err);
+            }
+            obj._id=req.params.idcompany;
+
+            res.json(obj);
+        });
+});
+
 
 
 router.route('/companysupdate')
