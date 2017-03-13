@@ -206,26 +206,46 @@ angular
         templateUrl: 'private/companies/edit/edit.html'
       })
       .state('contactPerson', {
-            url: '/contactPerson',
+            url: '/contactPerson/:id',
             parent: 'dashboard',
             controller: 'ContactPersonCtrl',
             templateUrl: 'private/contactPerson/contactPerson.html',
-            params: {myParam: null}
+        resolve:{
+
+          simpleObj:  function(contactpersonService,$stateParams)
+          {
+            //get game here
+
+
+            return contactpersonService.getCompanyContactPersons($stateParams.id);
+          }}
+
+
           })
       .state('contactPersonadd', {
-        url: '/contactPersonadd',
+        url: '/contactPersonadd/:id',
         parent: 'dashboard',
         controller: 'ContactPersonAddCtrl',
-        templateUrl: 'private/contactPerson/add/add.html',
-        params: {myParam: null}
+        templateUrl: 'private/contactPerson/add/add.html'
+
 
       })
       .state('contactPersonedit', {
-        url: '/contactPersonedit',
+        url: '/contactPersonedit/:id',
         parent: 'dashboard',
         controller: 'ContactPersonEditCtrl',
         templateUrl: 'private/contactPerson/edit/edit.html',
-        params: {myParam: null}
+        resolve:{
+
+          simpleObj:  function(contactpersonService,$stateParams)
+          {
+            //get game here
+
+
+            return contactpersonService.getContactPerson($stateParams.id);
+          }}
+
+
       })
       .state('profiles', {
         url: '/profiles',

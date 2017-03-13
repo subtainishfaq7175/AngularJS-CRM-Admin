@@ -5,17 +5,23 @@
  * Created by subtainishfaq on 10/13/16.
  */
 
-angular.module("yapp").factory('ContactPersonService',['$http','SeatEatsConstants', function($http,SeatEatsConstants){
+angular.module("yapp").factory('contactpersonService',['$http','SeatEatsConstants', function($http,SeatEatsConstants){
 
   var companies = {};
 
-  companies.getLetsplayById= function (ID)
+  companies.getCompanyContactPersons= function (ID)
   {
 
-    var promise = $http.get(SeatEatsConstants.AppUrlApi+'contactPerson/'+ID);
+    var promise = $http.get(SeatEatsConstants.AppUrlApi+'companycontactPersons/'+ID);// this id is of company
     return promise;
   };
-  companies.putLetsplay= function (obj)
+  companies.getContactPerson= function (ID)
+  {
+
+    var promise = $http.get(SeatEatsConstants.AppUrlApi+'contactPerson/'+ID);// this is the id of contact person
+    return promise;
+  };
+  companies.putContactPerson= function (obj)
   {
 
     var promise = $http.put(SeatEatsConstants.AppUrlApi+'contactPerson/'+obj._id,obj);

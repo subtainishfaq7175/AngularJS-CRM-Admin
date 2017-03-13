@@ -2,37 +2,27 @@
  * Created by subtainishfaq on 10/30/16.
  */
 angular.module('yapp')
-  .controller('ContactPersonCtrl', function($scope, $state,SeatEatsConstants,companiesService,toastr,$rootScope,$stateParams) {
+  .controller('ContactPersonCtrl', function($scope, $state,SeatEatsConstants,contactpersonService,toastr,$rootScope,$stateParams,simpleObj) {
 
     $scope.$state = $state;
-    $scope.companyItem=$stateParams.myParam;
+    $scope.companyItem=simpleObj.data; // finally use grid to get companies , within companies get contact person
     $scope.conversionToLead = function (item) {
 
       debugger;
       console.log(item);
-      /* var i;
-      for ( i=0;i<$scope.companyItem.contactPersons.length;i++)
-        if($scope.companyItem.contactPersons[i]._id==ID)
-          break;
-      $scope.companyItem.editIndex=i;
 
-      $state.go('contactPersonedit',{myParam:$scope.companyItem});
-*/
     };
 
     $scope.editLetsplay = function (ID) {
-      var i;
-      for ( i=0;i<$scope.companyItem.contactPersons.length;i++)
-        if($scope.companyItem.contactPersons[i]._id==ID)
-          break;
-      $scope.companyItem.editIndex=i;
 
-      $state.go('contactPersonedit',{myParam:$scope.companyItem});
+
+
+      $state.go('contactPersonedit',{id:ID});
 
     };
 
     $scope.goToContactPersonadd=function() {
-      $state.go('contactPersonadd',{myParam:$scope.companyItem});
+      $state.go('contactPersonadd',{id:$stateParams.id});
 
     };
 

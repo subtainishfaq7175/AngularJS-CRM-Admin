@@ -14,7 +14,7 @@ angular.module('yapp')
     $scope.addContactPerson = function (dataItem)
     {
 
-      $state.go('contactPerson',{myParam:dataItem});
+      $state.go('contactPerson',{id:dataItem._id});
     };
 
     $scope.conversionToLead = function (item) {

@@ -5,7 +5,7 @@ angular.module('yapp')
   .controller('ContactPersonAddCtrl', function($scope, $state,SeatEatsConstants,masterdataService,$rootScope,toastr,$stateParams,companiesService,$localStorage) {
 
     $scope.$state = $state;
-    $scope.companyItem = $stateParams.myParam;
+   // $scope.companyItem = $stateParams.id; use id to post the contact person in particular company , this id is of company
     $scope.model = {};
     $scope.userDoc = {};
     $scope.formFields=$localStorage.currentUser.forms.nodes;
@@ -19,10 +19,10 @@ angular.module('yapp')
 
 
 
-    if (angular.isDefined($scope.companyItem.contactPersons));//      $scope.companyItem.contactPersons.push($scope.model);
-    else {
-      $scope.companyItem.contactPersons = [];
-    }
+   // if (angular.isDefined($scope.companyItem.contactPersons));//      $scope.companyItem.contactPersons.push($scope.model);
+    //else {
+     // $scope.companyItem.contactPersons = [];
+    //}
 
     $scope.selectOptionsCompanyType = {
       filter: "contains",
