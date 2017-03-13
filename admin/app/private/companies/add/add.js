@@ -6,6 +6,9 @@ angular.module('yapp')
 
     $scope.$state = $state;
     $scope.model={customFeilds:[]};
+    $scope.formFields=$localStorage.currentUser.forms.nodes;
+    if(angular.isDefined($scope.formFields[0].nodes))
+      $scope.formFields=$scope.formFields[0].nodes[2];
     $scope.selectOptionsCompanyType = {
       filter: "contains",
       placeholder: "Select CompanyType...",
@@ -29,6 +32,7 @@ angular.module('yapp')
         }
       }
     };
+    debugger;
     $scope.validatorServer=$localStorage.currentUser.validation.companyValidator;
     $scope.settings=$localStorage.currentUser.validation.settings;
 

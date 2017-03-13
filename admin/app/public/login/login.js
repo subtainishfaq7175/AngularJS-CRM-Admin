@@ -8,7 +8,7 @@
  * Controller of yapp
  */
 angular.module('yapp')
-  .controller('LoginCtrl', function($scope, $location,AuthenticationService,toastr,$rootScope) {
+  .controller('LoginCtrl', function($scope, $location,AuthenticationService,toastr,$rootScope,dynamicfeildsService,$localStorage) {
 
     var vm = $scope;
 
@@ -37,6 +37,12 @@ angular.module('yapp')
       {
         debugger;
         if (result === true) {
+
+          dynamicfeildsService.getFormJSON().then(function (response) {
+
+             $localStorage.currentUser.forms=response.data;
+
+          });
           toastr.success('Login Successful', 'Welcome!');
           $location.path('/dashboard');
 
