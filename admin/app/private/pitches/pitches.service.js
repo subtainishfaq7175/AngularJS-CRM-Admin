@@ -38,10 +38,13 @@ debugger;
 
   game.postPitch=function (obj)
   {
-    if(angular.isDefined(obj._id))
-      return $http.put(SeatEatsConstants.AppUrlApi+'pitches/'+obj._id, obj);
-    else
       return $http.post(SeatEatsConstants.AppUrlApi+'pitches/', obj);
+
+
+  };
+ game.putPitch=function (obj)
+  {
+      return $http.put(SeatEatsConstants.AppUrlApi+'pitches/', obj);
 
 
   };

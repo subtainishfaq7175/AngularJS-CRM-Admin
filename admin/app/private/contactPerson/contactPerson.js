@@ -8,6 +8,7 @@ angular.module('yapp')
     $scope.companyItem=simpleObj.data; // finally use grid to get companies , within companies get contact person
     $scope.conversionToLead = function (id) {
     //id and simpleObj.data._id , now go to pitchesadd and make the form ...
+      $state.go('pitchesadd',{idcompany:simpleObj.data._id,idcontact:id});
 
       console.log(id);
 

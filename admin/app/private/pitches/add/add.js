@@ -2,23 +2,45 @@
  * Created by subtainishfaq on 10/30/16.
  */
 angular.module('yapp')
-  .controller('PitchesAddCtrl', function($scope, $state,SeatEatsConstants,pitchesService,$rootScope,toastr,$localStorage) {
-
+  .controller('PitchesAddCtrl', function($scope, $state,SeatEatsConstants,pitchesService,$rootScope,toastr,$localStorage,simpleObj,$stateParams) {
+//save everything as pitch
 
     $scope.$state = $state;
-    $scope.model={customFeilds:[]};
-
+    $scope.model={};
     $scope.validatorServer=$localStorage.currentUser.validation.pitchValidator;
     $scope.settings=$localStorage.currentUser.validation.settings;
-
     $scope.validator;
     $scope.country;
     $scope.isImageUploading = false;
     $scope.isImageUploadingScreen = false;
     $scope.isCountrySelected=false;
     $scope.formFields=$localStorage.currentUser.forms.nodes;
+    simpleObj=simpleObj.data;
     if(angular.isDefined($scope.formFields[0].nodes))
       $scope.formFields=$scope.formFields[0].nodes[0];
+
+    var ContactIndex;
+    for (var i=0 ; i<simpleObj.contactPersons.length ;i++)
+    {
+      if(simpleObj.contactPersons[i]._id!= $stateParams.idcontact)
+        simpleObj.contactPersons.splice(i, 1);
+      else
+      {
+        ContactIndex=i;
+        break;
+      }
+
+    }
+
+    angular.forEach(simpleObj.contactPersons[ContactIndex], function(value, key) {
+      simpleObj[key]=value;
+
+    });
+
+    simpleObj.contactPersons= undefined;
+    $scope.simpleObj=simpleObj;
+
+
 
 
     $scope.selectOptionsPitchType = {
@@ -333,10 +355,15 @@ angular.module('yapp')
 
 
 
+      angular.forEach( $scope.simpleObj, function(value, key) {
+        $scope.model[key]=value;
+
+      });
+
 
       if($scope.validator.validate())
       pitchesService.postPitch($scope.model).then(function (response) {
-debugger;
+
         $rootScope.scopeWorkingVariable = false;
         if(response.status=200)
           toastr.success('Done','Operation Complete');

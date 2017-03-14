@@ -157,10 +157,19 @@ angular
             templateUrl: 'private/pitches/pitches.html'
           })
       .state('pitchesadd', {
-            url: '/pitchesadd',
+            url: '/pitchesadd/:idcompany/:idcontact',
             parent: 'dashboard',
             controller: 'PitchesAddCtrl',
-            templateUrl: 'private/pitches/add/add.html'
+            templateUrl: 'private/pitches/add/add.html',
+        resolve:{
+
+          simpleObj:  function(contactpersonService,$stateParams)
+          {
+            //get game here
+            //get company and contact after that make a pitch form using them
+
+            return contactpersonService.getCompanyContactPersons($stateParams.idcompany);
+          }}
           })
       .state('pitchesedit', {
             url: '/pitchesedit/:id',
@@ -342,10 +351,10 @@ function run($rootScope, $http, $state, $localStorage) {
 
   // redirect to login page if not logged in and trying to access a restricted page
 
-  $rootScope.$on('$stateChangeError', function(event) {
+ /* $rootScope.$on('$stateChangeError', function(event) {
     $state.go('notfound');
   });
-
+*/
   $rootScope.$on('$stateChangeStart',
     function(event, toState, toParams, fromState, fromParams, options)
     {

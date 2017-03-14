@@ -316,7 +316,7 @@ angular.module('yapp')
 
 
       if($scope.validator.validate())
-      pitchesService.postPitch($scope.model).then(function (response) {
+      pitchesService.putPitch($scope.model).then(function (response) {
 
         $rootScope.scopeWorkingVariable = false;
         if(response.status=200)
