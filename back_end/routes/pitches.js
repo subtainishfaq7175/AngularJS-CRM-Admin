@@ -99,7 +99,7 @@ router.route('/pitches')
                 {
                     return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
                 } else
-                {
+                {/*
                     Pitches
                         .find()
                         .populate('assignedPeople')
@@ -122,14 +122,13 @@ router.route('/pitches')
 
 
                             // prints "The creator is Aaron"
-                        });
-/*
+                        });*/
                     Pitches.paginate({}, { page : req.param('page'), limit: 10 , sort : {created_time :'desc'} }, function(error, pageCount, paginatedResults) {
                         if (error) {
                             console.error(error);
                             res.send(error);
                         } else {
-                         /!*   if (typeof pageCount.docs != 'undefined' && pageCount.docs.length>0 )
+                         /*   if (typeof pageCount.docs != 'undefined' && pageCount.docs.length>0 )
                                 for(var i=0;i<pageCount.docs.length;i++)
                                 {
                                     if( typeof pageCount.docs[i].assignedPeople != 'undefined'&&  pageCount.docs[i].assignedPeople.length>0)
@@ -137,10 +136,10 @@ router.route('/pitches')
 
                                     }
                                 }
-*!/
+*/
                             res.json(pageCount);
                         }
-                    },{columns: {}, populate: ['assignedPeople'], sortBy: {title: -1}});*/
+                    },{columns: {}, populate: ['assignedPeople'], sortBy: {title: -1}});
 
                 }
             });

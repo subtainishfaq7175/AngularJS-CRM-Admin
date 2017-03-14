@@ -38,12 +38,12 @@ angular.module('yapp')
             }
           }
 
-        }/*,
+        },
 
           schema: {
             data: "docs",
             total: "total"
-          }*/
+          }
         ,
         pageSize: 10,
         serverPaging: true,
