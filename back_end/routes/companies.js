@@ -410,6 +410,33 @@ router.route('/companycontact/:idcompany/:idcontact').delete(function(req, res) 
             res.json(obj);
         });
 });
+
+
+router.route('/companycontact/:idcompany/:idcontact').get(function(req, res) {
+   Company.
+   findOne({'contactPersons': {$elemMatch: {_id: req.params.idcontact}}},
+       function removeConnectionsCB(err, obj) {
+       if (err) {
+           return res.send(err);
+       }
+       console.log(obj);
+       res.json(obj.contactPersons.id( req.params.idcontact));
+
+   })});
+
+    /* Company .update(
+        { _id: req.params.idcompany },
+        { $pull: { "contactPersons" : { _id : req.params.idcontact } } },
+        { safe: true },
+        function removeConnectionsCB(err, obj) {
+            if (err) {
+                return res.send(err);
+            }
+            obj._id=req.params.idcompany;
+
+            res.json(obj);
+        });*/
+
 router.route('/companycontact/:idcompany').put(function(req, res) {
 
 
@@ -420,23 +447,34 @@ router.route('/companycontact/:idcompany').put(function(req, res) {
         function(err, model) {
             console.log(err);
 
-            res.json(obj);
+            res.json(model);
 
         }
     );
 
- /*   Company .update(
-        { _id: req.params.idcompany },
-        { $pull: { contactPersons : { _id : req.params.idcontact } } },
-        { safe: true },
-        function removeConnectionsCB(err, obj) {
+
+});
+
+
+router.route('/contactPersonEdit/:idcompany/:idcontact').put(function(req, res) {
+
+    Company .update(
+        {_id: req.params.idcompany, 'contactPersons._id': req.params.idcontact},
+        {'$set': {
+            'contactPersons.$': req.body
+        }},
+        function(err, numAffected)
+        {
+
             if (err) {
                 return res.send(err);
             }
-            obj._id=req.params.idcompany;
 
-            res.json(obj);
-        });*/
+            res.json({_id:req.params.idcompany});
+        }
+    );
+
+
 });
 
 

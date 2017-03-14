@@ -54,7 +54,7 @@ angular.module('yapp')
      //   $scope.companyItem.contactPersons.push($scope.model);
 
         $rootScope.scopeWorkingVariable = true;
-        contactpersonService.putContactCompany($scope.model,$stateParams.id).then(function (response) {
+        contactpersonService.addContactCompany($scope.model,$stateParams.id).then(function (response) {
           $rootScope.scopeWorkingVariable = false;
           if (response.status = 200)
             toastr.success('Done', 'Operation Complete');

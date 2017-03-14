@@ -50,7 +50,7 @@ angular.module('yapp')
 
         $rootScope.scopeWorkingVariable = true;
 
-        contactpersonService.putContactPerson($scope.model).then(function (response) {
+        contactpersonService.putContactPerson($scope.model,$stateParams.idcompany).then(function (response) {
           console.log(response);
           $rootScope.scopeWorkingVariable = false;
           if (response.status = 200)
@@ -58,7 +58,7 @@ angular.module('yapp')
           else
             toastr.error('Error', 'Operation Was not complete');
 
-         // $state.go('contactPerson', {myParam: $scope.companyItem});
+          $state.go('contactPerson', {id: response.data._id});
         // check the state history to go to previous company state
         });
 

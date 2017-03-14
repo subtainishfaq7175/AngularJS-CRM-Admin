@@ -17,7 +17,7 @@ angular.module('yapp')
 
 
 
-      $state.go('contactPersonedit',{id:ID});
+      $state.go('contactPersonedit',{idcompany:simpleObj.data._id,idcontact:ID});
 
     };
 
@@ -36,8 +36,8 @@ angular.module('yapp')
           toastr.success('Done','Operation Complete');
         else
           toastr.error('Error','Operation Was not complete');
-debugger;
-        $state.go('contactPerson',{id:response.data._id});
+
+        $state.reload();
       })
     };
 

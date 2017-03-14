@@ -15,19 +15,19 @@ angular.module("yapp").factory('contactpersonService',['$http','SeatEatsConstant
     var promise = $http.get(SeatEatsConstants.AppUrlApi+'company/'+ID);// this id is of company
     return promise;
   };
-  companies.getContactPerson= function (ID)
+  companies.getContactPerson= function (companyID,contactID)
   {
 
-    var promise = $http.get(SeatEatsConstants.AppUrlApi+'contactPerson/'+ID);// this is the id of contact person
+    var promise = $http.get(SeatEatsConstants.AppUrlApi+'companycontact/'+companyID +'/'+contactID);// this is the id of contact person
     return promise;
   };
-  companies.putContactPerson= function (obj)
+  companies.putContactPerson= function (obj,idcompany)
   {
 
-    var promise = $http.put(SeatEatsConstants.AppUrlApi+'contactPerson/'+obj._id,obj);
+    var promise = $http.put(SeatEatsConstants.AppUrlApi+'contactPersonEdit/'+idcompany+'/'+obj._id,obj);
     return promise;
   };
-  companies.putContactCompany= function (obj,companyid)
+  companies.addContactCompany= function (obj,companyid)
   {
 
     var promise = $http.put(SeatEatsConstants.AppUrlApi+'companycontact/'+companyid,obj);//call service for contact copmany , to add person in specific contact .

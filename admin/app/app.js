@@ -231,7 +231,7 @@ angular
 
       })
       .state('contactPersonedit', {
-        url: '/contactPersonedit/:id',
+        url: '/contactPersonedit/:idcompany/:idcontact',
         parent: 'dashboard',
         controller: 'ContactPersonEditCtrl',
         templateUrl: 'private/contactPerson/edit/edit.html',
@@ -242,7 +242,7 @@ angular
             //get game here
 
 
-            return contactpersonService.getContactPerson($stateParams.id);
+            return contactpersonService.getContactPerson($stateParams.idcompany,$stateParams.idcontact);
           }}
 
 
