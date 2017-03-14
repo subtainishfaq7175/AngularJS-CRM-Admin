@@ -209,6 +209,7 @@ router.route('/pitches/:id').put(function(req,res){
             } else
             {
 
+
                 Pitches.findOne({ _id: req.params.id }, function(err, pitch) {
                     if (err) {
                         return res.send(err);
@@ -218,13 +219,20 @@ router.route('/pitches/:id').put(function(req,res){
                         pitch[prop] = req.body[prop];
                     }
 
-                    // save the pitch
-                    pitch.save(function(err) {
-                        if (err) {
-                            return res.send(err);
-                        }
 
-                        res.json({ message: 'Pitch updated!' });
+
+
+                    // save the pitch
+                    pitch.save(function(err,pit) {
+
+                        Pitches.update({ _id: req.params.id }, { $set: { inner: req.body.inner }},function (err,pot) {
+                            if (err) {
+                                return res.send(err);
+                            }
+                            res.json({ message: 'Pitch updated!', pitch: pot });
+
+                        });
+
                     });
                 });
             }

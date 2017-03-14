@@ -44,7 +44,7 @@ debugger;
   };
  game.putPitch=function (obj)
   {
-      return $http.put(SeatEatsConstants.AppUrlApi+'pitches/', obj);
+      return $http.put(SeatEatsConstants.AppUrlApi+'pitches/'+obj._id, obj);
 
 
   };

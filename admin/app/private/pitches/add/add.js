@@ -38,7 +38,7 @@ angular.module('yapp')
     });
 
     simpleObj.contactPersons= undefined;
-    $scope.simpleObj=simpleObj;
+    $scope.model.inner=simpleObj;
 
 
 
@@ -89,7 +89,6 @@ angular.module('yapp')
         }
       }
     };
-
     $scope.selectOptionsRequestedServiceType = {
       filter: "contains",
       placeholder: "Select Requested Service Type...",
@@ -340,7 +339,6 @@ angular.module('yapp')
       }
 
     };
-
     $scope.source=new kendo.data.DataSource({
       data: $scope.selectedCities
 
@@ -355,10 +353,7 @@ angular.module('yapp')
 
 
 
-      angular.forEach( $scope.simpleObj, function(value, key) {
-        $scope.model[key]=value;
 
-      });
 
 
       if($scope.validator.validate())

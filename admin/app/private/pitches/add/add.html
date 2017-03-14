@@ -180,10 +180,10 @@
 
             <div class="container" >
 
-                <div  ng-repeat="(key, value) in simpleObj">
+                <div  ng-repeat="(key, value) in model.inner">
                     <div ng-if="key!='_id' && key!='__v'">
                     <h6>{{key}}</h6>
-                    <input k-content style="width: 100%" ng-model="value">
+                    <input k-content style="width: 100%" ng-model="model.inner[key]">
                     <br>
                     </div>
 
