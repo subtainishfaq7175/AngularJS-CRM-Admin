@@ -6,10 +6,10 @@ angular.module('yapp')
 
     $scope.$state = $state;
     $scope.companyItem=simpleObj.data; // finally use grid to get companies , within companies get contact person
-    $scope.conversionToLead = function (item) {
+    $scope.conversionToLead = function (id) {
+    //id and simpleObj.data._id , now go to pitchesadd and make the form ...
 
-      debugger;
-      console.log(item);
+      console.log(id);
 
     };
 
@@ -81,7 +81,7 @@ angular.module('yapp')
       },{
         title: "Operation",
         width: "120px",
-        template: '<a ng-click="conversionToLead(dataItem)" class="btn k-primary btn-outline btn-rounded btn-sm">Covert to Lead</a>'
+        template: '<a ng-click="conversionToLead(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Covert to Lead</a>'
       },{
         title: "Delete",
         width: "120px",
