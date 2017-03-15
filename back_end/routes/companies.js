@@ -13,7 +13,7 @@ var router = express.Router();
 router.route('/companyssearch')
     .get(function(req, res) {
         var filtValue =req.query.filter.filters[0].value;
-console.log(filtValue);
+
         Company.paginate({"companyName":{ "$regex": "^"+filtValue, "$options": "i" }}, { page : req.param('page'), limit: 10 ,sort: { created_time: 'desc' }}, function(error, pageCount, paginatedResults) {
             if (error) {
                 console.error(error);
@@ -23,6 +23,17 @@ console.log(filtValue);
                 res.json(pageCount);
             }
         });
+
+});
+router.route('/contactssearch')
+    .get(function(req, res) {
+        var filtValue =req.query.filter.filters[0].value;
+
+        Company.find({},{ "contactPersons": {$elemMatch: {contactPersonName: filtValue}}},function(err,persons)
+        {
+            console.log(persons);
+            res.json(persons);
+        })
 
 });
 

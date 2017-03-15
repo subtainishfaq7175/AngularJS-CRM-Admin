@@ -13,6 +13,21 @@ angular.module('yapp')
     $scope.validatorServer=$localStorage.currentUser.validation.companyValidator.contactPersons;
     $scope.settings=$localStorage.currentUser.validation.settings;
 
+    $scope.autoCompleteOptions={
+      dataTextField: "contactPersonName",
+      filter: "contains",
+      minLength: 3,
+      dataSource: {
+        type: "json",
+        serverFiltering: true,
+        transport: {
+          read: SeatEatsConstants.AppUrlApi+'contactssearch'
+        },
+        schema: {
+          data: "docs"
+        }
+      }
+    }
 
     $scope.selectOptionsCompanyType = {
       filter: "contains",

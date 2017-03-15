@@ -11,8 +11,11 @@
 
 
         <div class="container" >
+
+
             <h6>Contact Person Name</h6>
-            <input k-content style="width: 100%" ng-required="{{validatorServer.contactPersonName}}" ng-model="model.contactPersonName">
+
+            <kendo-auto-complete k-options="autoCompleteOptions" style="width: 100%" ng-required="{{validatorServer.contactPersonName}}" ng-model="model.contactPersonName"/>
             <br>
 
              <h6>Contact Person Designation</h6>

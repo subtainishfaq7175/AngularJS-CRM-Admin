@@ -11,7 +11,25 @@ angular.module('yapp')
     $scope.settings=$localStorage.currentUser.validation.settings;
     $scope.validator;
     $scope.$state = $state;
-    if(angular.isDefined(itemCompanies))
+
+    $scope.autoCompleteOptions={
+      dataTextField: "companyName",
+      filter: "contains",
+      minLength: 3,
+      dataSource: {
+        type: "json",
+        serverFiltering: true,
+        transport: {
+          read: SeatEatsConstants.AppUrlApi+'companyssearch'
+        },
+        schema: {
+          data: "docs"
+        }
+      }
+    }
+
+
+      if(angular.isDefined(itemCompanies))
     $scope.model = itemCompanies.data;
     else
       $scope.model={};
