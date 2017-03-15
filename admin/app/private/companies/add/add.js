@@ -68,12 +68,15 @@ angular.module('yapp')
 
         companiesService.postLetsplay($scope.model).then(function (response) {
           $rootScope.scopeWorkingVariable = false;
-          if (response.status = 200)
-            toastr.success('Done', 'Operation Complete');
+          if (response.status == 200 && !response.data.isError)
+          { toastr.success('Done', 'Operation Complete');
+            $state.go("companies");
+          }
+          else if(response.data.isError && response.status == 200)
+            toastr.error('Error', 'Operation Was not complete, Duplicate companyName');
           else
-            toastr.error('Error', 'Operation Was not complete');
+          toastr.error('Error', 'Operation Was not complete');
 
-          $state.go("companies");
         })
 
       }

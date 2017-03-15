@@ -8,6 +8,7 @@ angular.module('yapp')
    // $scope.companyItem = $stateParams.id; use id to post the contact person in particular company , this id is of company
     $scope.model = {};
     $scope.userDoc = {};
+    $scope.companyId=$stateParams.id;
     $scope.formFields=$localStorage.currentUser.forms.nodes;
     if(angular.isDefined($scope.formFields[0].nodes))
       $scope.formFields=$scope.formFields[0].nodes[1];

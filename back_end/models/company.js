@@ -21,8 +21,8 @@ var companySchema = new Schema({
         {
             contactPersonName:{ type:String,unique: true},
             contactPersonDesignation:String,
-            contactPersonContactNumber:{ type:String,unique: true},
-            contactPersonEmail:{ type:String,unique: true},
+            contactPersonContactNumber:{ type:String},
+            contactPersonEmail:{ type:String},
             contactPersonContactType:String,
             contactPersonIsDecisionMaker:String,
             contactPersonIsClientNew:String,

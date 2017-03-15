@@ -145,6 +145,8 @@ router.route('/company')
 
                 company.save(function(err) {
                     if (err) {
+
+                        err.isError=true;
                         return res.send(err);
                     }
 
