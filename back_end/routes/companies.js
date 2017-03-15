@@ -12,8 +12,9 @@ var router = express.Router();
 
 router.route('/companyssearch')
     .get(function(req, res) {
-
-        Company.paginate({"title":{ "$regex": "^"+req.param('query'), "$options": "i" }}, { page : req.param('page'), limit: 10 ,sort: { created_time: 'desc' }}, function(error, pageCount, paginatedResults) {
+        var filtValue =req.query.filter.filters[0].value;
+console.log(filtValue);
+        Company.paginate({"companyName":{ "$regex": "^"+filtValue, "$options": "i" }}, { page : req.param('page'), limit: 10 ,sort: { created_time: 'desc' }}, function(error, pageCount, paginatedResults) {
             if (error) {
                 console.error(error);
                 res.send(error);

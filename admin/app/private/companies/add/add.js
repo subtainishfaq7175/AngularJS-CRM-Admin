@@ -10,6 +10,26 @@ angular.module('yapp')
     if(angular.isDefined($scope.formFields[0].nodes))
       $scope.formFields=$scope.formFields[0].nodes[2];
 
+    $scope.autoCompleteOptions={
+      dataTextField: "companyName",
+      filter: "contains",
+      minLength: 3,
+      dataSource: {
+        type: "json",
+        serverFiltering: true,
+        transport: {
+          read: SeatEatsConstants.AppUrlApi+'companyssearch'
+        },
+        schema: {
+          data: "docs"
+        }
+      }
+
+
+
+
+    };
+
     $scope.selectOptionsCompanyType = {
       filter: "contains",
       placeholder: "Select CompanyType...",

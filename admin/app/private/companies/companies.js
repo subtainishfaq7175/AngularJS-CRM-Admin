@@ -17,8 +17,6 @@ angular.module('yapp')
       $state.go('contactPerson',{id:dataItem._id});
     };
     $scope.conversionToLead = function (item) {
-
-
       $state.go('pitchesadd',{idcompany:item.parentID,idcontact:item._id});
     };
     $scope.deleteLetsplay = function (ID)
