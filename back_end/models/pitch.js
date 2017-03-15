@@ -33,6 +33,7 @@ var pitchSchema = new Schema({
     followUpCount :  {type:String },
     createdDate: { type:Date , default: Date.now() },
     scheduelDate: { type:Date , default: Date.now() },
+    isPublished: { type:Boolean , default:false },
     assignedPeople: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 
 }, {strict: false});

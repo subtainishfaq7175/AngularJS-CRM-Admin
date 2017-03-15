@@ -79,4 +79,57 @@ angular.module('yapp')
       }]
     };
 
+    $scope.mainGridDraftOptions={
+      dataSource: {
+        type: "json",
+        transport: {
+          read:{
+            url: SeatEatsConstants.AppUrlApi+'pitchesdraft',
+            beforeSend: function(req) {
+
+              req.setRequestHeader('Authorization', $localStorage.currentUser.token);
+            }
+          }
+
+        },
+
+          schema: {
+            data: "docs",
+            total: "total"
+          }
+        ,
+        pageSize: 10,
+        serverPaging: true,
+        serverSorting: true
+      },
+      sortable: true,
+      pageable: true,
+
+      filterable: {
+      mode: "row"
+    },
+
+
+      columns: [{
+        field: "pitchTitle",
+        title: "title",
+        width: "120px",
+        filterable: {
+          cell: {
+            showOperators: false,
+            operator: "contains"
+
+          }
+        }
+      },{
+        title: "Edit",
+        width: "120px",
+        template: '<a ng-click="editPitch(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Edit</a>'
+      },{
+        title: "Delete",
+        width: "120px",
+        template: '<a ng-click="deletePitch(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Delete</a>'
+      }]
+    };
+
   });

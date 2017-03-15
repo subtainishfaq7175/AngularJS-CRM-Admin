@@ -312,6 +312,7 @@ angular.module('yapp')
 
     function publishPitch() {
 
+      $scope.model.isPublished=true;
 
 
 
@@ -332,5 +333,38 @@ angular.module('yapp')
         toastr.error('Error','Operation Was not complete');
 
     }
+
+
+
+    $scope.publishAsDraft= publishAsDraft;
+
+    function publishAsDraft() {
+
+      $scope.model.isPublished=false;
+
+
+
+      if($scope.validator.validate())
+      pitchesService.putPitch($scope.model).then(function (response) {
+
+        $rootScope.scopeWorkingVariable = false;
+        if(response.status=200)
+          toastr.success('Done','Operation Complete');
+        else
+          toastr.error('Error','Operation Was not complete');
+        debugger;
+        console.log(response);
+
+        $state.go("pitches");
+      });
+      else
+        toastr.error('Error','Operation Was not complete');
+
+    }
+
+
+
+
+
 
   });
