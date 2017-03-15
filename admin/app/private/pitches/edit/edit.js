@@ -12,15 +12,11 @@ angular.module('yapp')
     $scope.formFields=$localStorage.currentUser.forms.nodes;
     if(angular.isDefined($scope.formFields[0].nodes))
       $scope.formFields=$scope.formFields[0].nodes[0];
-
-
-
+    $scope.isCountrySelected=false;
     $scope.model={};
 
-    $scope.isImageUploading = false;
-    $scope.isImageUploadingScreen = false;
     $scope.validator;
-
+    $scope.country;
     if(angular.isDefined(simpleObj))
     {
       $scope.model=simpleObj.data;
@@ -77,7 +73,6 @@ angular.module('yapp')
         }
       }
     };
-
     $scope.selectOptionsRequestedServiceType = {
       filter: "contains",
       placeholder: "Select Requested Service Type...",
@@ -308,6 +303,31 @@ angular.module('yapp')
         }
       }
     };
+    $scope.selectOptionsCities = {
+      filter: "contains",
+      placeholder: "City",
+
+      valuePrimitive: true,
+      autoBind: false,
+      animation: {
+        close: {
+          effects: "zoom:out",
+          duration: 500
+        }
+      },
+
+      select :function (e) {
+        console.log(e);
+        console.log(e.sender.dataItem(e.item));
+        $scope.model.city=e.sender.dataItem(e.item);
+      }
+
+    };
+    $scope.source=new kendo.data.DataSource({
+      data: $scope.selectedCities
+
+    });
+
     $scope.publishPitch= publishPitch;
 
     function publishPitch() {
@@ -344,7 +364,6 @@ angular.module('yapp')
 
 
 
-      if($scope.validator.validate())
       pitchesService.putPitch($scope.model).then(function (response) {
 
         $rootScope.scopeWorkingVariable = false;
@@ -357,12 +376,32 @@ angular.module('yapp')
 
         $state.go("pitches");
       });
-      else
-        toastr.error('Error','Operation Was not complete');
+
+
 
     }
 
 
+    $scope.callback=function (obj) {
+      if(angular.isDefined(obj))
+      {
+        $rootScope.scopeWorkingVariable = true;
+        pitchesService.getCities().then(function (response) {
+          debugger;
+          $scope.selectedCities=response.data[obj.name];
+          //console.log($scope.source);
+          $scope.source.data($scope.selectedCities);
+
+          $rootScope.scopeWorkingVariable = false;
+          $scope.isCountrySelected=true;
+
+        });
+
+
+      }
+
+
+    }
 
 
 

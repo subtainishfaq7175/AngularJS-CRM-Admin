@@ -193,7 +193,7 @@ router.route('/pitches')
 
                             // prints "The creator is Aaron"
                         });*/
-                    Pitches.paginate({}, { page : req.param('page'), limit: 10 , sort : {created_time :'desc'} }, function(error, pageCount, paginatedResults) {
+                    Pitches.paginate({isPublished : true}, { page : req.param('page'), limit: 10 , sort : {created_time :'desc'} }, function(error, pageCount, paginatedResults) {
                         if (error) {
                             console.error(error);
                             res.send(error);
@@ -288,7 +288,7 @@ router.route('/pitches/:id').put(function(req,res){
                     for (prop in req.body) {
                         pitch[prop] = req.body[prop];
                     }
-
+            //    pitch["isPublished"]=req.body["isPublished"];
 
 
 

@@ -1,7 +1,7 @@
 
 <div>
     <a ui-sref="pitches" class="pull-right btn btn-primary btn-outline btn-rounded">Leads</a>
-    <h3>Leads <small>Edit Sale</small></h3>
+    <h3>Leads <small>Add Sale</small></h3>
 
 
     <form kendo-validator="validator" ng-submit="publishPitch()">
@@ -62,9 +62,17 @@
 
                 <!--will make it dropdown-->
 
-                <h6>Location</h6>
-                <select kendo-drop-down-list  k-options="selectOptionslocation" ng-required="{{validatorServer.location}}"   k-ng-model="model.location" style="width: 100%;"></select>
+
+                <h6>Country</h6>
+                <input k-content class="form-control" type="text" placeholder="Country" list="countrylist"  ng-model="model.country" ng-controller="ngCountriesCtrl" ng-change="getCountryObj(model.country, callback)">
+                <ngcountries></ngcountries>
                 <br>
+
+                <div ng-if="isCountrySelected">
+                    <h6>City</h6>
+                    <select kendo-drop-down-list k-data-source="source"  placeholder="City" k-options="selectOptionsCities"   k-ng-model="model.city" style="width: 100%;"></select>
+                    <br>
+                </div>
 
                 <!--
 
@@ -84,41 +92,41 @@
 
         </div>
 
+        <!--
+            <div class="jumbotron box">
 
-        <div class="jumbotron box">
-
-            <h4>Business Details</h4>
-
-
-
-            <div class="container" >
-                <h6>Expected Bussiness</h6>
-                <input kendo-numeric-text-box k-min="0" ng-required="{{validatorServer.pitchExpectedBusiness}}"    k-ng-model="model.pitchExpectedBusiness" style="width: 100%" n>
-                <br>
-
-                <h6>Actual Bussiness</h6>
-                <input kendo-numeric-text-box k-min="0" ng-required="{{validatorServer.pitchActualBusiness}}"     k-ng-model="model.pitchActualBusiness" style="width: 100%" >
-                <br>
+                <h4>Business Details</h4>
 
 
-                <h6>Currency Type</h6>
-                <select kendo-drop-down-list  k-options="selectOptionsPitchCurrencyType" ng-required="{{validatorServer.pitchCurrencyType}}"   k-ng-model="model.pitchCurrencyType" style="width: 100%;"></select>
-                <br>
+
+                <div class="container" >
+                    <h6>Expected Bussiness</h6>
+                    <input kendo-numeric-text-box k-min="0" ng-required="{{validatorServer.pitchExpectedBusiness}}"    k-ng-model="model.pitchExpectedBusiness" style="width: 100%" n>
+                    <br>
+
+                    <h6>Actual Bussiness</h6>
+                    <input kendo-numeric-text-box k-min="0" ng-required="{{validatorServer.pitchActualBusiness}}"     k-ng-model="model.pitchActualBusiness" style="width: 100%" >
+                    <br>
 
 
-                <h6>Source Type</h6>
-                <select kendo-drop-down-list  k-options="selectOptionsPitchSourceType" ng-required="{{validatorServer.pitchSourceType}}"  k-ng-model="model.pitchSourceType" style="width: 100%;"></select>
-                <br>
+                    <h6>Currency Type</h6>
+                    <select kendo-drop-down-list  k-options="selectOptionsPitchCurrencyType" ng-required="{{validatorServer.pitchCurrencyType}}"   k-ng-model="model.pitchCurrencyType" style="width: 100%;"></select>
+                    <br>
 
 
+                    <h6>Source Type</h6>
+                    <select kendo-drop-down-list  k-options="selectOptionsPitchSourceType" ng-required="{{validatorServer.pitchSourceType}}"  k-ng-model="model.pitchSourceType" style="width: 100%;"></select>
+                    <br>
 
 
 
 
-            </div>
 
 
-        </div>
+                </div>
+
+
+            </div>-->
         <div class="jumbotron box">
 
             <h4>Scheduled Dates</h4>
@@ -140,6 +148,7 @@
 
 
         </div>
+
 
 
         <div class="jumbotron box" ng-if="formFields.nodes.length>0">
@@ -186,11 +195,7 @@
         </div>
 
 
-
         <div class="jumbotron box">
-            <div class="container">
-                <button class="k-primary"  class="k-button k-primary" ng-click="publishAsDraft()" >Save as Draft</button>
-            </div>
 
             <div class="container">
                 <button class="k-primary"  class="k-button k-primary" type="submit" >Publish</button>
@@ -198,7 +203,14 @@
         </div>
 
     </form>
+    <div class="jumbotron box">
 
+
+        <div class="container">
+            <button class="k-primary"  class="k-button k-primary" ng-click="publishAsDraft()" >Save as Draft</button>
+        </div>
+
+    </div>
 
 </div>
 

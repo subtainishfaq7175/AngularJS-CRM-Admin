@@ -11,8 +11,6 @@ angular.module('yapp')
     $scope.settings=$localStorage.currentUser.validation.settings;
     $scope.validator;
     $scope.country;
-    $scope.isImageUploading = false;
-    $scope.isImageUploadingScreen = false;
     $scope.isCountrySelected=false;
     $scope.formFields=$localStorage.currentUser.forms.nodes;
     simpleObj=simpleObj.data;
@@ -387,7 +385,6 @@ angular.module('yapp')
 
 
 
-      if($scope.validator.validate())
       pitchesService.postPitch($scope.model).then(function (response) {
 
         $rootScope.scopeWorkingVariable = false;
@@ -401,8 +398,6 @@ angular.module('yapp')
         $state.go("pitches");
       });
 
-      else
-        toastr.error('Error','Operation Was not complete');
 
 
     }
