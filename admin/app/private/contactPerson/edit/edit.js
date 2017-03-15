@@ -21,10 +21,10 @@ angular.module('yapp')
         type: "json",
         serverFiltering: true,
         transport: {
-          read: SeatEatsConstants.AppUrlApi+'contactssearch'
+          read: SeatEatsConstants.AppUrlApi+'contactssearch/'+ $stateParams.idcompany
         },
         schema: {
-          data: "docs"
+          data: "contactPersons"
         }
       }
     }

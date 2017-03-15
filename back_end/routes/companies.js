@@ -25,11 +25,11 @@ router.route('/companyssearch')
         });
 
 });
-router.route('/contactssearch')
+router.route('/contactssearch/:id')
     .get(function(req, res) {
         var filtValue =req.query.filter.filters[0].value;
 
-        Company.find({},{ "contactPersons": {$elemMatch: {contactPersonName: filtValue}}},function(err,persons)
+        Company.findOne({_id:req.params.id},{ "contactPersons": {$elemMatch: {contactPersonName :{ "$regex": "^"+filtValue, "$options": "i" }}}},function(err,persons)
         {
             console.log(persons);
             res.json(persons);
