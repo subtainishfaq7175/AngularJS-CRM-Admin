@@ -7,26 +7,17 @@ angular.module('yapp')
     $scope.$state = $state;
     $scope.companyItem=simpleObj.data; // finally use grid to get companies , within companies get contact person
     $scope.conversionToLead = function (id) {
-    //id and simpleObj.data._id , now go to pitchesadd and make the form ...
-      $state.go('pitchesadd',{idcompany:simpleObj.data._id,idcontact:id});
-
+    $state.go('pitchesadd',{idcompany:simpleObj.data._id,idcontact:id});
       console.log(id);
-
     };
-
     $scope.editLetsplay = function (ID) {
-
-
-
-      $state.go('contactPersonedit',{idcompany:simpleObj.data._id,idcontact:ID});
+    $state.go('contactPersonedit',{idcompany:simpleObj.data._id,idcontact:ID});
 
     };
-
     $scope.goToContactPersonadd=function() {
       $state.go('contactPersonadd',{id:$stateParams.id});
 
     };
-
     $scope.deleteLetsplay = function (ID) {
 
 
@@ -41,7 +32,6 @@ angular.module('yapp')
         $state.reload();
       })
     };
-
     $scope.mainGridOptions={
       dataSource: {
         data:  $scope.companyItem.contactPersons,
@@ -82,12 +72,22 @@ angular.module('yapp')
       },{
         title: "Operation",
         width: "120px",
-        template: '<a ng-click="conversionToLead(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Covert to Lead</a>'
+        template: '<div ng-if="dataItem.isCoverted"> <md-icon class="material-icons md-warn" >check_circle</md-icon> Converted </div><a ng-click="conversionToLead(dataItem._id)" ng-if="!dataItem.isCoverted"  class="btn k-primary btn-outline btn-rounded btn-sm">Covert to Lead</a>'
       },{
         title: "Delete",
         width: "120px",
         template: '<a ng-click="deleteLetsplay(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Delete</a>'
-      }]
+      }],
+      dataBound: function(e)  {
+        var items = e.sender.items();
+        console.log("conversionColorClass");
+        items.each(function (index) {
+          var dataItem = $scope.companyItem.contactPersons[index];
+          if (dataItem.isCoverted) {
+            this.className += " alert-success";
+          }
+        })
+      }
     };
 
 

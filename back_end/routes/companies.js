@@ -189,190 +189,6 @@ router.route('/company/:id').put(function(req,res){
 
 });
 
-router.route('/companyslikes/:id').get(function(req,res){
-
-
-    var token = getToken(req.headers);
-    if (token) {
-        var decoded = jwt.decode(token, config.secret);
-        User.findOne({
-            name: decoded.name
-        }, function(err, user) {
-            if (err) throw err;
-
-            if (!user) {
-                return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
-            } else {
-
-                Company.findOne({ _id: req.params.id }, function(err, company) {
-                    if (err) {
-                        return res.send(err);
-                    }
-
-                    if ( typeof company["likes"] === 'undefined' )
-                        company["likes"]={count : 0 , _creator:[]};
-
-                    if(company["likes"]._creator.indexOf(user._id)!== -1)
-                    {  var i =company["likes"]._creator.indexOf(user._id);
-                        company["likes"]._creator.pull(user._id );
-                        company["likes"].count--;
-                        company.save();
-                        console.log(i);
-                        return res.json({message: "duplicate"});
-
-                    }
-
-
-                    company["likes"]._creator.push(user._id);
-                    company["likes"].count++;
-
-
-                    // save the company
-                    company.save(function(err) {
-                        if (err) {
-                            return res.send(err);
-                        }
-
-                        res.json({ message: 'Company updated!' });
-                    });
-                });
-
-
-            }
-        });
-    } else {
-        return res.status(403).send({success: false, msg: 'No token provided.'});
-    }
-
-
-});
-
-
-router.route('/companysdislikes/:id').get(function(req,res){
-
-
-    var token = getToken(req.headers);
-    if (token) {
-        var decoded = jwt.decode(token, config.secret);
-        User.findOne({
-            name: decoded.name
-        }, function(err, user) {
-            if (err) throw err;
-
-            if (!user) {
-                return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
-            } else {
-
-                Company.findOne({ _id: req.params.id }, function(err, company) {
-                    if (err) {
-                        return res.send(err);
-                    }
-
-
-                    if ( typeof company["dislikes"] === 'undefined' )
-                        company["dislikes"]={count : 0 , _creator:[]};
-
-                    if(company["dislikes"]._creator.indexOf(user._id)!== -1)
-                    { var i =company["dislikes"]._creator.indexOf(user._id);
-                        company["dislikes"]._creator.pull(user._id );
-                        company["dislikes"].count--;
-                        company.save();
-                        return res.json({message: "duplicate"});
-
-                    }
-
-
-                    company["dislikes"]._creator.push(user._id);
-                    company["dislikes"].count++;
-
-
-
-
-
-
-                    // save the company
-                    company.save(function(err) {
-                        if (err) {
-                            return res.send(err);
-                        }
-
-                        res.json({ message: 'Company updated!' });
-                    });
-                });
-
-
-            }
-        });
-    } else {
-        return res.status(403).send({success: false, msg: 'No token provided.'});
-    }
-
-
-});
-
-router.route('/companysfavourites/:id').get(function(req,res){
-
-
-    var token = getToken(req.headers);
-    if (token) {
-        var decoded = jwt.decode(token, config.secret);
-        User.findOne({
-            name: decoded.name
-        }, function(err, user) {
-            if (err) throw err;
-
-            if (!user) {
-                return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
-            } else {
-
-                Company.findOne({ _id: req.params.id }, function(err, company) {
-                    if (err) {
-                        return res.send(err);
-                    }
-
-                    if ( typeof company["favourites"] === 'undefined' )
-                        company["favourites"]={count : 0 , _creator:[]};
-
-                    if(company["favourites"]._creator.indexOf(user._id)!== -1)
-                    {   var  i=company["favourites"]._creator.indexOf(user._id);
-                        company["favourites"]._creator.pull( user._id);
-                        company["favourites"].count--;
-                        company.save();
-                        return res.json({message: "duplicate"});
-
-                    }
-
-                    company["favourites"]._creator.push(user._id);
-                    company["favourites"].count++;
-
-                    if ( typeof user["favourites_games"] === 'undefined' )
-                        user.favourite_company=[];
-
-                    user.favourite_company.push(company._id);
-                    user.save();
-
-
-
-                    // save the company
-                    company.save(function(err) {
-                        if (err) {
-                            return res.send(err);
-                        }
-
-                        res.json({ message: 'Company updated!' });
-                    });
-                });
-
-
-            }
-        });
-    } else {
-        return res.status(403).send({success: false, msg: 'No token provided.'});
-    }
-
-
-});
-
 
 router.route('/company/:id').get(function(req, res) {
     Company.findOne({ _id: req.params.id}, function(err, company) {
@@ -382,6 +198,32 @@ router.route('/company/:id').get(function(req, res) {
 
         res.json(company);
     });
+});
+
+
+router.route('/companycontactconversion/:idcompany/:idcontact').get(function(req, res) {
+
+    Company .update(
+        {_id: req.params.idcompany, 'contactPersons._id': req.params.idcontact},
+        {'$set': {
+            'contactPersons.$.isCoverted': true
+        }},
+        function(err, numAffected)
+        {
+
+            if (err) {
+                return res.send(err);
+            }
+
+            Company.findOne({ _id: req.params.idcompany}, function(err, company) {
+                if (err) {
+                    return res.send(err);
+                }
+
+                res.json(company);
+            });
+        }
+    );
 });
 
 router.route('/company/:id').delete(function(req, res) {
@@ -424,18 +266,6 @@ router.route('/companycontact/:idcompany/:idcontact').get(function(req, res) {
 
    })});
 
-    /* Company .update(
-        { _id: req.params.idcompany },
-        { $pull: { "contactPersons" : { _id : req.params.idcontact } } },
-        { safe: true },
-        function removeConnectionsCB(err, obj) {
-            if (err) {
-                return res.send(err);
-            }
-            obj._id=req.params.idcompany;
-
-            res.json(obj);
-        });*/
 
 router.route('/companycontact/:idcompany').put(function(req, res) {
 

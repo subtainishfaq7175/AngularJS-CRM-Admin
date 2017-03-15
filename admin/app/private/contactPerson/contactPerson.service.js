@@ -15,6 +15,13 @@ angular.module("yapp").factory('contactpersonService',['$http','SeatEatsConstant
     var promise = $http.get(SeatEatsConstants.AppUrlApi+'company/'+ID);// this id is of company
     return promise;
   };
+
+  companies.getCompanyContactPersonsCoversion= function (ID,contact)
+  {
+
+    var promise = $http.get(SeatEatsConstants.AppUrlApi+'companycontactconversion/'+ID+'/'+contact);// this id is of company
+    return promise;
+  };
   companies.getContactPerson= function (companyID,contactID)
   {
 

@@ -5,33 +5,22 @@ angular.module('yapp')
   .controller('CompaniesCtrl', function($scope, $state,SeatEatsConstants,companiesService,toastr,$rootScope) {
 
     $scope.$state = $state;
+
     $scope.editLetsplay = function (ID)
     {
 
       $state.go('companiesedit',{id:ID});
     };
-
     $scope.addContactPerson = function (dataItem)
     {
 
       $state.go('contactPerson',{id:dataItem._id});
     };
-
     $scope.conversionToLead = function (item) {
 
-      debugger;
-      console.log(item);
-      /* var i;
-       for ( i=0;i<$scope.companyItem.contactPersons.length;i++)
-       if($scope.companyItem.contactPersons[i]._id==ID)
-       break;
-       $scope.companyItem.editIndex=i;
 
-       $state.go('contactPersonedit',{myParam:$scope.companyItem});
-       */
+      $state.go('pitchesadd',{idcompany:item.parentID,idcontact:item._id});
     };
-
-
     $scope.deleteLetsplay = function (ID)
     {
       $rootScope.scopeWorkingVariable = true;
@@ -49,8 +38,6 @@ angular.module('yapp')
       });
 
     };
-
-
     $scope.mainGridOptions={
       dataSource: {
         type: "json",
@@ -160,8 +147,19 @@ angular.module('yapp')
         },{
           title: "Operation",
           width: "120px",
-          template: '<a ng-click="conversionToLead(dataItem)" class="btn k-primary btn-outline btn-rounded btn-sm">Covert to Lead</a>'
-        }]
+          template: '<div ng-if="dataItem.isCoverted"> <md-icon class="material-icons md-warn" >check_circle</md-icon> Converted </div><a ng-click="conversionToLead(dataItem)" ng-if="!dataItem.isCoverted"  class="btn k-primary btn-outline btn-rounded btn-sm">Covert to Lead</a>'
+        }],
+        dataBound: function(e)  {
+          var items = e.sender.items();
+          console.log("conversionColorClass");
+          items.each(function (index) {
+            var dataItemi = dataItem.contactPersons[index];
+            dataItem.contactPersons[index].parentID=dataItem._id;
+            if (dataItemi.isCoverted) {
+              this.className += " alert-success";
+            }
+          })
+        }
       };
     };
 

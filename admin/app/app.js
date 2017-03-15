@@ -168,7 +168,7 @@ angular
             //get game here
             //get company and contact after that make a pitch form using them
 
-            return contactpersonService.getCompanyContactPersons($stateParams.idcompany);
+            return contactpersonService.getCompanyContactPersonsCoversion($stateParams.idcompany,$stateParams.idcontact);
           }}
           })
       .state('pitchesedit', {
