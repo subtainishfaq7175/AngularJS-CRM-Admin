@@ -5,6 +5,7 @@ var Validation = require('../models/validation');
 var jwt    = require('jwt-simple');
 var config      = require('../config/database');
 var passport	= require('passport');
+var nodemailer = require('nodemailer');
 
 
 
@@ -277,6 +278,40 @@ router.post('/signup', function(req, res) {
       res.json({success: true, msg: 'Successful created new user.'});
     });
   }
+});
+
+
+
+
+router.get('/sayhello', function(req, res) {
+
+    var transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: 's.subtain@gmail.com', // Your email id
+            pass: 'Bese-18a-+717541202' // Your password
+        }
+    });
+
+    var text = 'Hello world from \n\n'
+
+    var mailOptions = {
+        from: 's.subtain@gmail.com', // sender address
+        to: 's.subtain@gmail.com', // list of receivers
+        subject: 'Email Example', // Subject line
+        text: text //, // plaintext body
+        // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+            console.log(error);
+            res.json({yo: 'error'});
+        }else{
+            console.log('Message sent: ' + info.response);
+            res.json({yo: info.response});
+        };
+    });
 });
 
 
