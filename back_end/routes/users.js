@@ -289,7 +289,7 @@ router.get('/sayhello', function(req, res) {
         service: 'Gmail',
         auth: {
             user: 's.subtain@gmail.com', // Your email id
-            pass: 'Bese-18a-+717541202' // Your password
+            pass: 'Bes' // Your password
         }
     });
 
