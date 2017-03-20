@@ -283,24 +283,24 @@ router.post('/signup', function(req, res) {
 
 
 
-router.get('/sayhello', function(req, res) {
+router.post('/emailsending', function(req, res) {
 
     var transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
             user: 's.subtain@gmail.com', // Your email id
-            pass: 'Bes' // Your password
+            pass: 'asdasdasd' // Your password
         }
     });
 
-    var text = 'Hello world from \n\n'
+   // var text = 'Hello world from \n\n'
 
     var mailOptions = {
         from: 's.subtain@gmail.com', // sender address
-        to: 's.subtain@gmail.com', // list of receivers
-        subject: 'Email Example', // Subject line
-        text: text //, // plaintext body
-        // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
+        to:  req.body.email, // list of receivers
+        subject: 'Testing Email', // Subject line
+       // text: text //, // plaintext body
+        html: req.body.content // You can choose to send an HTML body instead
     };
 
     transporter.sendMail(mailOptions, function(error, info){
@@ -309,8 +309,9 @@ router.get('/sayhello', function(req, res) {
             res.json({yo: 'error'});
         }else{
             console.log('Message sent: ' + info.response);
-            res.json({yo: info.response});
-        };
+
+            res.json({status: true});
+        }
     });
 });
 

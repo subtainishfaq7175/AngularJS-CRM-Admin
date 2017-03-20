@@ -32,6 +32,11 @@ angular.module('yapp')
         $state.reload();
       })
     };
+    $scope.sendEmail=function (ID)
+    {
+      $state.go('emailContactPerson',{idcompany:simpleObj.data._id,idcontact:ID});
+
+    };
     $scope.mainGridOptions={
       dataSource: {
         data:  $scope.companyItem.contactPersons,
@@ -73,6 +78,10 @@ angular.module('yapp')
         title: "Operation",
         width: "120px",
         template: '<div ng-if="dataItem.isCoverted"> <md-icon class="material-icons md-warn" >check_circle</md-icon> Converted </div><a ng-click="conversionToLead(dataItem._id)" ng-if="!dataItem.isCoverted"  class="btn k-primary btn-outline btn-rounded btn-sm">Covert to Lead</a>'
+      },{
+        title: "Contact",
+        width: "120px",
+        template: ' <a ng-click="sendEmail(dataItem._id)"  class="btn k-primary btn-outline btn-rounded btn-sm">Send Email</a>'
       },{
         title: "Delete",
         width: "120px",

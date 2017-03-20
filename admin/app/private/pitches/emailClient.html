@@ -1,0 +1,24 @@
+<div>
+    <a ui-sref="contactPerson({id: companyId})" class="pull-right btn btn-primary btn-outline btn-rounded">Contact Person</a>
+    <h3>Contact Person <small>Add/Remove Contact Person</small></h3>
+
+    <form kendo-validator="validator" ng-submit="sendEmail()">
+        <div class="jumbotron box">
+            <h6>Email</h6>
+            <input k-content style="width: 100%" ng-required="true" ng-model="model.email">
+            <br>
+
+            <h6>Content</h6>
+            <textarea kendo-editor ng-required="true" k-ng-model="model.content"></textarea><br>
+            <br>
+
+        </div>
+
+        <div class="jumbotron box">
+            <div class="container">
+                <button class="k-primary"  class="k-button k-primary" type="submit" >Send</button>
+            </div>
+        </div>
+    </form>
+
+</div>

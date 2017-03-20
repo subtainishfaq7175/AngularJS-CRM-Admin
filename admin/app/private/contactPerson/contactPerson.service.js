@@ -55,6 +55,13 @@ angular.module("yapp").factory('contactpersonService',['$http','SeatEatsConstant
     return $http.post(SeatEatsConstants.AppUrlApi+'contactPerson', obj)
 
   };
+
+
+  companies.sendEmailToServer=function (obj)
+  {
+    return $http.post(SeatEatsConstants.AppUrlApi+'emailsending', obj)
+
+  };
   return companies;
 
 }]);

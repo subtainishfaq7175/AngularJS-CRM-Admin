@@ -10,6 +10,11 @@ angular.module('yapp')
       $state.go('pitchesedit',{id:ID});
     };
 
+    $scope.emailClient = function (ID) {
+
+      $state.go('emailclient',{id:ID});
+    };
+
     $scope.deletePitch = function (ID) {
       $rootScope.scopeWorkingVariable = true;
 
@@ -69,6 +74,10 @@ angular.module('yapp')
           }
         }
       },{
+        title: "Email",
+        width: "120px",
+        template: '<a ng-click="emailClient(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Email Client</a>'
+      },{
         title: "Edit",
         width: "120px",
         template: '<a ng-click="editPitch(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Edit</a>'
@@ -122,6 +131,11 @@ angular.module('yapp')
           }
         }
       },{
+        title: "Email",
+        width: "120px",
+        template: '<a ng-click="emailClient(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Email Client</a>'
+      },
+        {
         title: "Edit",
         width: "120px",
         template: '<a ng-click="editPitch(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Edit</a>'

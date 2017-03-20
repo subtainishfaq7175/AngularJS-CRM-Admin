@@ -186,6 +186,21 @@ angular
             return pitchesService.getPitchById($stateParams.id);
           }}
           })
+      .state('emailclient', {
+            url: '/emailclient/:id',
+            parent: 'dashboard',
+            controller: 'EmailClientCtrl',
+            templateUrl: 'private/pitches/emailClient.html',
+        resolve:{
+
+          simpleObj:  function(pitchesService,$stateParams)
+          {
+            //get game here
+
+
+            return pitchesService.getPitchById($stateParams.id);
+          }}
+          })
       .state('companies', {
             url: '/companies',
             parent: 'dashboard',
@@ -244,6 +259,22 @@ angular
         parent: 'dashboard',
         controller: 'ContactPersonEditCtrl',
         templateUrl: 'private/contactPerson/edit/edit.html',
+        resolve:{
+
+          simpleObj:  function(contactpersonService,$stateParams)
+          {
+            //get game here
+
+
+            return contactpersonService.getContactPerson($stateParams.idcompany,$stateParams.idcontact);
+          }}
+
+
+      }).state('emailContactPerson', {
+        url: '/emailContactPerson/:idcompany/:idcontact',
+        parent: 'dashboard',
+        controller: 'EmailContactPersonCtrl',
+        templateUrl: 'private/contactPerson/emailContactPerson.html',
         resolve:{
 
           simpleObj:  function(contactpersonService,$stateParams)
