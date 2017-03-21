@@ -6,7 +6,7 @@
  */
 angular.module('yapp')
   .controller('EmailClientCtrl', function($scope, $state,SeatEatsConstants,contactpersonService,toastr,$rootScope,$stateParams,simpleObj) {
-
+    console.log(simpleObj);
     $scope.$state = $state;
     $scope.model={};
     debugger;

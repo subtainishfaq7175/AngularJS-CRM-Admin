@@ -219,9 +219,7 @@ router.route('/companycontactconversion/:idcompany/:idcontact').get(function(req
 
     Company .update(
         {_id: req.params.idcompany, 'contactPersons._id': req.params.idcontact},
-        {'$set': {
-            'contactPersons.$.isCoverted': true
-        }},
+        {},
         function(err, numAffected)
         {
 

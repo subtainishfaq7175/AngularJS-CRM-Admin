@@ -9,6 +9,7 @@ var jwt    = require('jwt-simple');
 var config      = require('../config/database');
 var passport	= require('passport');
 var User = require('../models/user');
+var Company = require('../models/company');
 var mongoose=require('mongoose');
 
 
@@ -243,15 +244,33 @@ router.route('/pitches')
             } else
                 {
 
-                   var pitch = new Pitches(req.body);
-                   pitch.save(function(err)
-                {
-                    if (err) {
-                        return res.send(err);
-                    }
+                    Company .update(
+                        {_id: req.body.idcompany, 'contactPersons._id': req.body.idcontact},
+                        {'$set': {
+                            'contactPersons.$.isCoverted': true
+                        }},
+                        function(err, numAffected)
+                        {
 
-                    res.send({ message: 'Pitch Added' });
-                });
+                            if (err) {
+                                return res.send(err);
+                            }
+
+                            var pitch = new Pitches(req.body);
+                            pitch.save(function(err)
+                            {
+                                if (err) {
+                                    return res.send(err);
+                                }
+
+                                res.send({ message: 'Pitch Added' });
+                            });
+                        }
+                    );
+
+
+
+
 
                 }
         });

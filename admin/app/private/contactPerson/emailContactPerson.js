@@ -8,6 +8,7 @@ angular.module('yapp')
   .controller('EmailContactPersonCtrl', function($scope, $state,SeatEatsConstants,contactpersonService,toastr,$rootScope,$stateParams,simpleObj) {
 
     $scope.$state = $state;
+    console.log(simpleObj);
     $scope.model={};
     $scope.model.email=simpleObj.data.contactPersonEmail;
     $scope.sendEmail=function ()

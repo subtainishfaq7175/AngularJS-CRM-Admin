@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
+var Company = require('../models/company');
 var Validation = require('../models/validation');
 var jwt    = require('jwt-simple');
 var config      = require('../config/database');
@@ -283,7 +284,7 @@ router.post('/signup', function(req, res) {
 
 
 
-router.post('/emailsending', function(req, res) {
+router.post('/emailsending/:idcompany/:idcontactperson', function(req, res) {
 
     var transporter = nodemailer.createTransport({
         service: 'Gmail',
@@ -308,9 +309,73 @@ router.post('/emailsending', function(req, res) {
             console.log(error);
             res.json({yo: 'error'});
         }else{
-            console.log('Message sent: ' + info.response);
 
-            res.json({status: true});
+            Company .update(
+                {_id: req.params.idcompany, 'contactPersons._id': req.params.idcontact},
+                {'$set': {
+                    'contactPersons.$.isEmailed': true,
+
+                }, '$inc' : { "contactPersons.$.emailCount" : 1 }
+
+                },
+                function(err, numAffected)
+                {
+
+                    if (err) {
+                        return res.send(err);
+                    }
+
+                    res.json({status: true});
+                }
+            );
+
+        }
+    });
+});
+
+
+router.post('/emailsending/:idpitch', function(req, res) {
+
+    var transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: 's.subtain@gmail.com', // Your email id
+            pass: 'asdasdasd' // Your password
+        }
+    });
+
+   // var text = 'Hello world from \n\n'
+
+    var mailOptions = {
+        from: 's.subtain@gmail.com', // sender address
+        to:  req.body.email, // list of receivers
+        subject: 'Testing Email', // Subject line
+       // text: text //, // plaintext body
+        html: req.body.content // You can choose to send an HTML body instead
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+            console.log(error);
+            res.json({yo: 'error'});
+        }else{
+
+            Pitches.update({ _id: req.params.id }, {
+                '$set': {
+                    'inner.isEmailed': true
+
+                }, '$inc' : { "inner.emailCount" : 1 }
+
+
+            },function (err,pot) {
+                if (err) {
+                    return res.send(err);
+                }
+
+                res.json({status: true});
+
+            });
+
         }
     });
 });
