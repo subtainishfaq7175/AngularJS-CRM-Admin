@@ -145,7 +145,7 @@ angular.module('yapp')
         },{
           title: "Operation",
           width: "120px",
-          template: '<div ng-if="dataItem.isCoverted"> <md-icon class="material-icons md-warn" >check_circle</md-icon> Converted </div><a ng-click="conversionToLead(dataItem)" ng-if="!dataItem.isCoverted"  class="btn k-primary btn-outline btn-rounded btn-sm">Covert to Lead</a>'
+          template: '<div ng-if="dataItem.isConverted"> <md-icon class="material-icons md-warn" >check_circle</md-icon> Converted </div><a ng-click="conversionToLead(dataItem)" ng-if="!dataItem.isConverted"  class="btn k-primary btn-outline btn-rounded btn-sm">Covert to Lead</a>'
         }],
         dataBound: function(e)  {
           var items = e.sender.items();
@@ -153,7 +153,7 @@ angular.module('yapp')
           items.each(function (index) {
             var dataItemi = dataItem.contactPersons[index];
             dataItem.contactPersons[index].parentID=dataItem._id;
-            if (dataItemi.isCoverted) {
+            if (dataItemi.isConverted) {
               this.className += " alert-success";
             }
           })

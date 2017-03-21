@@ -247,7 +247,7 @@ router.route('/pitches')
                     Company .update(
                         {_id: req.body.idcompany, 'contactPersons._id': req.body.idcontact},
                         {'$set': {
-                            'contactPersons.$.isCoverted': true
+                            'contactPersons.$.isConverted': true
                         }},
                         function(err, numAffected)
                         {

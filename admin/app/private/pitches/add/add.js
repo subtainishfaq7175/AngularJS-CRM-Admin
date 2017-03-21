@@ -386,7 +386,7 @@ angular.module('yapp')
 
       $scope.model.idcompany=$stateParams.idcompnay;
       $scope.model.idcontact=$stateParams.idcontact;
-      $scope.model.inner.isConverter=true;
+      $scope.model.inner.isConverted=true;
 
       pitchesService.postPitch($scope.model).then(function (response) {
 

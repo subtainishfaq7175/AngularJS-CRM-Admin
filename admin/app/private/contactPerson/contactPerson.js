@@ -77,7 +77,7 @@ angular.module('yapp')
       },{
         title: "Operation",
         width: "120px",
-        template: '<div ng-if="dataItem.isCoverted"> <md-icon class="material-icons md-warn" >check_circle</md-icon> Converted </div><a ng-click="conversionToLead(dataItem._id)" ng-if="!dataItem.isCoverted"  class="btn k-primary btn-outline btn-rounded btn-sm">Covert to Lead</a>'
+        template: '<div ng-if="dataItem.isConverted"> <md-icon class="material-icons md-warn" >check_circle</md-icon> Converted </div><a ng-click="conversionToLead(dataItem._id)" ng-if="!dataItem.isConverted"  class="btn k-primary btn-outline btn-rounded btn-sm">Covert to Lead</a>'
       },{
         title: "Contact",
         width: "120px",
@@ -92,7 +92,7 @@ angular.module('yapp')
         console.log("conversionColorClass");
         items.each(function (index) {
           var dataItem = $scope.companyItem.contactPersons[index];
-          if (dataItem.isCoverted) {
+          if (dataItem.isConverted) {
             this.className += " alert-success";
           }
         })
