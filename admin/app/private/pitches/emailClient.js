@@ -10,7 +10,7 @@ angular.module('yapp')
     $scope.$state = $state;
     $scope.model={};
     debugger;
-    $scope.model.email=simpleObj.data.contactPersonEmail;
+    $scope.model.email=simpleObj.data.inner.contactPersonEmail;
     $scope.sendEmail=function ()
     {  $rootScope.scopeWorkingVariable = true;
 

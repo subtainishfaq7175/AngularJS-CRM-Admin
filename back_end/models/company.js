@@ -27,7 +27,7 @@ var companySchema = new Schema({
             contactPersonIsDecisionMaker:String,
             contactPersonIsClientNew:String,
             contactPersonRemarks: String,
-            isEmailed :{type :Bolean , default : false},
+            isEmailed :{type :Boolean , default : false},
             emailCount : {type : Number , default:0 },
             isConverted :{type :Boolean , default : false}
         }]

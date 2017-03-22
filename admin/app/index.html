@@ -145,6 +145,20 @@
     <script src="bower_components/ng-loaders/ngLoader.min.js"></script>
     <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
     <script src="bower_components/angular-editable-text/dist/angular-editable-text.min.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCjacIGgEstIWSeic53QsEfysn-Gz6ayT0",
+            authDomain: "angular-368d2.firebaseapp.com",
+            databaseURL: "https://angular-368d2.firebaseio.com",
+            storageBucket: "angular-368d2.appspot.com",
+            messagingSenderId: "116973853491"
+        };
+        firebase.initializeApp(config);
+    </script>
+    COPY
 
     <!-- endbuild -->
   </body>

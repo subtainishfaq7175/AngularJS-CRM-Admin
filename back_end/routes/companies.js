@@ -217,15 +217,7 @@ router.route('/company/:id').get(function(req, res) {
 
 router.route('/companycontactconversion/:idcompany/:idcontact').get(function(req, res) {
 
-    Company .update(
-        {_id: req.params.idcompany, 'contactPersons._id': req.params.idcontact},
-        {},
-        function(err, numAffected)
-        {
 
-            if (err) {
-                return res.send(err);
-            }
 
             Company.findOne({ _id: req.params.idcompany}, function(err, company) {
                 if (err) {
@@ -234,8 +226,7 @@ router.route('/companycontactconversion/:idcompany/:idcontact').get(function(req
 
                 res.json(company);
             });
-        }
-    );
+
 });
 
 router.route('/company/:id').delete(function(req, res) {

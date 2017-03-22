@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 var Company = require('../models/company');
+var Pitches = require('../models/pitch');
 var Validation = require('../models/validation');
 var jwt    = require('jwt-simple');
 var config      = require('../config/database');
@@ -290,7 +291,7 @@ router.post('/emailsending/:idcompany/:idcontactperson', function(req, res) {
         service: 'Gmail',
         auth: {
             user: 's.subtain@gmail.com', // Your email id
-            pass: 'asdasdasd' // Your password
+            pass: 'Bese-18a-+717541202' // Your password
         }
     });
 
@@ -340,7 +341,7 @@ router.post('/emailsending/:idpitch', function(req, res) {
         service: 'Gmail',
         auth: {
             user: 's.subtain@gmail.com', // Your email id
-            pass: 'asdasdasd' // Your password
+            pass: 'Bese-18a-+717541202' // Your password
         }
     });
 

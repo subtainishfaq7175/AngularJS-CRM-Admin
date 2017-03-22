@@ -2,7 +2,17 @@
  * Created by subtainishfaq on 10/30/16.
  */
 angular.module('yapp')
-  .controller('CompaniesCtrl', function($scope, $state,SeatEatsConstants,companiesService,toastr,$rootScope) {
+  .controller('CompaniesCtrl', function($scope, $state,SeatEatsConstants,companiesService,toastr,$rootScope,$firebaseObject) {
+
+    var ref = firebase.database().ref();
+    $scope.data = $firebaseObject(ref);
+// this waits for the data to load and then logs the output. Therefore,
+// data from the server will now appear in the logged output. Use this with care!
+    $scope.data.$loaded()
+      .then(function() {
+        console.log($scope.data.items);
+      });
+
 
     $scope.$state = $state;
 

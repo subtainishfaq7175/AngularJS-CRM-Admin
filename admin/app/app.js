@@ -14,7 +14,8 @@ angular
     'toastr',
     'ngCountries',
     'gg.editableText',
-    'ui.tree'
+    'ui.tree',
+    'firebase'
   ])
   .config(function($stateProvider, $urlRouterProvider) {
 
