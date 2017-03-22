@@ -1,0 +1,24 @@
+<div>
+
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Assign Lead to Team Lead!</h1>
+            <select kendo-drop-down-list name="teamLead"   k-options="selectOptionTeamLead"   k-ng-model="model.teamLead" style="width: 100%;"></select>
+
+            <br>
+
+            <h6>Contact Date</h6>
+            <input kendo-date-picker
+                   style="width: 100%;"
+                   k-ng-model="model.meetingDate"
+            />
+        </div>
+    </div>
+    <div class="jumbotron">
+            <div class="container">
+                <button class="k-primary"  class="k-button k-primary" ng-click="AssignToLead()" >Assign</button>
+            </div>
+    </div>
+
+</div>

@@ -8,10 +8,7 @@ angular.module('yapp')
     $scope.data = $firebaseObject(ref);
 // this waits for the data to load and then logs the output. Therefore,
 // data from the server will now appear in the logged output. Use this with care!
-    $scope.data.$loaded()
-      .then(function() {
-        console.log($scope.data.items);
-      });
+
 
 
     $scope.$state = $state;

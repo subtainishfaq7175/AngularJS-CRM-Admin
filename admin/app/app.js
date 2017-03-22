@@ -159,7 +159,7 @@ angular
           })
       .state('pitchesadd', {
             url: '/pitchesadd/:idcompany/:idcontact',
-            parent: 'dashboard',
+            parent: 'dashboard' ,
             controller: 'PitchesAddCtrl',
             templateUrl: 'private/pitches/add/add.html',
         resolve:{
@@ -299,6 +299,12 @@ angular
         parent: 'dashboard',
         controller: 'ProfilesAddCtrl',
         templateUrl: 'private/profiles/add/add.html'
+      })
+      .state('meeting' , {
+        url: '/meeting/:leadid',
+        parent: 'dashboard',
+        controller: 'MeetingCtrl',
+        templateUrl: 'private/meeting/meeting.html'
       })
       .state('profilesedit', {
 

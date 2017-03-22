@@ -15,6 +15,11 @@ angular.module('yapp')
       $state.go('emailclient',{id:ID});
     };
 
+    $scope.planMeeting = function (ID) {
+
+      $state.go('meeting',{leadid:ID});
+    };
+
     $scope.deletePitch = function (ID) {
       $rootScope.scopeWorkingVariable = true;
 
@@ -81,7 +86,13 @@ angular.module('yapp')
         title: "Edit",
         width: "120px",
         template: '<a ng-click="editPitch(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Edit</a>'
-      },{
+      },
+        {
+          title: "Meeting",
+          width: "120px",
+          template: '<a ng-click="planMeeting(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Plan Meeting</a>'
+        }
+        ,{
         title: "Delete",
         width: "120px",
         template: '<a ng-click="deletePitch(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Delete</a>'
@@ -139,6 +150,11 @@ angular.module('yapp')
         title: "Edit",
         width: "120px",
         template: '<a ng-click="editPitch(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Edit</a>'
+      },
+        {
+        title: "Meeting",
+        width: "120px",
+        template: '<a ng-click="planMeeting(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Plan Meeting</a>'
       },{
         title: "Delete",
         width: "120px",

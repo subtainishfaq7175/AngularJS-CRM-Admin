@@ -167,6 +167,39 @@ router.route('/usersbylevel')
 
     });
 
+
+router.route('/usersteamlead')
+    .get(function(req, res) {
+
+
+        var token = getToken(req.headers);
+        if (token) {
+            var decoded = jwt.decode(token, config.secret);
+            User.findOne({
+                name: decoded.name
+            }, function(err, user) {
+                if (err) throw err;
+
+                if (!user)
+                {
+                    return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
+                } else
+                {
+
+
+                    User.find({nodeLevel:{$lte :2 } },function (err,users) {
+                        console.log(users);
+                        res.json(users);
+                    });
+
+                }
+            });
+        } else {
+            return res.status(403).send({success: false, msg: 'No token provided.'});
+        }
+
+    });
+
 router.route('/usersunassigned')
     .get(function(req, res) {
 
