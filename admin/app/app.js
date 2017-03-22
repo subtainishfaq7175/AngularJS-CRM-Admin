@@ -159,7 +159,7 @@ angular
           })
       .state('pitchesadd', {
             url: '/pitchesadd/:idcompany/:idcontact',
-            parent: 'dashboard' ,
+            parent: 'dashboard',
             controller: 'PitchesAddCtrl',
             templateUrl: 'private/pitches/add/add.html',
         resolve:{
@@ -300,12 +300,6 @@ angular
         controller: 'ProfilesAddCtrl',
         templateUrl: 'private/profiles/add/add.html'
       })
-      .state('meeting' , {
-        url: '/meeting/:leadid',
-        parent: 'dashboard',
-        controller: 'MeetingCtrl',
-        templateUrl: 'private/meeting/meeting.html'
-      })
       .state('profilesedit', {
 
       resolve:{
@@ -351,6 +345,31 @@ angular
         url: '/settings',
         parent: 'dashboard',
         templateUrl: 'private/settings/settings.html'
+      })
+      .state('leadStatus', {
+        url: '/leadStatus',
+        parent: 'dashboard',
+        templateUrl: 'private/leadStatus/leadStatus.html'
+      })
+      .state('taskProcess', {
+        url: '/taskProcess',
+        parent: 'dashboard',
+        templateUrl: 'private/taskProcess/taskProcess.html'
+      })
+      .state('taskStatus', {
+        url: '/taskStatus',
+        parent: 'dashboard',
+        templateUrl: 'private/taskStatus/taskStatus.html'
+      })
+      .state('invoiceRequest', {
+        url: '/invoiceRequest',
+        parent: 'dashboard',
+        templateUrl: 'private/invoiceRequest/invoiceRequest.html'
+      })
+      .state('senderRequest', {
+        url: '/senderRequest',
+        parent: 'dashboard',
+        templateUrl: 'private/senderRequest/senderRequest.html'
       })
       .state('notfound', {
 
@@ -400,11 +419,11 @@ function run($rootScope, $http, $state, $localStorage) {
       $rootScope.scopeWorkingVariable=true;
 
 
-      var publicPages = ['login','signup'];
-      var restrictedPage = publicPages.indexOf(toState.name) === -1;
-      if (restrictedPage && !$localStorage.currentUser) {
-        $state.go('login');
-      }
+      // var publicPages = ['login','signup'];
+      // var restrictedPage = publicPages.indexOf(toState.name) === -1;
+      // if (restrictedPage && !$localStorage.currentUser) {
+      //   $state.go('login');
+      // }
 
 
     });
