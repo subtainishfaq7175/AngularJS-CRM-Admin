@@ -1,6 +1,4 @@
-/**
- * Created by subtainishfaq on 10/18/16.
- */
+
 var Company = require('../models/company');
 var express = require('express');
 var jwt    = require('jwt-simple');
@@ -24,7 +22,7 @@ router.route('/companyssearch')
             }
         });
 
-});
+    });
 router.route('/contactssearch/:id')
     .get(function(req, res) {
         var filtValue =req.query.filter.filters[0].value;
@@ -35,12 +33,12 @@ router.route('/contactssearch/:id')
             res.json(persons);
         })
 
-});
+    });
 
 router.route('/companyscount/:id')
     .get(function(req, res) {
 
-     var  query = Company.findOne({ _id: req.params.id }).select({ "likes": 1,  "favourites": 1, "dislikes": 1, "_id": 0});
+        var  query = Company.findOne({ _id: req.params.id }).select({ "likes": 1,  "favourites": 1, "dislikes": 1, "_id": 0});
 
         query.exec(function (err, someValue) {
             if (err)     res.send(err);
@@ -59,9 +57,9 @@ router.route('/companyscount/:id')
 router.route('/companysfilter')
     .get(function(req, res) {
 
-    var    andingParams=[];
-    var    sorting={};
-    var isTrueSet;
+        var    andingParams=[];
+        var    sorting={};
+        var isTrueSet;
 
         if(typeof req.param('from')!== 'undefined')
             andingParams.push({"created_time": {"$gte": new Date(req.param('from'))}});
@@ -79,10 +77,10 @@ router.route('/companysfilter')
         }
         var  query;
         if(andingParams.length>0)
-        query ={
-            $and : andingParams
+            query ={
+                $and : andingParams
 
-        };
+            };
         else
             query={};
         if(typeof req.param('order')!== 'undefined')
@@ -93,7 +91,7 @@ router.route('/companysfilter')
         {
             sorting[req.param('order')]="desc";
             if(req.param('orderby')==="title")
-            sorting[req.param('order')]="asc";
+                sorting[req.param('order')]="asc";
         }
 
 
@@ -111,7 +109,7 @@ router.route('/companysfilter')
             }
         });
 
-});
+    });
 
 router.route('/company')
     .get(function(req, res) {
@@ -127,38 +125,38 @@ router.route('/company')
             }
         });
 
-})
+    })
 
-.post(function(req, res) {
-    var token = getToken(req.headers);
-    if (token) {
-        var decoded = jwt.decode(token, config.secret);
-        User.findOne({
-            name: decoded.name
-        }, function(err, user) {
-            if (err) throw err;
+    .post(function(req, res) {
+        var token = getToken(req.headers);
+        if (token) {
+            var decoded = jwt.decode(token, config.secret);
+            User.findOne({
+                name: decoded.name
+            }, function(err, user) {
+                if (err) throw err;
 
-            if (!user) {
-                return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
-            } else {
-                var company = new Company(req.body);
+                if (!user) {
+                    return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
+                } else {
+                    var company = new Company(req.body);
 
-                company.save(function(err) {
-                    if (err) {
+                    company.save(function(err) {
+                        if (err) {
 
-                        err.isError=true;
-                        return res.send(err);
-                    }
+                            err.isError=true;
+                            return res.send(err);
+                        }
 
-                    res.send({ message: 'Company Added' });
-                });
+                        res.send({ message: 'Company Added' });
+                    });
 
-            }
-        });
-    } else {
-        return res.status(403).send({success: false, msg: 'No token provided.'});
-    }
-});
+                }
+            });
+        } else {
+            return res.status(403).send({success: false, msg: 'No token provided.'});
+        }
+    });
 
 router.route('/company/:id').put(function(req,res){
 
@@ -219,13 +217,13 @@ router.route('/companycontactconversion/:idcompany/:idcontact').get(function(req
 
 
 
-            Company.findOne({ _id: req.params.idcompany}, function(err, company) {
-                if (err) {
-                    return res.send(err);
-                }
+    Company.findOne({ _id: req.params.idcompany}, function(err, company) {
+        if (err) {
+            return res.send(err);
+        }
 
-                res.json(company);
-            });
+        res.json(company);
+    });
 
 });
 
@@ -258,16 +256,16 @@ router.route('/companycontact/:idcompany/:idcontact').delete(function(req, res) 
 
 
 router.route('/companycontact/:idcompany/:idcontact').get(function(req, res) {
-   Company.
-   findOne({'contactPersons': {$elemMatch: {_id: req.params.idcontact}}},
-       function removeConnectionsCB(err, obj) {
-       if (err) {
-           return res.send(err);
-       }
-       console.log(obj);
-       res.json(obj.contactPersons.id( req.params.idcontact));
+    Company.
+    findOne({'contactPersons': {$elemMatch: {_id: req.params.idcontact}}},
+        function removeConnectionsCB(err, obj) {
+            if (err) {
+                return res.send(err);
+            }
+            console.log(obj);
+            res.json(obj.contactPersons.id( req.params.idcontact));
 
-   })});
+        })});
 
 
 router.route('/companycontact/:idcompany').put(function(req, res) {
@@ -315,13 +313,13 @@ router.route('/contactPersonEdit/:idcompany/:idcontact').put(function(req, res) 
 router.route('/companysupdate')
     .get(function(req, res) {
         if (typeof req.param('language') != 'undefined' )
-        Company.find({'$or':[{"language":{ "$regex": req.param('language'), "$options": "i" }},{"episodes.language":{ "$regex": req.param('language'), "$options": "i" }} ]},function(err, company) {
-            if (err) {
-                return res.send(err);
-            }
+            Company.find({'$or':[{"language":{ "$regex": req.param('language'), "$options": "i" }},{"episodes.language":{ "$regex": req.param('language'), "$options": "i" }} ]},function(err, company) {
+                if (err) {
+                    return res.send(err);
+                }
 
-            res.json(company);
-        }).limit(5);
+                res.json(company);
+            }).limit(5);
 
         else
             Company.find(function(err, company) {
@@ -351,12 +349,12 @@ router.route('/companyfavourite')
             .limit(5)
             .exec(function(err, docs)
 
-        {
-            if(!err)
-            res.json(docs);
-            else
-            res.send(err);
-        });
+            {
+                if(!err)
+                    res.json(docs);
+                else
+                    res.send(err);
+            });
 
 
     });
@@ -367,12 +365,12 @@ router.route('/companypopular')
             .limit(5)
             .exec(function(err, docs)
 
-        {
-            if(!err)
-            res.json(docs);
-            else
-            res.send(err);
-        });
+            {
+                if(!err)
+                    res.json(docs);
+                else
+                    res.send(err);
+            });
 
 
     });
@@ -388,7 +386,7 @@ router.route('/companyimage/')
 
         sampleFile = req.files.sampleFile;
 
-      var  fileLoc='./public/images/'+Date.now()+(sampleFile.name.replace(/ /g,''));
+        var  fileLoc='./public/images/'+Date.now()+(sampleFile.name.replace(/ /g,''));
         console.log(fileLoc);
         sampleFile.mv(fileLoc, function (err) {
             if (err) {

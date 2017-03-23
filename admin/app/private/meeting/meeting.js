@@ -7,8 +7,6 @@ angular.module('yapp')
     $scope.model={};
     $scope.firebaseObj={};
     $scope.firebaseObj.user=$stateParams.leadid;
-
-
     $scope.selectOptionTeamLead = {
       filter: "contains",
       placeholder: "Select Type...",
@@ -36,19 +34,18 @@ angular.module('yapp')
         }
       }
     };
-    console.log($stateParams.leadid);
-    $scope.AssignToLead=function () {
-      $scope.firebaseObj.user=$stateParams.leadid;
-      $scope.firebaseObj.meetingDetails=$scope.model;
-      var ref=firebase.database().ref();
-      var ref=ref.child("meetings");
-      var list = $firebaseArray(ref);
-      list.$add(
-        $scope.firebaseObj
-      ).then(function (respons) {
-        console.log(respons)
 
-      });
+    $scope.AssignToLead=function () {
+     // var user=$localStorage.currentUser.userId;
+      var postObject = {
+        userId : $scope.model.teamLead,
+        meetingDetail :
+          {
+            meetingDate : $scope.model.meetingDate,
+            leadId : $stateParams.leadid
+          }
+      }
+
     }
 
   });

@@ -172,6 +172,13 @@ angular
             return contactpersonService.getCompanyContactPersonsCoversion($stateParams.idcompany,$stateParams.idcontact);
           }}
           })
+      .state('meeting', {
+            url: '/meeting/:leadid',
+            parent: 'dashboard',
+            controller: 'MeetingCtrl',
+            templateUrl: 'private/meeting/meeting.html',
+
+          })
       .state('pitchesedit', {
             url: '/pitchesedit/:id',
             parent: 'dashboard',
@@ -419,11 +426,11 @@ function run($rootScope, $http, $state, $localStorage) {
       $rootScope.scopeWorkingVariable=true;
 
 
-      // var publicPages = ['login','signup'];
-      // var restrictedPage = publicPages.indexOf(toState.name) === -1;
-      // if (restrictedPage && !$localStorage.currentUser) {
-      //   $state.go('login');
-      // }
+      var publicPages = ['login','signup'];
+      var restrictedPage = publicPages.indexOf(toState.name) === -1;
+      if (restrictedPage && !$localStorage.currentUser) {
+        $state.go('login');
+      }
 
 
     });

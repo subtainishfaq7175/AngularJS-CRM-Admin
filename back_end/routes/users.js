@@ -446,12 +446,12 @@ router.post('/authenticate', function(req, res) {
                         console.log(val);
                         console.log("inside Validation");
                         console.log(err);
-                        res.json({success: true, token: 'JWT ' + token,settings:true , validation: val });
+                        res.json({success: true, token: 'JWT ' + token,settings:true , validation: val ,userId : user._id});
 
                     });
                 }
                  else
-                 res.json({success: true, token: 'JWT ' + token,settings:false});
+                 res.json({success: true, token: 'JWT ' + token,settings:false,userId : user._id});
 
             });
           } else {
