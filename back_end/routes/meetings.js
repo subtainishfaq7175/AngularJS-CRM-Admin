@@ -51,7 +51,9 @@ router.route('/meeting').get(function(req, res) {
         }
     });
 
-}).post(function(req, res) {
+})
+
+      .post(function(req, res) {
         var token = getToken(req.headers);
         if (token) {
             var decoded = jwt.decode(token, config.secret);
@@ -63,18 +65,55 @@ router.route('/meeting').get(function(req, res) {
                 if (!user) {
                     return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
                 } else {
-                    var meeting = new Meeting(req.body);
+                   // var meeting = new Meeting(req.body);
 
-                    meeting.save(function(err) {
-                        if (err) {
+                    Meeting.findOne({userId : req.body.userId},function (err,returnedMeeting) {
 
-                            err.isError=true;
-                            return res.send(err);
+                        if(returnedMeeting==null)
+                        {
+                            var meetingObj = {};
+                            meetingObj.userId=req.body.userId;
+                            meetingObj.meetings =[];
+                            meetingObj.meetings.push(req.body.meetingDetail);
+                            var meeting = new Meeting(meetingObj);
+                            meeting.save(function(err,meet) {
+                                if (err) {
+
+                                    err.isError=true;
+                                    return res.send(err);
+                                }
+
+                                res.send( meet );
+                            });
+
                         }
 
-                        res.send({ message: 'Meeting Added' });
+                        else
+                            {
+                                returnedMeeting.update(
+                                    {$push: {"meetings":req.body.meetingDetail}},
+                                    {safe: true, upsert: true, new : true},
+                                    function(err, model) {
+                                        console.log(err);
+
+                                        res.json(model);
+
+                                    }
+                                );
+                             //for Particular user id , push unique meeting in that userid
+                            }
+
                     });
 
+                    // Meeting.update({userId: meeting.userId}, meeting, {upsert: true, setDefaultsOnInsert: true}, function(err) {
+                    //     if (err) {
+                    //
+                    //         err.isError=true;
+                    //         return res.send(err);
+                    //             }
+                    //
+                    //     res.send({ message: 'Meeting Added' });
+                    //     });
                 }
             });
         } else {
@@ -128,13 +167,22 @@ router.route('/meeting/:id').put(function(req,res){
 
 
 router.route('/meeting/:id').get(function(req, res) {
-    Meeting.findOne({ _id: req.params.id}, function(err, meeting) {
+    Meeting.findOne({ userId: req.params.id}, function(err, meeting) {
         if (err) {
             return res.send(err);
         }
 
-        res.json(meeting);
-    });
+        var opts = [
+            { path: 'meetings.leadId', select: 'pitchTitle' ,model: 'Pitch' }
+        ];
+
+        Meeting.populate(meeting, opts, function (err, populatedMeeting) {
+            console.log(populatedMeeting);
+            res.json(populatedMeeting);
+
+        });
+
+    })
 });
 
 

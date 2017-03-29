@@ -179,6 +179,22 @@ angular
             templateUrl: 'private/meeting/meeting.html',
 
           })
+      .state('userMeetings', {
+            url: '/userMeetings',
+            parent: 'dashboard',
+            controller: 'UserMeetingCtrl',
+            templateUrl: 'private/usermeeting/usermeeting.html',
+        resolve:{
+
+          simpleObj:  function(usermeetingService,$stateParams)
+          {
+            //get game here
+
+
+            return usermeetingService.getMeetingByUser();
+          }}
+
+          })
       .state('pitchesedit', {
             url: '/pitchesedit/:id',
             parent: 'dashboard',

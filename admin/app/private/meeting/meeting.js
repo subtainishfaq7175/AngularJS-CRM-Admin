@@ -2,7 +2,7 @@
  * Created by subtainishfaq on 3/22/17.
  */
 angular.module('yapp')
-  .controller('MeetingCtrl', function($scope, $state,SeatEatsConstants,pitchesService,$rootScope,toastr,$localStorage,$stateParams,$firebaseArray) {
+  .controller('MeetingCtrl', function($scope, $state,SeatEatsConstants,pitchesService,$rootScope,toastr,$localStorage,$stateParams,meetingService) {
 
     $scope.model={};
     $scope.firebaseObj={};
@@ -45,6 +45,12 @@ angular.module('yapp')
             leadId : $stateParams.leadid
           }
       }
+
+      meetingService.postMeeting(postObject).then(function (response) {
+
+        console.log(response);
+
+      });
 
     }
 
