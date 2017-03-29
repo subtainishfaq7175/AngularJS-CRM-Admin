@@ -193,6 +193,8 @@ router.route('/usersteamlead')
                     });
 
                 }
+
+
             });
         } else {
             return res.status(403).send({success: false, msg: 'No token provided.'});
@@ -219,7 +221,7 @@ router.route('/usersunassigned')
                 {
 
 
-                    User.find({ isAssingned:false,_id: { $ne: user._id } },function (err,users) {
+                    User.find({ isAssingned:false,name: { $ne: "admin"} },function (err,users) {
                         res.json(users);
                     });
 
