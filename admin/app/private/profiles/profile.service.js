@@ -21,6 +21,12 @@ angular.module("yapp").factory('profilesService',['$http','SeatEatsConstants', f
 
   };
 
+  profiles.approveParent=function (id)
+  {
+    return $http.get(SeatEatsConstants.AppUrlApi+'userssetup/'+ id);
+
+  };
+
   profiles.getProfileTree=function ()
   {
     return $http.get(SeatEatsConstants.AppUrlApi+'userstree/');

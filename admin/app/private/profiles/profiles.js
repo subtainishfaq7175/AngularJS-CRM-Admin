@@ -10,13 +10,33 @@ angular.module('yapp')
 
       $state.go('profilesedit',{id:ID});
     };
+
+    $scope.assignProfile = function (ID) {
+      console.log(ID);
+      $rootScope.scopeWorkingVariable = true;
+
+      profilesService.approveParent(ID).then(function (response)
+      {
+        $rootScope.scopeWorkingVariable = false;
+        if(response.status=200)
+          toastr.success('Done','Operation Complete');
+        else
+          toastr.error('Error','Operation Was not complete');
+        $state.reload();
+
+      });
+
+      $state.go('profiles',{id:ID});
+
+
+    };
+
     $scope.treeView;
     $scope.parentId;
-
     homogeneous = new kendo.data.HierarchicalDataSource({
       transport: {
         read: {
-          url: SeatEatsConstants.AppUrlApi + "/userstree",
+          url: SeatEatsConstants.AppUrlApi + "userstree",
           beforeSend: function(req) {
 
             req.setRequestHeader('Authorization', $localStorage.currentUser.token);
@@ -83,10 +103,6 @@ angular.module('yapp')
       }
 
       }
-
-
-
-
     $scope.deleteProfile = function (ID) {
       console.log(ID);
       $rootScope.scopeWorkingVariable = true;
@@ -104,6 +120,7 @@ angular.module('yapp')
 
       $state.go('profiles',{id:ID});
     };
+
     $scope.mainGridOptions={
       dataSource: {
         type: "json",
@@ -140,6 +157,49 @@ angular.module('yapp')
         title: "Edit",
         width: "120px",
         template: '<a ng-click="editProfile(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Edit</a>'
+      }
+      ,{
+        title: "Delete",
+        width: "120px",
+        template: '<a ng-click="deleteProfile(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Delete</a>'
+      }]
+    };
+
+    $scope.unAssignedGridOptions={
+      dataSource: {
+        type: "json",
+        transport: {
+          read: {
+            url: SeatEatsConstants.AppUrlApi + "/usersunassigned",
+            beforeSend: function(req) {
+
+              req.setRequestHeader('Authorization', $localStorage.currentUser.token);
+            }
+        }
+        }
+        ,
+        pageSize: 10,
+        serverPaging: true,
+        serverSorting: true
+      },
+      sortable: true,
+      pageable: true,
+      columns: [{
+        field: "name",
+        title: "User Name",
+        width: "120px"
+      },{
+        field: "rank",
+        title: "Ranks",
+        width: "120px"
+      },{
+        field: "isAssingned",
+        title: "Assigned",
+        width: "120px"
+      },{
+        title: "Operation",
+        width: "120px",
+        template: '<a ng-click="assignProfile(dataItem._id)" class="btn k-primary btn-outline btn-rounded btn-sm">Approve Parent</a>'
       }
       ,{
         title: "Delete",

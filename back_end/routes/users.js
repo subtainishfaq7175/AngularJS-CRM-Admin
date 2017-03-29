@@ -251,7 +251,7 @@ router.route('/userssetup/:userchild')
 
 
 
-                    User.findOne({name:req.params.userchild},function (err,us)
+                    User.findOne({_id:req.params.userchild},function (err,us)
                     {
                          if (err)  return res.status(505).send({success: false, msg: 'Authentication failed. User Problem.'});
 
@@ -283,7 +283,7 @@ router.route('/userssetup/:userchild')
                     });
 
 
-                    ;
+
 
                 }
             });
