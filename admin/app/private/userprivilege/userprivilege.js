@@ -2,39 +2,31 @@
  * Created by subtainishfaq on 10/30/16.
  */
 angular.module('yapp')
-  .controller('UserprivilegeCtrl', function($scope, $state, SeatEatsConstants,fieldvalidationService,$rootScope,toastr,$localStorage) {
+  .controller('UserprivilegeCtrl',  function($scope, $state, SeatEatsConstants,fieldvalidationService,simpleObj,$rootScope,toastr,$localStorage) {
 
     $scope.$state = $state;
-    $scope.model={};
+    $scope.model=simpleObj.data;
 
+    $scope.publishValidator=function () {
+      $rootScope.scopeWorkingVariable = true;
+      fieldvalidationService.updateValidation($scope.model).then(function (response) {
+        $rootScope.scopeWorkingVariable = false;
+        if(response.status=200)
+        {
+          $localStorage.currentUser.validation=response.data;
+          toastr.success('Done','Operation Complete');
 
-
-    $scope.selectOptionsUserType = {
-      filter: "contains",
-      placeholder: "Select Type...",
-      dataTextField: "name",
-      dataValueField: "nodeLevel",
-      valuePrimitive: true,
-      autoBind: false,
-      animation: {
-        close: {
-          effects: "zoom:out",
-          duration: 500
         }
-      },
-      dataSource: {
-        type: "json",
-        serverFiltering: true,
-        transport: {
-          read: {
-            url: SeatEatsConstants.AppUrlApi+"usersbylevel",
-          beforeSend: function(req) {
+        else
+          toastr.error('Error','Operation Was not complete');
+        debugger;
+        console.log(response);
 
-            req.setRequestHeader('Authorization', $localStorage.currentUser.token);
-          }
-          }
-        }
-      }
+        $state.go("home");
+
+
+      });
+
     };
 
 

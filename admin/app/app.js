@@ -357,10 +357,21 @@ angular
         templateUrl: 'private/fieldvalidation/fieldvalidation.html'
       })
       .state('userprivilege', {
+
+        resolve:{
+
+        simpleObj:  function(fieldvalidationService,$stateParams)
+        {
+          //get game here
+
+
+          return fieldvalidationService.getValidation();
+        }},
         url: '/userprivilege',
         parent: 'dashboard',
         controller: 'UserprivilegeCtrl',
         templateUrl: 'private/userprivilege/userprivilege.html'
+
       })
       .state('settings', {
 

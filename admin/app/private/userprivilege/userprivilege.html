@@ -3,11 +3,137 @@
     <h3>User Privilege <small>User Privilege</small></h3>
     <div class="jumbotron">
         <div class="container">
+            <h6>User Team Lead, Role ID <strong>3</strong></h6>
 
-            <h6>User Type</h6>
-            <select kendo-drop-down-list name="saletype"   k-options="selectOptionsUserType"   k-ng-model="model.userType" style="width: 100%;"></select>
+            <div class="row box2">
+                <div class="col-md-6">
+                    <h6>Create Contact/Company</h6>
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.privilege.createCompany">
+                </div>
+                <div class="col-md-6">
+                    <h6>View Contact/Company</h6>
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.privilege.viewCompany">
+
+                </div>
+
+            </div>
 
 
+            <div class="row box2">
+                <div class="col-md-6">
+                    <h6>Create Lead</h6>
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.privilege.createLead">
+                </div>
+                <div class="col-md-6">
+                    <h6>View Lead</h6>
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.privilege.viewLead">
+
+                </div>
+
+            </div>
+
+            <div class="row box2">
+                <div class="col-md-6">
+                    <h6>Create Profile</h6>
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.privilege.createProfile">
+                </div>
+                <div class="col-md-6">
+                    <h6>View Profile</h6>
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.privilege.viewProfile">
+
+                </div>
+
+            </div>
+
+            <div class="row box2">
+                <div class="col-md-6">
+                    <h6>Create Master Data </h6>
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.privilege.createMasterdata">
+                </div>
+
+            </div>
+
+            <div class="row box2">
+                <div class="col-md-6">
+                    <h6>Edit Settings</h6>
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.privilege.createSetting">
+                </div>
+
+            </div>
+
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+        <div class="container">
+            <h6>User Team Member, Role ID <strong>4</strong></h6>
+
+            <div class="row box2">
+                <div class="col-md-6">
+                    <h6>Create Contact/Company</h6>
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.privilege.createCompany">
+                </div>
+                <div class="col-md-6">
+                    <h6>View Contact/Company</h6>
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.privilege.viewCompany">
+
+                </div>
+
+            </div>
+
+
+            <div class="row box2">
+                <div class="col-md-6">
+                    <h6>Create Lead</h6>
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.privilege.createLead">
+                </div>
+                <div class="col-md-6">
+                    <h6>View Lead</h6>
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.privilege.viewLead">
+
+                </div>
+
+            </div>
+
+            <div class="row box2">
+                <div class="col-md-6">
+                    <h6>Create Profile</h6>
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.privilege.createProfile">
+                </div>
+                <div class="col-md-6">
+                    <h6>View Profile</h6>
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.privilege.viewProfile">
+
+                </div>
+
+            </div>
+
+            <div class="row box2">
+                <div class="col-md-6">
+                    <h6>Create Master Data </h6>
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.privilege.createMasterdata">
+                </div>
+
+            </div>
+
+            <div class="row box2">
+                <div class="col-md-6">
+                    <h6>Edit Settings</h6>
+                    <input class="k-content" type="checkbox"    name="vehicle" ng-model="model.privilege.createSetting">
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="jumbotron box">
+        <div class="container">
+            <button class="k-primary"  class="k-button k-primary" ng-click="publishValidator()" >Publish</button>
         </div>
     </div>
 </div>
