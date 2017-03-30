@@ -12,13 +12,17 @@
 
 
                         <input k-content ng-model="credentials.name" placeholder="Email" style="width: 100%;">
-                       <br>
-                       <br>
+                        <br>
+                        <br>
                         <input type="password" k-content ng-model="credentials.password"  placeholder="Password" style="width: 100%;">
-                       <br>
-                       <br>
+                        <br>
+                        <br>
+                        <h6>Team</h6>
+                        <select kendo-drop-down-list  k-options="selectOptionsTeamType"    k-ng-model="credentials.team" style="width: 100%;"></select>
+                        <br>
 
-                        <button type="submit" class="btn-primary">SignUp</button>
+
+                <button type="submit" class="btn-primary">SignUp</button>
 
             </form>
 

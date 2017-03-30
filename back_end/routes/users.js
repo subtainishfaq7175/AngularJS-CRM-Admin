@@ -55,7 +55,7 @@ router.route('/users')
     });
 
 
-router.route('/userstree')
+router.route('/userstree/:teamType')
     .get(function(req, res) {
 
 
@@ -73,9 +73,12 @@ router.route('/userstree')
                 } else
                 {
 
+               var arg={
+                   filters: {team:req.params.teamType}
 
+               }
 
-                 user.getChildrenTree(function(err, users) {
+                 user.getChildrenTree(arg,function(err, users) {
 
                   var   parsed = JSON.parse(JSON.stringify(users), function(k, v) {
                          if (k === "children")
@@ -303,7 +306,8 @@ router.post('/signup', function(req, res) {
   } else {
     var newUser = new User({
       name: req.body.name,
-      password: req.body.password
+      password: req.body.password,
+      team  :req.body.team
 
     });
 
@@ -448,7 +452,7 @@ router.post('/authenticate', function(req, res) {
                         console.log(val);
                         console.log("inside Validation");
                         console.log(err);
-                        res.json({success: true, token: 'JWT ' + token,settings:true , validation: val ,userId : user._id, userLevel:user.nodeLevel});
+                        res.json({success: true, token: 'JWT ' + token,settings:true , validation: val ,userId : user._id, userLevel:user.nodeLevel, team:user.team});
 
                     });
                 }

@@ -33,7 +33,7 @@ var UserSchema = new Schema({
     isAssingned :{ type: Boolean , default : false},
     hasChild: { type: Boolean , default : false},
     nodeLevel : {type:Number},
-    teamType : {type:String , default : "sale"}
+    team : {type:String , default : "sale"}
 
 
 

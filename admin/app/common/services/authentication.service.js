@@ -26,7 +26,7 @@
 
           if (response.token) {
             // store username and token in local storage to keep user logged in between page refreshes
-            $localStorage.currentUser = { name: username, token: response.token, validation:response.validation , userId: response.userId ,userLevel:response.userLevel};
+            $localStorage.currentUser = { name: username, token: response.token, validation:response.validation , userId: response.userId ,userLevel:response.userLevel,team :response.team};
 
             // add jwt token to auth header for all requests made by the $http service
             $http.defaults.headers.common.Authorization = response.token;
@@ -63,8 +63,8 @@
 
     };
 
-    function SignUp(username, password, callback) {
-      $http.post(SeatEatsConstants.AppUrlApi+'signup', { name: username, password: password })
+    function SignUp(username, password, callback,team) {
+      $http.post(SeatEatsConstants.AppUrlApi+'signup', { name: username, password: password,team:team })
         .success(function (response) {
           // login successful if there's a token in the response
           debugger;

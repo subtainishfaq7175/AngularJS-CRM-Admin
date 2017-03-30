@@ -16,10 +16,22 @@
 
 
         <div class="container" align="center" >
-            <h1>Profiles!</h1>
+            <h1>TeleSale!</h1>
             <div class="box box2">
-            <div kendo-tree-view="treeView"
-                 k-options="treeOptions" align="center">
+            <div kendo-tree-view="treeViewTeleSale"
+                 k-options="treeOptionsTeleSale" align="center">
+
+                  <span k-template>
+                     {{dataItem.name}}
+                 </span>
+            </div>
+            </div>
+        </div>
+        <div class="container" align="center" >
+            <h1>Sale!</h1>
+            <div class="box box2">
+            <div kendo-tree-view="treeViewSale"
+                 k-options="treeOptionsSale" align="center">
 
                   <span k-template>
                      {{dataItem.name}}

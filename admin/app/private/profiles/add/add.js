@@ -22,7 +22,29 @@ angular.module('yapp')
       AuthenticationService.Logout();
     };
 
-
+    $scope.selectOptionsTeamType = {
+      filter: "contains",
+      placeholder: "Select Type...",
+      dataTextField: "content",
+      dataValueField: "content",
+      valuePrimitive: true,
+      autoBind: false,
+      animation: {
+        close: {
+          effects: "zoom:out",
+          duration: 500
+        }
+      },
+      dataSource: {
+        type: "json",
+        serverFiltering: true,
+        transport: {
+          read: {
+            url: SeatEatsConstants.AppUrlApi+"masterdata?type=team"
+          }
+        }
+      }
+    };
 
 
 
@@ -37,7 +59,7 @@ angular.module('yapp')
           vm.error = 'Username or password is incorrect';
           vm.loading = false;
         }
-      });
+      },vm.credentials.team);
     };
 
 
