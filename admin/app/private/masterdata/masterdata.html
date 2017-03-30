@@ -1,34 +1,6 @@
 <div>
     <a ui-sref="home" class="pull-right btn btn-primary btn-outline btn-rounded">Home</a>
     <h3>Masterdata <small>Add/Remove Masterdata</small></h3>
-<!--    <div class="jumbotron box">
-
-
-
-        <div class="container" >
-
-            <table width="100%">
-                <tr>
-                    <th><h6><b>Host</b></h6></th>
-                    <th><h6><b>IconUrl</b></h6></th>
-                    <th><h6><b>Typename</b></h6></th>
-                </tr>
-                <tr>
-                    <td><p style="padding: -10px">youtube.com</p></td>
-                    <td><input k-content style="width: 100%" ng-model="model.youtube.content"/></td>
-                    <td><input k-content style="width: 100%" ng-model="model.youtube.secondary"/></td>
-                    <td> <button class="k-primary" ng-click="saveLink(0)">Save</button> </td>
-
-                </tr>
-
-
-            </table>
-
-
-        </div>
-
-
-    </div>-->
 
     <div class="jumbotron box">
 
@@ -60,6 +32,28 @@
                 on-key-down="saveLocation"
                 object-list="model.location"
                 on-remove="removeLocation">
+
+            </add-object>
+
+
+
+
+        </div>
+
+    </div>
+
+
+    <div class="jumbotron box">
+
+        <h4>Create TeamType</h4>
+
+
+
+        <div class="container" >
+            <add-object
+                on-key-down="saveTeam"
+                object-list="model.team"
+                on-remove="removeTeam">
 
             </add-object>
 

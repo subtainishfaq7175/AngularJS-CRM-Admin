@@ -2,7 +2,7 @@
  * Created by subtainishfaq on 10/30/16.
  */
 angular.module('yapp')
-  .controller('MasterdataCtrl', function($scope, $state,masterdataService,link,pitchType,location,language,contactType,companyType,requestedServiceType,pitchStatusType,pitchClientResponseType,pitchClientCurrentServiceType,pitchClientType,pitchSourceType,pitchCurrencyType,$rootScope,toastr)
+  .controller('MasterdataCtrl', function($scope, $state,masterdataService,link,pitchType,location,team,language,contactType,companyType,requestedServiceType,pitchStatusType,pitchClientResponseType,pitchClientCurrentServiceType,pitchClientType,pitchSourceType,pitchCurrencyType,$rootScope,toastr)
   {
 
     $scope.$state = $state;
@@ -15,6 +15,11 @@ angular.module('yapp')
     $scope.model.location=location.data;
     else
       $scope.model.location={};
+
+    if(angular.isDefined(team))
+    $scope.model.team=team.data;
+    else
+      $scope.model.team={};
 
     if(angular.isDefined(language))
     $scope.model.language=language.data;
@@ -110,7 +115,9 @@ angular.module('yapp')
     $scope.savePitchType=savePitchType;
     $scope.removePitchType=removePitchType;
     $scope.saveLocation=saveLocation;
+    $scope.saveTeam=saveTeam;
     $scope.removeLocation=removeLocation;
+    $scope.removeTeam=removePitchType;
     $scope.removeLanguage=removePitchType;
     $scope.saveLanguage=saveLanguage;
     $scope.removeContactType=removePitchType;
@@ -327,6 +334,22 @@ angular.module('yapp')
         console.log(response);
       });
     }
+    function saveTeam(index) {
+      index.content_type="team";
+      $rootScope.scopeWorkingVariable = true;
+
+      masterdataService.postObj(index).then(function (response)
+      {
+        $rootScope.scopeWorkingVariable = false;
+        if(response.status=200)
+          toastr.success('Done','Operation Complete');
+        else
+          toastr.error('Error','Operation Was not complete');
+        index._id=response.data._id;
+        console.log(response);
+      });
+    }
+
     function removeLocation(id) {
       $rootScope.scopeWorkingVariable = true;
 

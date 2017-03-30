@@ -80,6 +80,13 @@ angular
 
             return masterdataService.getMasterdataByType("location");
           },
+          team:  function(masterdataService)
+          {
+            //get game here
+
+
+            return masterdataService.getMasterdataByType("team");
+          },
           language:  function(masterdataService)
           {
             //get game here
