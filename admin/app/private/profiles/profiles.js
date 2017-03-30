@@ -57,7 +57,7 @@ angular.module('yapp')
      dataTextField: "name",
      dragAndDrop: true,
      dragstart :function (e) {
-       var parent = e.sender.dataItem( $scope.treeView.parent(e.sourceNode));
+       var parent = e.sender.dataItem( $scope.treeViewSale.parent(e.sourceNode));
        if(angular.isDefined(parent))
        $scope.parentId = parent._id;
        else
@@ -67,14 +67,15 @@ angular.module('yapp')
      },
      dragend: function(e) {
 
-       var parent = e.sender.dataItem( $scope.treeView.parent(e.sourceNode));
-      if(angular.isDefined(parent) && $scope.parentId !== parent._id) {
+       console.log(e);
+
+        var parent = e.sender.dataItem( $scope.treeViewSale.parent(e.sourceNode));
+        if(angular.isDefined(parent) && $scope.parentId !== parent._id) {
         var sourceNode = e.sender.dataItem(e.sourceNode);
         var destNode = parent; // Change source path and parent
         sourceNode.parentId = destNode._id;
         sourceNode.path = destNode.path + "#" + sourceNode._id;
         $rootScope.scopeWorkingVariable = true;
-
         profilesService.updateProfile(sourceNode).then(function (response) {
 
           $rootScope.scopeWorkingVariable = false;
@@ -130,7 +131,7 @@ angular.module('yapp')
      dataTextField: "name",
      dragAndDrop: true,
      dragstart :function (e) {
-       var parent = e.sender.dataItem( $scope.treeView.parent(e.sourceNode));
+       var parent = e.sender.dataItem( $scope.treeViewTeleSale.parent(e.sourceNode));
        if(angular.isDefined(parent))
        $scope.parentId = parent._id;
        else
@@ -140,7 +141,9 @@ angular.module('yapp')
      },
      dragend: function(e) {
 
-       var parent = e.sender.dataItem( $scope.treeView.parent(e.sourceNode));
+       console.log(e);
+
+       var parent = e.sender.dataItem( $scope.treeViewTeleSale.parent(e.sourceNode));
       if(angular.isDefined(parent) && $scope.parentId !== parent._id) {
         var sourceNode = e.sender.dataItem(e.sourceNode);
         var destNode = parent; // Change source path and parent

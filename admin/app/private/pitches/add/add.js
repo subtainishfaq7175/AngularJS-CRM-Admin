@@ -352,7 +352,7 @@ angular.module('yapp')
 
       $scope.model.isPublished=true;
 
-
+      $rootScope.scopeWorkingVariable = true;
 
       if($scope.validator.validate())
       pitchesService.postPitch($scope.model).then(function (response) {

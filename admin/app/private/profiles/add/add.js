@@ -50,12 +50,18 @@ angular.module('yapp')
 
     function login() {
       vm.loading = true;
+      $rootScope.scopeWorkingVariable = true;
+
+
       AuthenticationService.SignUp(vm.credentials.name, vm.credentials.password, function (result)
       {
-        debugger;
+        $rootScope.scopeWorkingVariable = false;
+
         if (result === true) {
-          $location.path('/dashboard');
+          toastr.success('Done','Operation Complete');
+          $state.go('profiles');
         } else {
+          toastr.error('Error','Operation Was not complete');
           vm.error = 'Username or password is incorrect';
           vm.loading = false;
         }
