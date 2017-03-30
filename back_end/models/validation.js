@@ -53,8 +53,42 @@ var validationSchema = new Schema({
     settings:
         {
             customFeilds :{type:Boolean , default: false}
+        }, privilege3:
+        {
+            createCompany :{type:Boolean , default: false},
+            viewCompany :{type:Boolean , default: false},
+            createLead :{type:Boolean , default: false},
+            viewLead :{type:Boolean , default: false},
+            createProfile :{type:Boolean , default: false},
+            viewProfile :{type:Boolean , default: false},
+            createMasterdata :{type:Boolean , default: false},
+            createSetting :{type:Boolean , default: false}
+        }, privilege4:
+        {
+            createCompany :{type:Boolean , default: false},
+            viewCompany :{type:Boolean , default: false},
+            createLead :{type:Boolean , default: false},
+            viewLead :{type:Boolean , default: false},
+            createProfile :{type:Boolean , default: false},
+            viewProfile :{type:Boolean , default: false},
+            createMeeting :{type:Boolean , default: false},
+            viewMeeting :{type:Boolean , default: false},
+            createMasterdata :{type:Boolean , default: false},
+            createSetting :{type:Boolean , default: false}
+        }, privilege1:
+        {
+            createCompany :{type:Boolean , default: true},
+            viewCompany :{type:Boolean , default: true},
+            createLead :{type:Boolean , default: true},
+            viewLead :{type:Boolean , default: true},
+            createProfile :{type:Boolean , default: true},
+            viewProfile :{type:Boolean , default: true},
+            createMeeting :{type:Boolean , default: true},
+            viewMeeting :{type:Boolean , default: true},
+            createMasterdata :{type:Boolean , default: true},
+            createSetting :{type:Boolean , default: true}
         }
-});
+},{strict: false});
 
 validationSchema.plugin(mongoosePaginate);
 module.exports = mongoose.model('Validation', validationSchema);

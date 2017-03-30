@@ -32,7 +32,8 @@ var UserSchema = new Schema({
     age : { type:Number },
     isAssingned :{ type: Boolean , default : false},
     hasChild: { type: Boolean , default : false},
-    nodeLevel : {type:Number}
+    nodeLevel : {type:Number},
+    teamType : {type:String , default : "sale"}
 
 
 

@@ -448,7 +448,7 @@ router.post('/authenticate', function(req, res) {
                         console.log(val);
                         console.log("inside Validation");
                         console.log(err);
-                        res.json({success: true, token: 'JWT ' + token,settings:true , validation: val ,userId : user._id});
+                        res.json({success: true, token: 'JWT ' + token,settings:true , validation: val ,userId : user._id, userLevel:user.nodeLevel});
 
                     });
                 }

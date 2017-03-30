@@ -8,7 +8,7 @@
     .module('yapp')
     .factory('AuthenticationService', Service);
 
-  function Service($http,$localStorage,SeatEatsConstants) {
+  function Service($http,$localStorage,SeatEatsConstants,$rootScope) {
     var service = {};
 
     service.Login = Login;
@@ -26,12 +26,27 @@
 
           if (response.token) {
             // store username and token in local storage to keep user logged in between page refreshes
-            $localStorage.currentUser = { name: username, token: response.token, validation:response.validation , userId: response.userId };
+            $localStorage.currentUser = { name: username, token: response.token, validation:response.validation , userId: response.userId ,userLevel:response.userLevel};
 
             // add jwt token to auth header for all requests made by the $http service
             $http.defaults.headers.common.Authorization = response.token;
 
-
+            if($localStorage.currentUser.userLevel===3)
+            {
+              $rootScope.roleId=3;
+            }
+            else if($localStorage.currentUser.userLevel===4)
+            {
+              $rootScope.roleId=4
+            }
+            else if ($localStorage.currentUser.userLevel===1 && username=="super" || username=="admin" )
+            {
+              $rootScope.roleId=1
+            }
+            else
+            {
+              $rootScope.roleId=4;
+            }
 
             // execute callback with true to indicate successful login
             callback(true);
