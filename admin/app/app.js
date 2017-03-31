@@ -324,6 +324,18 @@ angular
         controller: 'ProfilesCtrl',
         templateUrl: 'private/profiles/profiles.html'
       })
+      .state('treesale', {
+        url: '/treesale',
+        parent: 'dashboard',
+        controller: 'TreeSaleCtrl',
+        templateUrl: 'private/profiles/treesale/treesale.html'
+      })
+      .state('treetelesale', {
+        url: '/treetelesale',
+        parent: 'dashboard',
+        controller: 'TreeTeleSaleCtrl',
+        templateUrl: 'private/profiles/treetelesale/treetelesale.html'
+      })
       .state('profilesadd', {
         url: '/profilesadd',
         parent: 'dashboard',

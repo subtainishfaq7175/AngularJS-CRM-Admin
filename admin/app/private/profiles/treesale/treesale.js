@@ -2,7 +2,7 @@
  * Created by subtainishfaq on 10/30/16.
  */
 angular.module('yapp')
-  .controller('ProfilesCtrl', function($scope, $state, SeatEatsConstants,profilesService,$rootScope,toastr,$localStorage) {
+  .controller('TreeSaleCtrl', function($scope, $state, SeatEatsConstants,profilesService,$rootScope,toastr,$localStorage) {
 
     $scope.$state = $state;
     $scope.editProfile = function (ID) {

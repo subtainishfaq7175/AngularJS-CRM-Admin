@@ -2,44 +2,39 @@
     <a ui-sref="profilesadd" class="pull-right btn btn-primary btn-outline btn-rounded">Add</a>
     <h3>Profiles <small>Add/Remove Profiles</small></h3>
     <div class="jumbotron">
-        <div class="container">
-            <h1>Profiles!</h1>
+        <div class="container"  align="center" >
+            <h5>Profiles!</h5>
             <kendo-grid options="mainGridOptions"></kendo-grid>
 
         </div>
-
-        <div class="container">
-            <h1>UnAssigned Profiles!</h1>
+        <br>
+        <br>
+        <br>
+        <div class="container"  align="center" >
+            <h5>UnAssigned Profiles!</h5>
             <kendo-grid options="unAssignedGridOptions"></kendo-grid>
 
         </div>
 
+        <br>
+        <br>
+        <br>
 
         <div class="container" align="center" >
-            <h1>TeleSale!</h1>
-            <div class="box box2">
-            <div kendo-tree-view="treeViewTeleSale"
-                 k-options="treeOptionsTeleSale" align="center">
+            <h6>Team Role Management!</h6>
+            <div class="box box2 row">
+            <div class="col-md-6">
+            <md-button ng-click="$state.go('treetelesale')" class="md-raised md-primary">Team TeleSale </md-button>
 
-                  <span k-template>
-                     {{dataItem.name}}
-                 </span>
+            </div>
+            <div class="col-md-6">
+                <md-button ng-click="$state.go('treesale')" class="md-raised md-primary"> Team Sale </md-button>
+
             </div>
             </div>
         </div>
 
 
-        <div class="container" align="center" >
-            <h1>Sale!</h1>
-            <div class="box box2">
-            <div kendo-tree-view="treeViewSale"
-                 k-options="treeOptionsSale" align="center">
 
-                  <span k-template>
-                     {{dataItem.name }}
-                 </span>
-            </div>
-            </div>
-        </div>
     </div>
 </div>
