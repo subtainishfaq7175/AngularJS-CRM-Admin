@@ -321,10 +321,11 @@ router.post('/signup', function(req, res) {
                     var newUser = new User({
                         name: req.body.name,
                         password: req.body.password,
-                        team: req.body.team
+                      //  team: req.body.team
 
                     });
 
+                    console.log(newUser);
 
                     newUser.save(function (err) {
                         if (err) {
@@ -332,7 +333,7 @@ router.post('/signup', function(req, res) {
                         }
                         res.json({success: true, msg: 'Successful created new user.'});
                     });
-                }
+              }
             }
 
         })
