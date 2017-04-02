@@ -12,10 +12,10 @@ angular.module('yapp')
     $scope.validator;
     $scope.country;
     $scope.isCountrySelected=false;
-    $scope.formFields=$localStorage.currentUser.forms.nodes;
+    $scope.nodes=$localStorage.currentUser.forms.nodes;
     simpleObj=simpleObj.data;
-    if(angular.isDefined($scope.formFields[0].nodes))
-      $scope.formFields=$scope.formFields[0].nodes[0];
+    if(angular.isDefined($scope.nodes))
+      $scope.formFields=$scope.nodes[0];
 
     var ContactIndex;
     for (var i=0 ; i<simpleObj.contactPersons.length ;i++)

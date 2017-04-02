@@ -10,16 +10,14 @@ var uniqueValidator = require('mongoose-unique-validator');
 var Schema=mongoose.Schema;
 
 var meetingSchema = new Schema({
-   userId : {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-    meetings:[
-        {
+
             meetingDate:{ type:Date, default : Date.now()},
             leadId : {type: mongoose.Schema.Types.ObjectId, ref: 'Pitch'}
-        }]
+        }
 
 
 //array of contact person
-}, {strict: false});
+, {strict: false});
 meetingSchema.plugin(uniqueValidator);
 
 meetingSchema.plugin(mongoosePaginate);

@@ -1,13 +1,21 @@
 <div>
 
-<!--
 
     <div class="jumbotron">
         <div class="container">
-            <h1>Assign Lead to Team Lead!</h1>
-            <select kendo-drop-down-list name="teamLead"   k-options="selectOptionTeamLead"   k-ng-model="model.teamLead" style="width: 100%;"></select>
-
+            <h6>Agenda</h6>
+            <input k-content style="width: 100%" ng-model="model.meetingAgenda">
             <br>
+            <h6>Location</h6>
+            <input k-content style="width: 100%" ng-model="model.meetingLocation">
+            <br>
+
+
+
+            <h6>Remarks</h6>
+            <textarea kendo-editor k-ng-model="model.meetingRemarks" ></textarea><br>
+            <br>
+
 
             <h6>Contact Date</h6>
             <input kendo-date-picker
@@ -18,9 +26,8 @@
     </div>
     <div class="jumbotron">
             <div class="container">
-                <button class="k-primary"  class="k-button k-primary" ng-click="AssignToLead()" >Assign</button>
+                <button class="k-primary"  class="k-button k-primary" ng-click="AssignToLead()" >Publish</button>
             </div>
     </div>
--->
 
 </div>

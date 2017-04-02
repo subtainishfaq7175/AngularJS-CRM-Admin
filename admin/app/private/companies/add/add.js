@@ -6,9 +6,9 @@ angular.module('yapp')
 
     $scope.$state = $state;
     $scope.model={};
-    $scope.formFields=$localStorage.currentUser.forms.nodes;
-    if(angular.isDefined($scope.formFields[0].nodes))
-      $scope.formFields=$scope.formFields[0].nodes[2];
+    $scope.nodes=$localStorage.currentUser.forms.nodes;
+    if(angular.isDefined($scope.nodes))
+      $scope.formFields=$scope.nodes[2];
 
     $scope.autoCompleteOptions={
       dataTextField: "companyName",

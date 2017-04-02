@@ -64,56 +64,17 @@ router.route('/meeting').get(function(req, res) {
 
                 if (!user) {
                     return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
-                } else {
-                   // var meeting = new Meeting(req.body);
-
-                    Meeting.findOne({userId : req.body.userId},function (err,returnedMeeting) {
-
-                        if(returnedMeeting==null)
-                        {
-                            var meetingObj = {};
-                            meetingObj.userId=req.body.userId;
-                            meetingObj.meetings =[];
-                            meetingObj.meetings.push(req.body.meetingDetail);
-                            var meeting = new Meeting(meetingObj);
-                            meeting.save(function(err,meet) {
-                                if (err) {
-
-                                    err.isError=true;
-                                    return res.send(err);
-                                }
-
-                                res.send( meet );
-                            });
-
+                } else
+                {
+                    var pitch = new Meeting(req.body);
+                    pitch.save(function(err)
+                    {
+                        if (err) {
+                            return res.send(err);
                         }
 
-                        else
-                            {
-                                returnedMeeting.update(
-                                    {$push: {"meetings":req.body.meetingDetail}},
-                                    {safe: true, upsert: true, new : true},
-                                    function(err, model) {
-                                        console.log(err);
-
-                                        res.json(model);
-
-                                    }
-                                );
-                             //for Particular user id , push unique meeting in that userid
-                            }
-
+                        res.send({ message: 'Meeting Added' });
                     });
-
-                    // Meeting.update({userId: meeting.userId}, meeting, {upsert: true, setDefaultsOnInsert: true}, function(err) {
-                    //     if (err) {
-                    //
-                    //         err.isError=true;
-                    //         return res.send(err);
-                    //             }
-                    //
-                    //     res.send({ message: 'Meeting Added' });
-                    //     });
                 }
             });
         } else {

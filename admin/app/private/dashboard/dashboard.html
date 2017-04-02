@@ -13,7 +13,7 @@
       <ul class="nav nav-sidebar">
          <li ng-class="{active: $state.includes('home')}"><a ui-sref="home">Home <span class="sr-only">(current)</span></a></li>
          <li ng-if="privilege.viewLead" ng-class="{active: $state.includes('pitches')}"><a ui-sref="pitches">Leads</a></li>
-         <li ng-if="privilege.viewMeeting" ng-class="{active: $state.includes('userMeetings')}"><a ui-sref="userMeetings">Meetings</a></li>
+         <li ng-if="privilege.viewMeeting" ng-class="{active: $state.includes('userMeetings')}"><a ui-sref="userMeetings">Unassigned Meetings</a></li>
          <li ng-if="privilege.viewCompany" ng-class="{active: $state.includes('companies')}"><a ui-sref="companies">Companies</a></li>
          <li ng-if="privilege.viewProfile" ng-class="{active: $state.includes('profiles')}"><a ui-sref="profiles">Profiles</a></li>
          <li ng-if="privilege.createMasterdata" ng-class="{active: $state.includes('masterdata')}"><a ui-sref="masterdata">Masterdata</a></li>

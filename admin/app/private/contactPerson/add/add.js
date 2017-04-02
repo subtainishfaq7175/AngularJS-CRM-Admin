@@ -9,9 +9,9 @@ angular.module('yapp')
     $scope.model = {};
     $scope.userDoc = {};
     $scope.companyId=$stateParams.id;
-    $scope.formFields=$localStorage.currentUser.forms.nodes;
-    if(angular.isDefined($scope.formFields[0].nodes))
-      $scope.formFields=$scope.formFields[0].nodes[1];
+    $scope.nodes=$localStorage.currentUser.forms.nodes;
+    if(angular.isDefined($scope.nodes))
+      $scope.formFields=$scope.nodes[1];
 
     $scope.validatorServer=$localStorage.currentUser.validation.companyValidator.contactPersons;
     $scope.settings=$localStorage.currentUser.validation.settings;
