@@ -6,43 +6,55 @@
 6. POST empty validation object to avoid exception (Developer should handle this exception before production enviroment)
 7. Create team Master data as 1. telesale 2. sale
 8. create other master data .
-9.add nodes
+9.add nodes in validation
 {
   "_id": "58e162a30deee811d8d98c4e",
-  "__v": 1,
-  
-"nodes": [
+  "__v": 6,
+  "nodes": [
     {
-     
- "nodes": [
+      "title": "leadForm",
+      "name": "leadForm",
+      "id": "rand",
+      "isForm": true,
+      "nodes": [
         {
-          
-"nodes": [],
-          "id": "rand",
-      
-    "name": "leadForm",
-          "title": "leadForm"
-        },
-  
-      {
-          "nodes": [],
-          "id": "rand",
-          "name": "companyForm",
-      
-    "title": "contactForm"
-        },
+          "isForm": false,
+          "name": "leadFeild",
+          "title": "leadfeild",
+          "id": null
+        }
+      ]
+    },
+    {
+      "title": "contactForm",
+      "name": "contactForm",
+      "id": "rand",
+      "isForm": true,
+      "nodes": [
         {
-          "nodes": [],
-          "id": "rand",
-      
-    "name": "contactForm",
-          "title": "contactForm"
+          "isForm": false,
+          "name": "contactFeild",
+          "title": "contactFeild",
+          "id": null
+        }
+      ]
+    },
+    {
+      "title": "companyForm",
+      "name": "companyForm",
+      "id": "rand",
+      "isForm": true,
+      "nodes": [
+        {
+          "isForm": false,
+          "name": "companyFeild",
+          "title": "companyFeild",
+          "id": null
         }
       ]
     }
   ]
 }
-
 
 
 Above steps must be done using installer , before delivering to client

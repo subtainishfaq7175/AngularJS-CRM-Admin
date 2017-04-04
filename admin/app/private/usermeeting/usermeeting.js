@@ -7,7 +7,7 @@ angular.module('yapp')
     debugger;
     $scope.mainGridOptions={
       dataSource: {
-        data:  simpleObj.data.meetings
+        data:  simpleObj.data
       },
 
       filterable: {

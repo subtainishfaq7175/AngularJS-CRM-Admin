@@ -18,7 +18,7 @@ angular.module("yapp").factory('usermeetingService',['$http','SeatEatsConstants'
 
   meeting.getMeetingByUser= function ()
   {
-    var promise = $http.get(SeatEatsConstants.AppUrlApi+'meeting/'+$localStorage.currentUser.userId);
+    var promise = $http.get(SeatEatsConstants.AppUrlApi+'unmeeting/');
     return promise;
   };
 

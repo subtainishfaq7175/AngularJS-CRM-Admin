@@ -146,6 +146,52 @@ router.route('/meeting/:id').get(function(req, res) {
     })
 });
 
+router.route('/unmeeting/').get(function(req, res) {
+
+
+    var token = getToken(req.headers);
+    if (token) {
+        var decoded = jwt.decode(token, config.secret);
+        User.findOne({
+            name: decoded.name
+        }, function(err, user) {
+            if (err) throw err;
+
+            if (!user) {
+                return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
+            } else {
+
+                if(user.nodeLevel<4)
+                    Meeting.find({ isAssigned: false }, function(err, meeting) {
+                        if (err) {
+                            return res.send(err);
+                        }
+
+
+                        var opts = [
+                            { path: 'leadId', select: 'pitchTitle' ,model: 'Pitch' }
+                        ];
+
+                        Meeting.populate(meeting, opts, function (err, populatedMeeting) {
+                            console.log(populatedMeeting);
+                            res.json(populatedMeeting);
+
+                        });
+                    });
+                else{
+                    return res.status(403).send({success: false, msg: 'No token provided.'});
+
+                }
+
+            }
+        });
+    } else {
+        return res.status(403).send({success: false, msg: 'No token provided.'});
+    }
+
+
+});
+
 
 router.route('/meeting/:id').delete(function(req, res) {
     Meeting.remove({
