@@ -351,8 +351,8 @@ router.post('/emailsending/:idcompany/:idcontactperson', function(req, res) {
     var transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-            user: 's.subtain@gmail.com', // Your email id
-            pass: 'Bese-18a-+717541202' // Your password
+            user: '', // Your email id
+            pass: '' // Your password
         }
     });
 
